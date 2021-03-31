@@ -4,6 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$studio-color: #77E8F4;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -61,6 +62,10 @@ p {
 
 
 /* header */
+
+header {
+  background-color: black !important;
+}
 
 #logo {
   float: left;
