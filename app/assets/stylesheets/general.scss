@@ -15,6 +15,7 @@ $studio-color: #77E8F4;
 /* universal */
 
 body {
+  /* background-color: black ;*/
   padding-top: 60px;
 }
 
@@ -32,6 +33,21 @@ textarea {
     margin-bottom: 10px;
   }
 }
+
+nav{
+  background-color: black !important;
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+      font-size: 20px;
+    }
+  }
+}
+
+
 
 /* typography */
 
@@ -67,11 +83,11 @@ header {
   background-color: black !important;
 }
 
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
