@@ -1,0 +1,17 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <% if current_user %>
+                TBD
+                <% elsif current_instructor %>
+                TBD
+                <% elsif current_admin %>
+                <li><%= link_to('Add Instructor', new_instructor_registration_path) %></li>
+                <% end %>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+</nav>

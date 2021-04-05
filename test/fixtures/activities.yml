@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instructor: one
+  name: MyString
+  duration: 1
+  start_time: 2021-04-02 15:29:25
+  end_time: 2021-04-02 15:29:25
+  capacity: 1
+  reccuring: MyText
+
+two:
+  instructor: two
+  name: MyString
+  duration: 1
+  start_time: 2021-04-02 15:29:25
+  end_time: 2021-04-02 15:29:25
+  capacity: 1
+  reccuring: MyText

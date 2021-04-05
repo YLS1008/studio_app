@@ -1,29 +1,61 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "instructors/shared/error_messages", resource: resource %>
+<%= render "instructors/shared/error_messages", resource: resource %>
 
-  <div class="field">
+<div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
+    <%= f.label :first, "First Name" %><br />
+    <%= f.text_field :first %>
+</div>
+
+<div class="field">
+    <%= f.label :last, "" %><br />
+    <%= f.text_field :last %>
+</div>
+
+<div class="field">
+    <%= f.label :phone %><br />
+    <%= f.number_field :phone %>
+</div>
+
+<div class="field">
+    <%= f.label :exp %><br />
+    <%= f.text_field :exp %>
+</div>
+
+<div class="field">
+    <%= f.label :speciality %><br />
+    <%= f.text_field :speciality %>
+</div>
+
+<div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+</div>
+
+<div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+</div>
 
-  <div class="actions">
+
+
+<div class="actions">
     <%= f.submit "Sign up" %>
-  </div>
+</div>
 <% end %>
 
 <%= render "instructors/shared/links" %>

@@ -1,4 +1,4 @@
-module SignOutHelper
+module UserLevelsHelper
 
     def sign_out_resource
 

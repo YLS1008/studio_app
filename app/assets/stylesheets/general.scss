@@ -15,7 +15,7 @@ $studio-color: #77E8F4;
 /* universal */
 
 body {
-  /* background-color: black ;*/
+  background-color: black !important;
   padding-top: 60px;
 }
 
@@ -34,19 +34,15 @@ textarea {
   }
 }
 
-nav{
-  background-color: black !important;
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-      font-size: 20px;
-    }
-  }
+
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 5px; 
 }
 
+li.menu-item:not(:last-child) { 
+  margin-bottom: 10px !important;  
+}
 
 
 /* typography */
@@ -254,75 +250,7 @@ input {
   }
 }
 
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-}
-
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
-}
-
-/* Users index */
-
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-  }
-}
-
-/* microposts */
-
-.microposts {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-
-span.image {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }

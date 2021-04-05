@@ -1,0 +1,24 @@
+<!-- available colors: primary | secondary | white | ghost-->
+<!-- available sizes: xl | lg | md | sm-->
+<!-- the bootstrap navbar-->
+<nav class="navbar navbar-fixed-top navbar--color--secondary navbar--size--xl" data-startColor="navbar--color--secondary" data-startSize="navbar--size--xl" data-intoColor="navbar--color--primary" data-intoSize="navbar--size--md">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed dropdown-menu" type="button" data-toggle="collapse" data-target="#mobileNav" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><%= link_to "The Studio", root_path, class: "navbar-brand" %>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
+                Login
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class="no-bullets">
+                    <li class="menu-item"><%= link_to "Trainee Login", placeholder_path %></li>
+                    <li class="menu-item"><%= link_to "Instructor Login", new_instructor_session_path %></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</nav>

@@ -1,0 +1,7 @@
+<%= month_calendar events: activities do |day, events| %>
+<div><strong><%= day.to_s(:long) %></strong></div>
+<% events.each do |event| %>
+<div>
+    <%= link_to event.name, event>
+    </div>
+<% end %>

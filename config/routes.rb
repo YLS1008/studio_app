@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :activities
+  get 'instructors/profile'
   get 'admins/dashboard'
   devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
   
   get '/user', to: 'users#show', as: :user_root
   get '/admin', to: 'admins#dashboard', as: :admin_root
-  get '/instructor', to: 'instructor#profile', as: :instructor_root
+  get '/instructor', to: 'instructors#profile', as: :instructor_root
 
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
