@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :activities
-  get 'instructors/profile'
-  get 'admins/dashboard'
+  
   devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
   devise_for :admins, path: 'admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
@@ -10,10 +8,16 @@ Rails.application.routes.draw do
                                                       sessions: 'users/sessions'}
 
 
+
+  resources :activities
+  scope "/admin" do
+    resources :instructors, only: [:show]
+    get '/', to: 'admins#dashboard', as: :admin_root
+  end
+
   root :to => 'static_pages#home'
   
   get '/user', to: 'users#show', as: :user_root
-  get '/admin', to: 'admins#dashboard', as: :admin_root
   get '/instructor', to: 'instructors#profile', as: :instructor_root
 
 

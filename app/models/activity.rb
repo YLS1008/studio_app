@@ -1,12 +1,12 @@
 class Activity < ApplicationRecord
   belongs_to :instructor
-  serialize :recurring, Hash
+  has_one_attached :image
 
-  def recurring=(value)
-    if RecurringSelect.is_valid_rule?(value)
-      super(RecurringSelect.dirty_hash_to_rule(value).to_hash)
+  def displayed_image
+    if image.attached?
+      image
     else
-      super(nil)
+      'default_profile.jpg'
     end
   end
 end

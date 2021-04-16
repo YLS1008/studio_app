@@ -15,6 +15,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
+    @instructor = Instructor.find(params[:id])
   end
 
   # GET /activities/1/edit

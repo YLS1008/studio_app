@@ -44,7 +44,6 @@ li.menu-item:not(:last-child) {
   margin-bottom: 10px !important;  
 }
 
-
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -91,6 +90,7 @@ header {
   &:hover {
     color: white;
     text-decoration: none;
+    background-color: white !important;
   }
 }
 
@@ -199,7 +199,7 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: blue;
+      color: blue ;
     }
   }
   strong {

@@ -1,39 +1,31 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Activity Profile") %>
+<div class="row">
+    <aside class="col-md-4">
+        <section>
+            <h1>
+                <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "rounded-full" %>
+            </h1>
+        </section>
+        <section class="stats">
+            <%= @activity.name.capitalize %>
+        </section>
+    </aside>
+    <div class="col-md-8">
 
-<p>
-  <strong>Instructor:</strong>
-  <%= @activity.instructor_id %>
-</p>
+        <ul class="no-bullets">
+            <li class="menu-item">Duration | <%= @activity.duration %></li>
+            <li class="menu-item">Capacity | <%= @activity.capacity %></li>
+        </ul>
 
-<p>
-  <strong>Name:</strong>
-  <%= @activity.name %>
-</p>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @activity.duration %>
-</p>
+        <% if admin_signed_in? %>
+        <section>
+            <div class="btn btn-secondary">
+                <%= link_to "Schedule Activity", placeholder_path %>
+            </div>
+        </section>
+        <% end %>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @activity.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @activity.end_time %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @activity.capacity %>
-</p>
-
-<p>
-  <strong>Reccuring:</strong>
-  <%= @activity.reccuring %>
-</p>
-
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>
+    </div>
+</div>

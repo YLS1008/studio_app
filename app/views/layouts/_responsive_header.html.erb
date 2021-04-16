@@ -16,6 +16,15 @@
                     <li class="menu-item"><%= link_to "Instructor Login", new_instructor_session_path %></li>
                 </ul>
             </div>
+            <% if I18n.locale == :en %>
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#mobileNav" aria-expanded="false">
+                <%= link_to 'עברית', root_path(locale: :he) %>
+            </button>
+            <% else %>
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#mobileNav" aria-expanded="false">
+                <%= link_to 'English', root_path(locale: :en) %>
+            </button>
+            <% end %>
         </div>
 
     </div>

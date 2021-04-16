@@ -1,16 +1,11 @@
+<%= render 'layouts/responsive_header' %>
+
 <%= image_tag 'biglogo.jpg', class: 'img-fluid' %>
 
 <div class="center jumbotron" , style="background-color:#77E8F4; padding-top:100px;">
-    <h1>The Studio</h1>
-    <h2>by Lihie Levy</h2>
-
-    <h2>
-        This is the home page for the
-        <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-        sample application.
-    </h2>
-
-    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+    <div class="container rounded p-3 my-3 bg-info ">
+        <%= render 'layouts/about' %>
+    </div>
 </div>
 
 <div class="center jumbotron" , style="background-color:#77E8F4">

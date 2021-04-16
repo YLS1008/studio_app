@@ -51,6 +51,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
 </div>
 
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <%= f.label :image, class: "form-label" %>
+    <%= f.file_field :image, class: "form-field" %>
+</div>
+
 
 
 <div class="actions">
