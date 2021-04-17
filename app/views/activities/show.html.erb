@@ -22,7 +22,7 @@
         <% if admin_signed_in? %>
         <section>
             <div class="btn btn-secondary">
-                <%= link_to "Schedule Activity", placeholder_path %>
+                <%= link_to "Schedule Activity", new_time_slot_path(id: @activity.id) %>
             </div>
         </section>
         <% end %>

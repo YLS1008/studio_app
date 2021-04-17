@@ -1,5 +1,4 @@
 <%= content_for(:after_js) do %>
-
 <script>
     $(document).ready(function() {
         $('.owl-carousel').owlCarousel({
@@ -17,7 +16,10 @@
         });
     });
 </script>
+
 <% end %>
+
+
 
 <%= render 'layouts/responsive_header' %>
 
@@ -39,12 +41,6 @@
         <%= image_tag "profile/#{ File.basename(path) }" %>
         <% end.reduce(&:+) %>
     </div>
-</div>
-
-<div class="center jumbotron" , style="background-color:#77E8F4">
-    <br><br><br>
-    PLACEHOLDER - Image Gallery
-    <br><br><br>
 </div>
 
 <div class="center jumbotron" , style="background-color:#77E8F4">

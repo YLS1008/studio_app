@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_092249) do
+ActiveRecord::Schema.define(version: 2021_04_17_134158) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,17 @@ ActiveRecord::Schema.define(version: 2021_04_16_092249) do
     t.index ["reset_password_token"], name: "index_instructors_on_reset_password_token", unique: true
   end
 
+  create_table "time_slots", force: :cascade do |t|
+    t.integer "activity_id", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "enrolled", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "recurring", default: true
+    t.index ["activity_id"], name: "index_time_slots_on_activity_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -112,4 +123,5 @@ ActiveRecord::Schema.define(version: 2021_04_16_092249) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "instructors"
+  add_foreign_key "time_slots", "activities"
 end
