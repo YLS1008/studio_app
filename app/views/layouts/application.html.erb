@@ -15,19 +15,18 @@
 </head>
 
 <body>
-    <div class="center jumbotron" , style="background-color:#77E8F4; padding-top:100px;">
-        <div class="container">
-            <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>"><%= message %></div>
-            <% end %>
-            <%= yield %>
-            <%= debug(params) if Rails.env.development? %>
-        </div>
-
-        <% if admin_signed_in? %>
-        <%= render 'layouts/toolbar' %>
+    <div class="container">
+        <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
         <% end %>
+        <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+        <%= yield :after_js %>
     </div>
+
+    <% if admin_signed_in? %>
+    <%= render 'layouts/toolbar' %>
+    <% end %>
 </body>
 
 </html>

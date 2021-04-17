@@ -1,3 +1,24 @@
+<%= content_for(:after_js) do %>
+
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            stagePadding: 50,
+            loop: true,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                }
+            }
+        });
+    });
+</script>
+<% end %>
+
 <%= render 'layouts/responsive_header' %>
 
 <%= image_tag 'biglogo.jpg', class: 'img-fluid' %>
@@ -9,14 +30,20 @@
 </div>
 
 <div class="center jumbotron" , style="background-color:#77E8F4">
-    <br><br><br>
-    PLACEHOLDER - image carousel
-    <br><br><br>
+    <h1>
+        Our Instructors
+    </h1>
+
+    <div class="owl-carousel">
+        <% Dir.glob('app/assets/images/profile/*').map do |path| %>
+        <%= image_tag "profile/#{ File.basename(path) }" %>
+        <% end.reduce(&:+) %>
+    </div>
 </div>
 
 <div class="center jumbotron" , style="background-color:#77E8F4">
     <br><br><br>
-    PLACEHOLDER - Our Instructors
+    PLACEHOLDER - Image Gallery
     <br><br><br>
 </div>
 
@@ -24,5 +51,6 @@
     <br><br><br>
     PLACEHOLDER - Payment Plans
     <br><br><br>
+
     <%= link_to "Contact Us", placeholder_path, class: "btn btn-lg btn-primary" %>
 </div>

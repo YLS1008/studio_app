@@ -9,6 +9,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
 import "bootstrap"
+import JQuery from 'jquery';
+window.$ = window.JQuery = JQuery;
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
 require("packs/responsive_nav")
 
 

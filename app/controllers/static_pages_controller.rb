@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    @all_instructors = Instructor.all
   end
 
   def about
