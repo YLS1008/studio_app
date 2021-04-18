@@ -13,14 +13,15 @@
             <%= f.text_area :description, label: "Description", required: true %>
             <%= f.color_field :color, label: "Instructor Color", required: true %>
             <%= f.file_field :image, label: "Profile Image", required: true %>
+            <%= f.password_field :password, label: "Password", required: true %>
+            <%= f.password_field :password_confirmation, label: "Password Confirmation", required: true %>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="actions" style="align: center">
-        <%= f.submit "Sign up" %>
-    </div>
+    <div class="row">
+        <div class="actions" style="align: center">
+            <%= f.submit "Sign up" %>
+        </div>
 
-    <% end %>
-    <%= render "instructors/shared/links" %>
-</div>
+        <% end %>
+        <%= render "instructors/shared/links" %>
+    </div>

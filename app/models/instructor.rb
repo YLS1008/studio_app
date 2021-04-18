@@ -4,7 +4,7 @@ class Instructor < ApplicationRecord
 
   def displayed_image
     if image.attached?
-      image
+      image.variant(resize_to_fill: [265, 350, gravity: 'north'])
     else
       'default_profile.jpg'
     end

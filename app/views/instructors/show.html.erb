@@ -1,11 +1,10 @@
 <% provide(:title, "Instructor Profile") %>
 <div class="row">
-    <aside class="col-md-4">
+    <aside class="col-md-3">
         <section>
-            <h1>
-                <%= image_tag @instructor.displayed_image,
+
+            <%= image_tag @instructor.displayed_image,
                      loading: "lazy", alt: @instructor.first, class: "rounded-full" %>
-            </h1>
         </section>
         <section class="stats">
             <%= @instructor.first.capitalize %> <%= @instructor.last.capitalize %>
