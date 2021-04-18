@@ -1,5 +1,5 @@
 class Instructor < ApplicationRecord
-  has_many :activity
+  has_many :activity, dependent: :destroy
   has_one_attached :image
 
   def displayed_image

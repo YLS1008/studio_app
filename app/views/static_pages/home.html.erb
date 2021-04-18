@@ -44,9 +44,22 @@
 </div>
 
 <div class="center jumbotron" , style="background-color:#77E8F4">
-    <br><br><br>
-    PLACEHOLDER - Payment Plans
-    <br><br><br>
+    <%= week_calendar(events: @activities, number_of_weeks: 2) do |date, activities| %>
+    <%= date %>
 
-    <%= link_to "Contact Us", placeholder_path, class: "btn btn-lg btn-primary" %>
+    <% activities.each do |activity| %>
+    <div class="card" style="width: 12rem;">
+        <% back_color = "#{activity.mother.instructor.color}" %>
+        <% back_color = "white" if back_color == "" %>
+
+        <div class="card-body" style="background-color: <%= back_color %>">
+            <h4 class="card-title"><%= activity.mother.name %></h4>
+            <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                                                                     activity.mother.instructor %></h5>
+            <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+        </div>
+    </div>
+
+    <% end %>
+    <% end %>
 </div>
