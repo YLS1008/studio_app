@@ -2,20 +2,17 @@
 <script>
     $(document).ready(function() {
         $('.owl-carousel').owlCarousel({
-            stagePadding: 50,
-            loop: true,
-            margin: 10,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                }
-            }
+            navigation: true,
+            paginationSpeed: 1000,
+            goToFirstSpeed: 2000,
+            singleItem: true,
+            autoheight: true,
+            transitionStyle: "fade",
+            loop: true
         });
     });
 </script>
+
 
 <% end %>
 <div class="row">
@@ -118,9 +115,14 @@
             </h1>
 
             <div class="owl-carousel">
-                <% Dir.glob('app/assets/images/profile/*').map do |path| %>
-                <%= image_tag "profile/#{ File.basename(path) }" %>
-                <% end.reduce(&:+) %>
+                <% @all_instructors.each do |instructor| %>
+                <div class="card" style="width: 18rem;">
+                    <%= link_to image_tag(instructor.displayed_image, :class => "card-img-top" ), instructor%>
+                    <div class="card-body">
+                        <p class="card-text" , style="text-align: center;"><strong><%= instructor.first  + ' ' +  instructor.last %></strong></p>
+                    </div>
+                </div>
+                <% end %>
             </div>
         </div>
     </div>

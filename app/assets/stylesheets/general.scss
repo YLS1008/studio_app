@@ -43,6 +43,7 @@ $shadow-color: #c4beab;
  
 }
 
+
 .back-image {
   overflow: hidden;
   position: relative;
@@ -71,6 +72,13 @@ $shadow-color: #c4beab;
   margin-top: 10%;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.owl-carousel-img{
+  text-align: center;
+  box-shadow: 5px 10px #c4beab;
+  font-size: 10px;
+
 }
 
 /* universal */
