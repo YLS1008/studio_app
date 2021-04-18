@@ -4,7 +4,9 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-$studio-color: #77E8F4;
+$container-padding-x: 10%;
+$studio-color: #7acfe3;
+$shadow-color: #c4beab;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -12,11 +14,73 @@ $studio-color: #77E8F4;
   box-sizing:         border-box;
 }
 
+@mixin make-container($padding-x: $container-padding-x) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+  
+}
+
+.first-container {
+  @include make-container();
+  border-radius: 13%;
+  border: 2px solid;
+  background-image: linear-gradient($studio-color, #b6f2f0);
+  box-shadow: 5px 10px #c4beab;
+  margin-top: 250px;
+ 
+}
+
+.basic-container {
+  @include make-container();
+  border-radius: 13%;
+  border: 2px solid;
+  background-image: linear-gradient($studio-color, #b6f2f0);
+  box-shadow: 5px 10px #c4beab;
+  margin-top: 30px;
+ 
+}
+
+.back-image {
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.opaque-back-img {
+  opacity: 0.9;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
+.content {
+  position: relative;
+}
+
+.profile-stats{
+  background-color: black !important;
+  border-radius: 13%;
+  color: #eaeaea;
+  text-align: center;
+  margin-top: 10%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 /* universal */
 
 body {
-  background-color: black !important;
-  padding-top: 60px;
+  background-image: url("background_image.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 section {
@@ -38,10 +102,11 @@ textarea {
 ul.no-bullets {
   list-style-type: none; /* Remove bullets */
   padding: 5px; 
+  font-size: 1.4rem;
 }
 
 li.menu-item:not(:last-child) { 
-  margin-bottom: 10px !important;  
+  margin-bottom: 10px !important; 
 }
 
 /* typography */
@@ -155,90 +220,28 @@ footer {
 /* sidebar */
 
 aside {
-  section.user_info {
+  section.name {
     margin-top: 20px;
+    background-color: black !important;
+    color: blanchedalmond;
+    font-size: 1.4em;
+    text-align: center;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    margin-top: 3px;
   }
   section {
     padding: 10px 0;
-    margin-top: 20px;
+    margin-top: 5px;
+    overflow: hidden;
+    border-radius: 13%;
     &:first-child {
       border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
+      padding-top: 10px;
     }
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
-
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue ;
-    }
-  }
-  strong {
-    display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
-  }
-}
-
-.users.follow {
-  padding: 0;
-}
-
-/* forms */
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
 
 #error_explanation {
   color: red;

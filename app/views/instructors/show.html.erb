@@ -1,33 +1,36 @@
 <% provide(:title, "Instructor Profile") %>
-<div class="row">
-    <aside class="col-md-3">
-        <section>
+<div class="basic-container">
+    <div class="row">
+        <aside class="col-md-3">
+            <section>
 
-            <%= image_tag @instructor.displayed_image,
+                <%= image_tag @instructor.displayed_image,
                      loading: "lazy", alt: @instructor.first, class: "rounded-full" %>
-        </section>
-        <section class="stats">
-            <%= @instructor.first.capitalize %> <%= @instructor.last.capitalize %>
-        </section>
-    </aside>
-    <div class="col-md-8">
-
-        <ul class="no-bullets">
-            <li class="menu-item">Speciality | <%= @instructor.speciality %></li>
-            <li class="menu-item">Years of Experience | <%= @instructor.exp %></li>
-        </ul>
-
-        <section>
-            <%= @instructor.description %>
-        </section>
-
-        <% if admin_signed_in? %>
-        <section>
-            <div class="btn btn-secondary">
-                <%= link_to "Add Activity", new_activity_path(id: @instructor.id) %>
+            </section>
+            <section class="name">
+                <%= @instructor.first.capitalize %> <%= @instructor.last.capitalize %>
+            </section>
+        </aside>
+        <div class="col-md-8">
+            <div class="profile-stats">
+                <ul class="no-bullets">
+                    <li class="menu-item">Speciality | <%= @instructor.speciality %></li>
+                    <li class="menu-item">Years of Experience | <%= @instructor.exp %></li>
+                </ul>
             </div>
-        </section>
-        <% end %>
 
+            <div class="profile-stats">
+                <%= @instructor.description %>
+            </div>
+
+            <% if admin_signed_in? %>
+            <section>
+                <div class="btn btn-secondary">
+                    <%= link_to "Add Activity", new_activity_path(id: @instructor.id) %>
+                </div>
+            </section>
+            <% end %>
+
+        </div>
     </div>
 </div>

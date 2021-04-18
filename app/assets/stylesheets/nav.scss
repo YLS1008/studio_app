@@ -48,9 +48,8 @@ h3 {
 /* --- navbar colors --- */
 }
 .navbar-brand {
-  font-size: 2.25rem;
-  font-weight: 900;
-  color: #4b4b4b;
+  max-height: 50px;
+  max-width: 100px;
 }
 .navbar--size--xl {
   padding: 4rem 0;

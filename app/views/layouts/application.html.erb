@@ -15,20 +15,21 @@
 </head>
 
 <body>
+
     <% if anyone_signed_in? %>
     <%= render 'layouts/toolbar' %>
     <% else %>
     <%= render 'layouts/responsive_header' %>
-    <%= image_tag 'biglogo.jpg', class: 'img-fluid' %>
+
     <% end %>
-    <div class="container-fluid" background-color="black">
-        <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
-        <%= yield %>
-        <%= debug(params) if Rails.env.development? %>
-        <%= yield :after_js %>
-    </div>
+    <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+    <%= yield :after_js %>
+
 </body>
 
 </html>

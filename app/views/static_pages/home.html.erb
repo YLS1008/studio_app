@@ -18,12 +18,23 @@
 </script>
 
 <% end %>
+<div class="row">
 
+    <div class="col"></div>
+
+    <div class="col-6">
+        <div class="first-container">
+            <%= image_tag 'biglogo.jpg', class: 'img-fluid' %>
+        </div>
+    </div>
+
+    <div class="col"></div>
+</div>
 <div class="row">
     <div class="col"></div>
 
     <div class="col-6">
-        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+        <div class="basic-container">
             <%= render 'layouts/about' %>
         </div>
     </div>
@@ -38,7 +49,7 @@
     <div class="col"></div>
 
     <div class="col-6">
-        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+        <div class="basic-container">
             <%= week_calendar(events: @activities, number_of_weeks: 1) do |date, activities| %>
             <%= date %>
 
@@ -70,8 +81,7 @@
     <div class="col"></div>
 
     <div class="col-6">
-        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
-            <%= week_calendar(events: @activities, number_of_weeks: 1, start_date: Date.today.beginning_of_week + 1.week) do |date, activities| %>
+        <div class="basic-container"> <%= week_calendar(events: @activities, number_of_weeks: 1, start_date: Date.today.beginning_of_week + 1.week) do |date, activities| %>
             <%= date %>
 
             <% activities.each do |activity| %>
@@ -102,7 +112,7 @@
     <div class="col"></div>
 
     <div class="col-6">
-        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+        <div class="basic-container">
             <h1>
                 Our Instructors
             </h1>
@@ -120,23 +130,3 @@
 <br />
 <br />
 <br />
-
-<div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                FUCKING WORK ALREADY
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>

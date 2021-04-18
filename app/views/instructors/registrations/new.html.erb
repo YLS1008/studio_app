@@ -1,27 +1,32 @@
-<h2>Add a new Instructor</h2>
-<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
-<%= render "instructors/shared/error_messages", resource: resource %>
-<div class="row">
-    <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: #77E8F4;">
-        <div class="col-md-10 col-md-offset-2">
-            <%= f.email_field :email, label: "E-mail", autofocus: true, required: true %>
-            <%= f.text_field :first, label: "First Name", required: true %>
-            <%= f.text_field :last, label: "Last Name", required: true %>
-            <%= f.telephone_field :phone, label: "Phone Number", required: true %>
-            <%= f.text_field :exp, label: "Years of Experience", required: true %>
-            <%= f.text_field :speciality, label: "Speciality", required: true %>
-            <%= f.text_area :description, label: "Description", required: true %>
-            <%= f.color_field :color, label: "Instructor Color", required: true %>
-            <%= f.file_field :image, label: "Profile Image", required: true %>
-            <%= f.password_field :password, label: "Password", required: true %>
-            <%= f.password_field :password_confirmation, label: "Password Confirmation", required: true %>
-        </div>
-    </div>
+<div class="basic-container">
+    <h2>Add a new Instructor</h2>
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
+    <%= render "instructors/shared/error_messages", resource: resource %>
     <div class="row">
-        <div class="actions" style="align: center">
-            <%= f.submit "Sign up" %>
-        </div>
+        <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent;">
+            <div class="col-md-10 col-md-offset-2">
+                <%= f.email_field :email, label: "E-mail", autofocus: true, required: true %>
+                <%= f.text_field :first, label: "First Name", required: true %>
+                <%= f.text_field :last, label: "Last Name", required: true %>
+                <%= f.telephone_field :phone, label: "Phone Number", required: true %>
+                <%= f.text_field :exp, label: "Years of Experience", required: true %>
+                <%= f.text_field :speciality, label: "Speciality", required: true %>
+                <%= f.text_area :description, label: "Description", required: true %>
+                <%= f.color_field :color, label: "Instructor Color", required: true %>
+                <%= f.file_field :image, label: "Profile Image", required: true %>
+                <%= f.password_field :password, label: "Password", required: true %>
+                <%= f.password_field :password_confirmation, label: "Password Confirmation", required: true %>
+                <div class="row" , style="align: center">
+                    <div>
+                        <%= f.submit "Create New Instructor" %><br>
+                    </div>
+                    <br />
+                </div>
+            </div>
 
-        <% end %>
-        <%= render "instructors/shared/links" %>
+
+
+            <% end %>
+
+        </div>
     </div>
