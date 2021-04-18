@@ -78,6 +78,11 @@ header {
   background-color: black !important;
 }
 
+#header_container {
+  background-color: $studio-color;
+  text-align: center;
+  color: black;
+}
 
 #logo {
   float: left;

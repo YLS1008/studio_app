@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Instructors::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_admin!, only: [:new, :create]
+  before_action :authenticate_admin!, only: [:new, :create, :destroy]
   
   before_action :configure_sign_up_params, only: [:create]
+
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -45,9 +46,9 @@ class Instructors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+     super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

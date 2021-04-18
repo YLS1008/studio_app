@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_223714) do
+ActiveRecord::Schema.define(version: 2021_04_18_141521) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 2021_04_17_223714) do
     t.index ["reset_password_token"], name: "index_instructors_on_reset_password_token", unique: true
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.integer "time_slot_id", null: false
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["time_slot_id"], name: "index_interests_on_time_slot_id"
+  end
+
   create_table "time_slots", force: :cascade do |t|
     t.integer "activity_id", null: false
     t.datetime "start_time"
@@ -124,5 +134,6 @@ ActiveRecord::Schema.define(version: 2021_04_17_223714) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "instructors"
+  add_foreign_key "interests", "time_slots"
   add_foreign_key "time_slots", "activities"
 end

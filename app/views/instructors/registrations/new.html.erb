@@ -1,71 +1,26 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<h2>Add a new Instructor</h2>
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
 <%= render "instructors/shared/error_messages", resource: resource %>
-
-<div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="row">
+    <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: #77E8F4;">
+        <div class="col-md-10 col-md-offset-2">
+            <%= f.email_field :email, label: "E-mail", autofocus: true, required: true %>
+            <%= f.text_field :first, label: "First Name", required: true %>
+            <%= f.text_field :last, label: "Last Name", required: true %>
+            <%= f.telephone_field :phone, label: "Phone Number", required: true %>
+            <%= f.text_field :exp, label: "Years of Experience", required: true %>
+            <%= f.text_field :speciality, label: "Speciality", required: true %>
+            <%= f.text_area :description, label: "Description", required: true %>
+            <%= f.color_field :color, label: "Instructor Color", required: true %>
+            <%= f.file_field :image, label: "Profile Image", required: true %>
+        </div>
+    </div>
 </div>
+<div class="row">
+    <div class="actions" style="align: center">
+        <%= f.submit "Sign up" %>
+    </div>
 
-<div class="field">
-    <%= f.label :first, "First Name" %><br />
-    <%= f.text_field :first %>
+    <% end %>
+    <%= render "instructors/shared/links" %>
 </div>
-
-<div class="field">
-    <%= f.label :last, "" %><br />
-    <%= f.text_field :last %>
-</div>
-
-<div class="field">
-    <%= f.label :phone %><br />
-    <%= f.number_field :phone %>
-</div>
-
-<div class="field">
-    <%= f.label :exp %><br />
-    <%= f.text_field :exp %>
-</div>
-
-<div class="field">
-    <%= f.label :speciality %><br />
-    <%= f.text_field :speciality %>
-</div>
-
-<div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-</div>
-
-<div class="field">
-    <%= f.label :color %><br />
-    <%= f.color_field :color %>
-</div>
-
-<div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-</div>
-
-<div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-</div>
-
-<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-    <%= f.label :image, class: "form-label" %>
-    <%= f.file_field :image, class: "form-field" %>
-</div>
-
-
-
-<div class="actions">
-    <%= f.submit "Sign up" %>
-</div>
-<% end %>
-
-<%= render "instructors/shared/links" %>

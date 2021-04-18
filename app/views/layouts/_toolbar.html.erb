@@ -1,13 +1,21 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed dropdown-menu" type="button" data-toggle="collapse" data-target="#mobileNav" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><%= link_to "The Studio", root_path, class: "navbar-brand" %>
+        </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <% if current_user %>
                 TBD
                 <% elsif current_instructor %>
-                TBD
+                <li><%= link_to('Profile', current_instructor) %></li>
+                <li><%= link_to('Summary', placeholder_path) %></li>
+                <li><%= link_to('Sign Out', destroy_instructor_session_path, method: :delete) %></li>
                 <% elsif current_admin %>
+                <li><%= link_to('Dashboard', admin_root_path) %></li>
+                <li><%= link_to('Instructors', instructors_path) %></li>
                 <li><%= link_to('Add Instructor', new_instructor_registration_path) %></li>
+                <li><%= link_to('Sign Out', destroy_admin_session_path, method: :delete) %></li>
                 <% end %>
             </ul>
         </div>

@@ -11,15 +11,18 @@ Rails.application.routes.draw do
 
 
   resources :activities
+  resources :instructors, only: [:show, :index]
   scope "/admin" do
-    resources :instructors, only: [:show]
-    get '/', to: 'admins#dashboard', as: :admin_root
+        get '/', to: 'admins#dashboard', as: :admin_root    
   end
 
   root :to => 'static_pages#home'
   
   get '/user', to: 'users#show', as: :user_root
-  get '/instructor', to: 'instructors#profile', as: :instructor_root
+
+  # Modal form popup
+  get '/interest_form/time_slot/:id', to: 'time_slots#new_interest', as: :new_interest, via: [:get, :post]
+
 
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

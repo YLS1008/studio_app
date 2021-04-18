@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<div id="header_container">
+    <h1>Instructors</h1>
+</div>
+
+<div class="cotainer-fluid text-white" , style="background-color:#77E8F4;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-body">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Speciality</th>
+                            <th colspan="3"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @all_instructors.each do |instructor| %>
+                        <tr>
+                            <td><%= instructor.first %></td>
+                            <td><%= instructor.last %></td>
+                            <td><%= instructor.speciality %></td>
+
+                            <td><%= link_to 'Show', instructor %></td>
+                            <td><%= link_to 'Edit', edit_instructor_registration_path(instructor) %></td>
+                            <td><%= link_to 'Destroy', registration_path(instructor), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

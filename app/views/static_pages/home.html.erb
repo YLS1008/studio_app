@@ -19,47 +19,124 @@
 
 <% end %>
 
+<div class="row">
+    <div class="col"></div>
 
-
-<%= render 'layouts/responsive_header' %>
-
-<%= image_tag 'biglogo.jpg', class: 'img-fluid' %>
-
-<div class="center jumbotron" , style="background-color:#77E8F4; padding-top:100px;">
-    <div class="container rounded p-3 my-3 bg-info ">
-        <%= render 'layouts/about' %>
-    </div>
-</div>
-
-<div class="center jumbotron" , style="background-color:#77E8F4">
-    <h1>
-        Our Instructors
-    </h1>
-
-    <div class="owl-carousel">
-        <% Dir.glob('app/assets/images/profile/*').map do |path| %>
-        <%= image_tag "profile/#{ File.basename(path) }" %>
-        <% end.reduce(&:+) %>
-    </div>
-</div>
-
-<div class="center jumbotron" , style="background-color:#77E8F4">
-    <%= week_calendar(events: @activities, number_of_weeks: 2) do |date, activities| %>
-    <%= date %>
-
-    <% activities.each do |activity| %>
-    <div class="card" style="width: 12rem;">
-        <% back_color = "#{activity.mother.instructor.color}" %>
-        <% back_color = "white" if back_color == "" %>
-
-        <div class="card-body" style="background-color: <%= back_color %>">
-            <h4 class="card-title"><%= activity.mother.name %></h4>
-            <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
-                                                                     activity.mother.instructor %></h5>
-            <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+    <div class="col-6">
+        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+            <%= render 'layouts/about' %>
         </div>
     </div>
 
-    <% end %>
-    <% end %>
+    <div class="col"></div>
+</div>
+<br />
+<br />
+<br />
+
+<div class="row">
+    <div class="col"></div>
+
+    <div class="col-6">
+        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+            <%= week_calendar(events: @activities, number_of_weeks: 1) do |date, activities| %>
+            <%= date %>
+
+            <% activities.each do |activity| %>
+            <div class="card" style="width: 12rem;">
+                <% back_color = "#{activity.mother.instructor.color}" %>
+                <% back_color = "white" if back_color == "" %>
+
+                <div class="card-body" style="background-color: <%= back_color %>">
+                    <h4 class="card-title"><%= activity.mother.name %></h4>
+                    <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                                                                     activity.mother.instructor %></h5>
+                    <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+                </div>
+            </div>
+
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="col"></div>
+</div>
+<br />
+<br />
+<br />
+
+<div class="row">
+    <div class="col"></div>
+
+    <div class="col-6">
+        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+            <%= week_calendar(events: @activities, number_of_weeks: 1, start_date: Date.today.beginning_of_week + 1.week) do |date, activities| %>
+            <%= date %>
+
+            <% activities.each do |activity| %>
+            <div class="card" style="width: 12rem;">
+                <% back_color = "#{activity.mother.instructor.color}" %>
+                <% back_color = "white" if back_color == "" %>
+
+                <div class="card-body" style="background-color: <%= back_color %>">
+                    <h4 class="card-title"><%= activity.mother.name %></h4>
+                    <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                                                                     activity.mother.instructor %></h5>
+                    <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+                </div>
+            </div>
+
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="col"></div>
+</div>
+<br />
+<br />
+<br />
+
+<div class="row">
+    <div class="col"></div>
+
+    <div class="col-6">
+        <div class="container rounded p-3 my-3 text-white" , style="background-color:#77E8F4; padding-top:50px; padding-bottom:50px; text-align:center;">
+            <h1>
+                Our Instructors
+            </h1>
+
+            <div class="owl-carousel">
+                <% Dir.glob('app/assets/images/profile/*').map do |path| %>
+                <%= image_tag "profile/#{ File.basename(path) }" %>
+                <% end.reduce(&:+) %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col"></div>
+</div>
+<br />
+<br />
+<br />
+
+<div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                FUCKING WORK ALREADY
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

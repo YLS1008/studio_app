@@ -7,7 +7,11 @@ module ApplicationHelper
       else
         page_title + " | " + base_title
       end
-  end 
+  end
+
+  def anyone_signed_in?
+    admin_signed_in? || instructor_signed_in? || user_signed_in?
+  end
 
   
 end

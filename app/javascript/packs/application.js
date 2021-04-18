@@ -5,6 +5,7 @@
 
 //= require recurring_select
 //= require jquery-mobile-rs
+//= require bootstrap-modal
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -18,10 +19,9 @@ window.$ = window.JQuery = JQuery;
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
-import 'blueimp-gallery';
 
 
-require("packs/responsive_nav")
+require("packs/responsive_nav");
 
 
 
