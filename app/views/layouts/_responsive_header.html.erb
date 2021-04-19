@@ -8,23 +8,14 @@
         </div>
         <div class="nav navbar-nav navbar-right">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
-                Login
+                כניסת משתמשים
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <ul class="no-bullets">
-                    <li class="menu-item"><%= link_to "Trainee Login", placeholder_path %></li>
-                    <li class="menu-item"><%= link_to "Instructor Login", new_instructor_session_path %></li>
+                    <li class="menu-item"><%= link_to "כניסת מתאמנים", new_user_session_path %></li>
+                    <li class="menu-item"><%= link_to "כניסת מדריכים", new_instructor_session_path %></li>
                 </ul>
             </div>
-            <% if I18n.locale == :en %>
-            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#mobileNav" aria-expanded="false">
-                <%= link_to 'עברית', root_path(locale: :he) %>
-            </button>
-            <% else %>
-            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#mobileNav" aria-expanded="false">
-                <%= link_to 'English', root_path(locale: :en) %>
-            </button>
-            <% end %>
         </div>
 
     </div>
