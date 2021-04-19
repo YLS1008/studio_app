@@ -1,11 +1,13 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="nav navbar-nav" , style="max-width: 100px; max-height: 30px;">
-            <%= link_to image_tag("logo-small.jpg", :alt => "The Studio"), root_path %>
+            <%= link_to image_tag("logo-small.jpg", :alt => "The Studio"), root_path_helper %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <% if current_user %>
+
+                <li><%= link_to('רכישת כרטיסים', user_purchase_path) %></li>
                 <li><%= link_to('התנתקות', destroy_user_session_path, method: :delete) %></li>
                 <% elsif current_instructor %>
                 <li><%= link_to('Profile', current_instructor) %></li>

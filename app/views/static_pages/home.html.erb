@@ -36,8 +36,10 @@
             <div class="contact">
                 <a class="btn btn-primary btn-lg btn-floating" style="background-color: #3b5998; color: white;" href="#!" role="button"><i class="fab fa-facebook me-2"></i> Facebook</a>
                 <a class="btn btn-primary btn-lg btn-floating" style="background-color: #ac2bac; color: white;" href="#!" role="button"><i class="fab fa-instagram me-2"></i> instagram</a>
+                <a class="btn btn-primary btn-lg btn-floating" style="background-color: green; color: white;" href="tel://+97246042278" role="button"><i class="fab fa-whatsapp" aria-hidden="true"></i></i> WhatsApp</a>
+                <a class="btn btn-primary btn-lg btn-floating" style="background-color: brown; color: white;" href="tel://+97246042278" role="button"><i class="fa fa-phone" aria-hidden="true"></i>Call Us</a>
                 <br><br>
-                <a class="btn btn-primary btn-lg btn-floating" style="background-color: black; color: white;" href=<%= new_contact_url %> role="button"><i class="glyphicon glyphicon-mail"></i> Contact Us </a>
+                <a class=" btn btn-primary btn-lg btn-floating" style="background-color: black; color: white;" href=<%= new_contact_url %> role="button"><i class="glyphicon glyphicon-mail"></i> Contact Us </a>
 
 
             </div>
@@ -118,8 +120,8 @@
 
                     <div class="owl-carousel">
                         <% @all_instructors.each do |instructor| %>
-                        <div class="card" style="width: 18rem;">
-                            <%= link_to image_tag(instructor.displayed_image, :class => "card-img-top" ), instructor%>
+                        <div class="card" style="width: 18rem; ">
+                            <%= link_to image_tag(instructor.displayed_image, :class => "card-img-top", :style => "border-radius: 10%;" ), instructor%>
                             <div class="card-body">
                                 <p class="card-text" , style="text-align: center;"><strong><%= instructor.first  + ' ' +  instructor.last %></strong></p>
                             </div>

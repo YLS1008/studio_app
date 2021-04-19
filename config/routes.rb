@@ -13,9 +13,6 @@ Rails.application.routes.draw do
   resources :contacts
   resources :time_slots
   
-  scope "/admin" do
-        get '/', to: 'admins#dashboard', as: :admin_root    
-  end
 
   unauthenticated :admin do
     unauthenticated :instructor do
@@ -24,6 +21,7 @@ Rails.application.routes.draw do
       end
       authenticated :user do
         root :to => 'users#home', as: :user_root
+        get '/purchase_tickets', to: 'users#purchase', as: :user_purchase
       end
     end
     authenticated :instructor do

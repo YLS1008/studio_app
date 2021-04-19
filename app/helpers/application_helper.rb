@@ -13,6 +13,18 @@ module ApplicationHelper
     admin_signed_in? || instructor_signed_in? || user_signed_in?
   end
 
+  def root_path_helper
+    if current_user
+      user_root_path
+    elsif current_instructor
+      instructor_root_path
+    elsif current_admin
+      admin_root_path
+    else
+      root_path
+    end
+  end
+
   
 end
 

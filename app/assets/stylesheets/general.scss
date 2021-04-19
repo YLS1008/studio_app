@@ -23,6 +23,18 @@ $shadow-color: #c4beab;
   
 }
 
+.card{
+  &.payments{
+    background-color: blanchedalmond;
+  }
+}
+
+.card-body{
+  &.payments{
+    background-color: blanchedalmond;
+  }
+}
+
 .contact{
   border-radius: 13%;
   align-items: center;
@@ -42,6 +54,7 @@ $shadow-color: #c4beab;
   background-image: linear-gradient($studio-color, #b6f2f0);
   box-shadow: 5px 10px #c4beab;
   margin-top: 30px;
+  
   &.first-container{
     margin-top: 250px !important;
 
@@ -59,18 +72,12 @@ $shadow-color: #c4beab;
     float: right;
     padding-bottom: 20px;
     }
+
+    &.purchase-container{
+      display: grid;
+    }
 }
-/*
-.basic-container {
-  @include make-container();
-  border-radius: 13%;
-  border: 2px solid;
-  background-image: linear-gradient($studio-color, #b6f2f0);
-  box-shadow: 5px 10px #c4beab;
- 
- 
-}
-*/
+
 
 .back-image {
   overflow: hidden;
