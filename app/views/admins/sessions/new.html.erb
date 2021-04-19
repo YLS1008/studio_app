@@ -1,30 +1,18 @@
-<div class="basic-container first-container" , style="max-width: 700px;">
-    <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent; margin-top: 20px;">
-        <div class="col-md-10 col-md-offset-2">
+<div class="basic-container login-container">
 
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-                <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
 
-            <div class="field">
-                <%= f.label :password %><br />
-                <%= f.password_field :password, autocomplete: "current-password" %>
-            </div>
-
-            <% if devise_mapping.rememberable? %>
-            <div class="field">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
-            </div>
-            <% end %>
-
-            <div class="actions">
-                <%= f.submit "Log in" %>
-            </div>
-            <% end %>
-
-        </div>
+    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-floating mb-3">
+        <%= f.email_field :email, label: "דואר אלקטרוני", style: "float: right;", autofocus: true, autocomplete: "email", required: true %>
     </div>
+    <div class="form-floating mb-3">
+        <%= f.password_field :password, label: "סיסמה", autofocus: true, autocomplete: "current-password", required: true %>
+    </div>
+
+    <%= f.check_box :remember_me , label: "זכור אותי", style: "float: right;", autofocus: true%>
+    <%= f.submit "התחברות" %>
+    <% end %>
+
+
+
 </div>
