@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :contacts
   resources :time_slots
   devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}

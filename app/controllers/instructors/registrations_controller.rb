@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Instructors::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_admin!, only: [:new, :create, :destroy]
+  before_action :authenticate_admin!, only: [:new, :create, :destroy, :edit]
   
   before_action :configure_sign_up_params, only: [:create]
 
@@ -36,9 +36,9 @@ class Instructors::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+   end
 
   # PUT /resource
   # def update

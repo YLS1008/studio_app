@@ -32,12 +32,12 @@ class TimeSlotsController < ApplicationController
       if time_slot_params[:recurring]
         loop do
           @last_entry = TimeSlot.last
-          next_date = copy_recurring_event(@last_entry, @last_entry.start_time, @last_entry.end_time)
+          next_date = copy_recurring_event(@last_entry, @last_entry.start_time)
           break if !next_date
         end  
       end
     end
-    redirect_to time_slots_path
+    redirect_to root_path
   end
 
 

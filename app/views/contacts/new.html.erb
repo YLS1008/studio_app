@@ -2,9 +2,9 @@
     <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent; margin-top: 20px;">
         <div class="col-md-10 col-md-offset-2">
 
-            <%= render 'form', time_slot: @time_slot %>
-
-            <%= link_to 'Back', time_slots_path %>
+            <%= render 'form', contact: @contact, activity: @activities %>
+            <br><br>
+            <%= link_to 'Back', root_path %>
         </div>
     </div>
 </div>

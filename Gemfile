@@ -53,3 +53,4 @@ gem 'devise'
 gem 'simple_calendar'
 gem "rails-bootstrap-helpers"
 gem "bootstrap_form"
+gem "activeresource"

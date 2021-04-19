@@ -23,6 +23,18 @@ $shadow-color: #c4beab;
   
 }
 
+.contact{
+  border-radius: 13%;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+
+}
+
 .first-container {
   @include make-container();
   border-radius: 13%;

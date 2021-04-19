@@ -7,7 +7,7 @@ class Activity < ApplicationRecord
     if image.attached?
       image
     else
-      'default_profile.jpg'
+      self.instructor.displayed_image
     end
   end
 

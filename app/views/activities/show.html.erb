@@ -1,31 +1,35 @@
-<% provide(:title, "Activity Profile") %>
-<div class="row">
-    <aside class="col-md-4">
-        <section>
-            <h1>
+<% provide(:title, "Instructor Profile") %>
+<div class="first-container">
+    <div class="row">
+        <aside class="col-md-3">
+            <section>
+
                 <%= image_tag @activity.displayed_image,
                      loading: "lazy", alt: @activity.name, class: "rounded-full" %>
-            </h1>
-        </section>
-        <section class="stats">
-            <%= @activity.name.capitalize %>
-        </section>
-    </aside>
-    <div class="col-md-8">
-
-        <ul class="no-bullets">
-            <li class="menu-item">Duration | <%= @activity.duration %></li>
-            <li class="menu-item">Capacity | <%= @activity.capacity %></li>
-        </ul>
-
-
-        <% if admin_signed_in? %>
-        <section>
-            <div class="btn btn-secondary">
-                <%= link_to "Schedule Activity", new_time_slot_path(id: @activity.id) %>
+            </section>
+            <section class="name">
+                <%= @activity.name %>
+            </section>
+        </aside>
+        <div class="col-md-8">
+            <div class="profile-stats">
+                <ul class="no-bullets">
+                    <li class="menu-item">Duration | <%= @activity.duration %></li>
+                </ul>
             </div>
-        </section>
-        <% end %>
 
+            <div class="profile-stats">
+                <%= @activity.description %>
+            </div>
+
+            <% if admin_signed_in? %>
+            <section>
+                <div class="btn btn-secondary">
+                    <%= link_to "Schedule Activity", new_time_slot_path(id: @activity.id) %>
+                </div>
+            </section>
+            <% end %>
+
+        </div>
     </div>
 </div>

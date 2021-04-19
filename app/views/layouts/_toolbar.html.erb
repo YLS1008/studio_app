@@ -13,6 +13,7 @@
                 <li><%= link_to('Sign Out', destroy_instructor_session_path, method: :delete) %></li>
                 <% elsif current_admin %>
                 <li><%= link_to('Dashboard', admin_root_path) %></li>
+                <li><%= link_to('Activities', activities_path) %></li>
                 <li><%= link_to('Instructors', instructors_path) %></li>
                 <li><%= link_to('Add Instructor', new_instructor_registration_path) %></li>
                 <li><%= link_to('Sign Out', destroy_admin_session_path, method: :delete) %></li>

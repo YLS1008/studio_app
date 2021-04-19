@@ -33,102 +33,104 @@
     <div class="col-6">
         <div class="basic-container">
             <%= render 'layouts/about' %>
+            <div class="contact">
+                <a class="btn btn-primary btn-lg btn-floating" style="background-color: #3b5998; color: white;" href="#!" role="button"><i class="fab fa-facebook me-2"></i> Facebook</a>
+                <a class="btn btn-primary btn-lg btn-floating" style="background-color: #ac2bac; color: white;" href="#!" role="button"><i class="fab fa-instagram me-2"></i> instagram</a>
+                <br><br>
+                <a class="btn btn-primary btn-lg btn-floating" style="background-color: black; color: white;" href=<%= new_contact_url %> role="button"><i class="glyphicon glyphicon-mail"></i> Contact Us </a>
+
+
+            </div>
+
+            <div class="col"></div>
         </div>
-    </div>
+        <br />
+        <br />
+        <br />
 
-    <div class="col"></div>
-</div>
-<br />
-<br />
-<br />
+        <div class="row">
+            <div class="col"></div>
 
-<div class="row">
-    <div class="col"></div>
+            <div class="col-6">
+                <div class="basic-container">
+                    <%= week_calendar(events: @activities, number_of_weeks: 1) do |date, activities| %> <%= date %> <% activities.each do |activity| %> <div class="card">
+                        <% back_color = "#{activity.mother.instructor.color}" %>
+                        <% back_color = "white" if back_color == "" %>
 
-    <div class="col-6">
-        <div class="basic-container">
-            <%= week_calendar(events: @activities, number_of_weeks: 1) do |date, activities| %>
-            <%= date %>
-
-            <% activities.each do |activity| %>
-            <div class="card">
-                <% back_color = "#{activity.mother.instructor.color}" %>
-                <% back_color = "white" if back_color == "" %>
-
-                <div class="card-body" style="background-color: <%= back_color %>">
-                    <h4 class="card-title"><%= activity.mother.name %></h4>
-                    <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                        <div class="card-body" style="background-color: <%= back_color %>">
+                            <h4 class="card-title"><%= activity.mother.name %></h4>
+                            <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
                                                                      activity.mother.instructor %></h5>
-                    <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+                            <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+                        </div>
+                    </div>
+
+                    <% end %>
+                    <% end %>
                 </div>
             </div>
 
-            <% end %>
-            <% end %>
+            <div class="col"></div>
         </div>
-    </div>
+        <br />
+        <br />
+        <br />
 
-    <div class="col"></div>
-</div>
-<br />
-<br />
-<br />
+        <div class="row">
+            <div class="col"></div>
 
-<div class="row">
-    <div class="col"></div>
+            <div class="col-6">
+                <div class="basic-container"> <%= week_calendar(events: @activities, number_of_weeks: 1, start_date: Date.today.beginning_of_week + 1.week) do |date, activities| %>
+                    <%= date %>
 
-    <div class="col-6">
-        <div class="basic-container"> <%= week_calendar(events: @activities, number_of_weeks: 1, start_date: Date.today.beginning_of_week + 1.week) do |date, activities| %>
-            <%= date %>
+                    <% activities.each do |activity| %>
+                    <div class="card" style="width: 12rem;">
+                        <% back_color = "#{activity.mother.instructor.color}" %>
+                        <% back_color = "white" if back_color == "" %>
 
-            <% activities.each do |activity| %>
-            <div class="card" style="width: 12rem;">
-                <% back_color = "#{activity.mother.instructor.color}" %>
-                <% back_color = "white" if back_color == "" %>
-
-                <div class="card-body" style="background-color: <%= back_color %>">
-                    <h4 class="card-title"><%= activity.mother.name %></h4>
-                    <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                        <div class="card-body" style="background-color: <%= back_color %>">
+                            <h4 class="card-title"><%= activity.mother.name %></h4>
+                            <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
                                                                      activity.mother.instructor %></h5>
-                    <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+                            <h5>Starts at: <%= activity.start_time.to_s(:time) %> </h5>
+                        </div>
+                    </div>
+
+                    <% end %>
+                    <% end %>
                 </div>
             </div>
 
-            <% end %>
-            <% end %>
+            <div class="col"></div>
         </div>
-    </div>
+        <br />
+        <br />
+        <br />
 
-    <div class="col"></div>
-</div>
-<br />
-<br />
-<br />
+        <div class="row">
+            <div class="col"></div>
 
-<div class="row">
-    <div class="col"></div>
+            <div class="col-6">
+                <div class="basic-container">
+                    <h1>
+                        Our Instructors
+                    </h1>
 
-    <div class="col-6">
-        <div class="basic-container">
-            <h1>
-                Our Instructors
-            </h1>
-
-            <div class="owl-carousel">
-                <% @all_instructors.each do |instructor| %>
-                <div class="card" style="width: 18rem;">
-                    <%= link_to image_tag(instructor.displayed_image, :class => "card-img-top" ), instructor%>
-                    <div class="card-body">
-                        <p class="card-text" , style="text-align: center;"><strong><%= instructor.first  + ' ' +  instructor.last %></strong></p>
+                    <div class="owl-carousel">
+                        <% @all_instructors.each do |instructor| %>
+                        <div class="card" style="width: 18rem;">
+                            <%= link_to image_tag(instructor.displayed_image, :class => "card-img-top" ), instructor%>
+                            <div class="card-body">
+                                <p class="card-text" , style="text-align: center;"><strong><%= instructor.first  + ' ' +  instructor.last %></strong></p>
+                            </div>
+                        </div>
+                        <% end %>
                     </div>
                 </div>
-                <% end %>
             </div>
-        </div>
-    </div>
 
-    <div class="col"></div>
-</div>
-<br />
-<br />
-<br />
+            <div class="col"></div>
+        </div>
+        <br />
+        <br />
+        <br />
