@@ -1,45 +1,23 @@
-<div class="center jumbotron" , style="background-color:#77E8F4; padding-top:100px;">
+<div class="basic-container first-container signup-container">
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <h2> הרשמה לסטודיו </h2>
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout: :horizontal, label_col: "col-lg-12", control_col: "col-lg-12") do |f| %>
+    <%= render "instructors/shared/error_messages", resource: resource %>
 
-    <div class="field">
-        <%= f.label :first, "First Name" %><br />
-        <%= f.text_field :first, autofocus: true, placeholder: "First Name" %>
+    <%= f.email_field :email, label: "דואר אלקטרוני",  autofocus: true, required: true %>
+    <%= f.text_field :first, label: "שם פרטי", dir: "rtl", required: true %>
+    <%= f.text_field :last, label: "שם משפחה", dir: "rtl", required: true %>
+    <%= f.telephone_field :phone, label: "מספר טלפון", required: true %>
+    <%= f.password_field :password, label: "סיסמא", required: true %>
+    <%= f.password_field :password_confirmation, label: "הכנס סיסמא שוב", required: true %>
+    <div class="row" , style="align: center">
+        <div>
+            <%= f.submit "הרשמה" %><br>
+        </div>
+        <br />
     </div>
 
-    <div class="field">
-        <%= f.label :last, "Last Name" %><br />
-        <%= f.text_field :last, autofocus: true, placeholder: "Last Name" %>
-    </div>
-
-    <div class="field">
-        <%= f.label :phone, "Phone Number" %><br />
-        <%= f.phone_field :phone, autofocus: true, placeholder: "Phone Number" %>
-    </div>
-
-    <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-    <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-
-    <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <div class="actions">
-        <%= f.submit "Sign up" %>
-    </div>
     <% end %>
 
-    <%= render "devise/shared/links" %>
+
 </div>

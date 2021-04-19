@@ -1,4 +1,5 @@
 <div class="basic-container first-container">
+
     <h2>Add a new Instructor</h2>
     <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
     <%= render "instructors/shared/error_messages", resource: resource %>
