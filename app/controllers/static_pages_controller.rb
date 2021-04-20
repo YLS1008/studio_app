@@ -12,4 +12,7 @@ class StaticPagesController < ApplicationController
 
   def placeholder
   end
+  
+  def thanks
+  end
 end

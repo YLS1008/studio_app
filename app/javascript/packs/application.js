@@ -25,11 +25,10 @@ import $ from 'jquery'
 import 'select2'
 import 'select2/dist/css/select2.css'
 
-window.addEventListener('DOMContentLoaded', () => {
-    $('.js-activities').select2()
-})
 
-
+$(document).on('turbolinks:load', function () {
+    $(".js-activities").select2()
+});
 require("packs/responsive_nav")
 
 

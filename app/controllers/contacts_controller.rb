@@ -1,21 +1,18 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: %i[ destroy ]
 
-  # GET /contacts/new
   def new
     @contact = Contact.new
     @activities = Activity.all
   end
 
-  # POST /contacts or /contacts.json
+
   def create
     
     @contact = Contact.new(contact_params)
 
     respond_to do |format|
       if @contact.save
-        ContactMailer.thank_you(@contact).deliver_now
-        AdminMailer.new_contact(@contact).deliver_later
         format.html { redirect_to after_contact_path }
         format.json {head :ok}
       else
@@ -29,10 +26,27 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to all_contacts_path, notice: "Contact was successfully destroyed." }
+      format.html { redirect_to admin_root_path, notice: "Contact was successfully destroyed." }
       format.json { head :no_content }
     end
   end
+
+  def convert
+    @contact = Contact.find(params[:id])
+    @trainee = Trainee.new(email: @contact.email, first: @contact.first, last: @contact.last, phone: @contact.phone)
+    respond_to do |format|
+      if @trainee.save
+        @contact.destroy
+        format.html { redirect_to admin_root_path }
+        format.json {head :ok}
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -42,6 +56,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:email, :name, :type_of_contact, :details, :mobile, :freq, :interests => [])
+      params.require(:contact).permit(:email, :first, :last, :type_of_contact, :phone, :interests => [])
     end
 end

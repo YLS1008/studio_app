@@ -15,10 +15,12 @@
                 <li><%= link_to('Sign Out', destroy_instructor_session_path, method: :delete) %></li>
                 <% elsif current_admin %>
                 <li><%= link_to('Dashboard', admin_root_path) %></li>
-                <li><%= link_to('Activities', activities_path) %></li>
-                <li><%= link_to('Instructors', instructors_path) %></li>
-                <li><%= link_to('Add Instructor', new_instructor_registration_path) %></li>
-                <li><%= link_to('Sign Out', destroy_admin_session_path, method: :delete) %></li>
+                <li><%= link_to('מתאמנים', trainees_path) %></li>
+                <li><%= link_to('הוסף מתאמן', new_trainee_path) %></li>
+                <li><%= link_to('פעילויות', activities_path) %></li>
+                <li><%= link_to('מדריכים', instructors_path) %></li>
+                <li><%= link_to('הוסף מדריך', new_instructor_registration_path) %></li>
+                <li><%= link_to('התנתקות', destroy_admin_session_path, method: :delete) %></li>
                 <% end %>
             </ul>
         </div>

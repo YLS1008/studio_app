@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_203232) do
+ActiveRecord::Schema.define(version: 2021_04_20_144306) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -107,11 +107,23 @@ ActiveRecord::Schema.define(version: 2021_04_19_203232) do
   create_table "time_slots", force: :cascade do |t|
     t.integer "activity_id", null: false
     t.datetime "start_time"
-    t.integer "enrolled", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "recurring", default: true
+    t.string "enrolled"
+    t.integer "occupancy", default: 0
     t.index ["activity_id"], name: "index_time_slots_on_activity_id"
+  end
+
+  create_table "trainees", force: :cascade do |t|
+    t.string "email"
+    t.string "first"
+    t.string "last"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "ticket", default: 0
+    t.string "enrolled", default: ""
   end
 
   create_table "users", force: :cascade do |t|

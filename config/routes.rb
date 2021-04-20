@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :trainees
   devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
   devise_for :admins, path: 'admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
@@ -30,9 +31,12 @@ Rails.application.routes.draw do
   end
   authenticated :admin do
     root :to => 'admins#dashboard', as: :admin_root
+    get '/convert', to: 'contacts#convert', as: :convert
+    get '/load_tickets', to: 'trainee#load_tickets', as: :load_tickets
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
   get 'static_pages/about'
   get 'static_pages/contact'
+  get '/thank_you', to: 'static_pages#thanks', as: :after_contact
 end

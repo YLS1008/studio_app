@@ -1,5 +1,7 @@
 class AdminsController < ApplicationController
   def dashboard
+    @activities = TimeSlot.all
+    @contacts = Contact.all
   end
 
   def all_instructors

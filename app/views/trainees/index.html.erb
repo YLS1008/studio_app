@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<div class="basic-container first-container">
+    <h1>מתאמנים</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive" style="direction: rtl;">
+                <table class="table table-hover table-bordered" style="background-color: white;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>שם פרטי</th>
+                            <th>שם משפחה</th>
+                            <th>דואר אלקטרוני</th>
+                            <th>טלפון</th>
+                            <th colspan="4"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @trainees.each do |trainee| %>
+                        <tr>
+                            <td><%= trainee.first %></td>
+                            <td><%= trainee.last %></td>
+                            <td><%= trainee.email %></td>
+                            <td><%= trainee.phone %></td>
+                            <td><%= link_to 'פרופיל', trainee %></td>
+                            <td><%= link_to 'ערוך', edit_trainee_path(trainee) %></td>
+                            <td><%= link_to 'מחק', trainee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <%= link_to 'New Trainee', new_trainee_path %>
+
+            </div>
+        </div>
+    </div>
+</div>

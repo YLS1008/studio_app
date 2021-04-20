@@ -1,2 +1,59 @@
-<h1>Admins#dashboard</h1>
-<p>Find me in app/views/admins/dashboard.html.erb</p>
+<div class="basic-container first-container">
+    <h1>Contacts</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive" style="direction: rtl;">
+                <table class="table table-hover table-bordered" style="background-color: white;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>שם פרטי</th>
+                            <th>שם משפחה</th>
+                            <th>דואר אלקטרוני</th>
+                            <th>מספר טלפון</th>
+                            <th>מדריך / משתתף</th>
+                            <th>תחומי עניין</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @contacts.each do |contact| %>
+                        <tr>
+                            <td><%= contact.first %></td>
+                            <td><%= contact.last %></td>
+                            <td><%= contact.email %></td>
+                            <td><%= contact.phone %></td>
+                            <td><%= contact.type_of_contact %></td>
+                            <td><%= contact.interests %></td>
+                            <td><%= link_to 'רישום למערכת', convert_path(id: contact.id) %></td>
+                            <td><%= link_to 'מחיקה', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <%= link_to 'New Contact', new_contact_path %>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="basic-container">
+    <h1>
+        השבוע הקרוב
+    </h1>
+</div>
+<%= render 'layouts/calendar', activities: @activities, week_number: 1,
+         date_begin: Date.today.beginning_of_week %>
+
+<div class="basic-container">
+    <h1>
+        השבועיים הבאים
+    </h1>
+</div>
+<%= render 'layouts/calendar', activities: @activities, week_number: 2,
+         date_begin: Date.today.beginning_of_week + 1.week %>
