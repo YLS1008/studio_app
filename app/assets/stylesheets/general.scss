@@ -23,6 +23,12 @@ $shadow-color: #c4beab;
   
 }
 
+.signup{
+  max-width: 20% !important;
+  height: auto !important;
+  align-self: center !important;
+}
+
 .card{
   &.payments{
     background-color: blanchedalmond;

@@ -1,0 +1,22 @@
+        <div class="basic-container">
+            <%= week_calendar(events: activities, number_of_weeks: week_number, start_date: date_begin) do |date, activities| %>
+
+            <%= date %>
+
+            <% activities.each do |activity| %> <div class="card">
+                <% back_color = "#{activity.mother.instructor.color}" %>
+                <% back_color = "white" if back_color == "" %>
+
+                <div class="card-body" style="background-color: <%= back_color %>; text-align: center; border-radius: 10%; padding-top: 10px; padding-bottom: 10px; margin-top: 5px; font-weight: bold;">
+                    <h4 class="card-title"><%= activity.mother.name %></h4>
+                    <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                                                                     activity.mother.instructor %></h5>
+                    <h5> השיעור מתחיל ב: <%= activity.start_time.to_s(:time) %> </h5>
+                    <br>
+                    <a class="btn btn-primary btn-lg btn-floating" style="background-color: white; color: black;" href="#" role="button"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>פרטים נוספים</a>
+
+                </div>
+                <% end %>
+                <% end %>
+            </div>
+        </div>

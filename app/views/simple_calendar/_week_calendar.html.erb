@@ -2,13 +2,18 @@
     <div class="calendar-heading">
         <span class="calendar-title"></span>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" style="direction: rtl;">
         <table class="table table-striped table-bordered">
             <thead style="background-color: black; color: white;">
                 <tr>
-                    <% date_range.slice(0, 7).each do |day| %>
-                    <th><%= t('date.abbr_day_names')[day.wday] %></th>
-                    <% end %>
+                    <th style="text-align: center;">יום ראשון</th>
+                    <th style="text-align: center;">יום שני</th>
+                    <th style="text-align: center;">יום שלישי</th>
+                    <th style="text-align: center;">יום רביעי</th>
+                    <th style="text-align: center;">יום חמישי</th>
+                    <th style="text-align: center;">יום שישי</th>
+                    <th style="text-align: center;">יום שבת</th>
+
                 </tr>
             </thead>
 
