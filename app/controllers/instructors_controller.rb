@@ -1,10 +1,11 @@
 class InstructorsController < ApplicationController
 
   def home
+    @instructor = Instructor.find(params[:id])
   end
   
   def show
-    @instructor = Instructor.find(params[:id])
+
   end
 
   def index

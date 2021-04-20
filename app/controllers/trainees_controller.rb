@@ -13,9 +13,19 @@ class TraineesController < ApplicationController
     @enrolled_activity = @trainee.get_enrolled_time_slots
   end
 
+  def load_tickets
+
+    @trainee = Trainee.find(params[:trainee][:id])
+    curr_num_tickets = @trainee.ticket
+    @trainee.update(ticket: curr_num_tickets + params[:trainee][:ticket].to_i)
+    redirect_to @trainee
+  end
+
   def cancel_enroll
     @trainee = Trainee.find(params[:trainee_id])
+    @time_slot = TimeSlot.find(params[:time_slot_id])
     @trainee.cancel_enrollment(params[:time_slot_id])
+    @time_slot.cancel_enrollment(params[:trainee_id])
     redirect_to @trainee
   end
 
@@ -76,6 +86,6 @@ class TraineesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trainee_params
-      params.require(:trainee).permit(:email, :first, :last, :phone)
+      params.require(:trainee).permit(:email, :first, :last, :phone, :ticket, :id)
     end
 end

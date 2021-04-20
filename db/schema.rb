@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_144306) do
+ActiveRecord::Schema.define(version: 2021_04_20_201056) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_144306) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "recurring", default: true
-    t.string "enrolled"
+    t.string "enrolled", default: ""
     t.integer "occupancy", default: 0
     t.index ["activity_id"], name: "index_time_slots_on_activity_id"
   end

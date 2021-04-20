@@ -14,14 +14,16 @@
                     <h5> השיעור מתחיל ב: <%= activity.start_time.to_s(:time) %> </h5>
                     <br>
                     <% if admin_signed_in? %>
-                    <a class="btn btn-primary btn-lg btn-floating" style="background-color: white; color: black;" href="#" role="button"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>הרשמה</a>
+                    <%= link_to "הרשמה", enroll_path(id: activity.id), class: "btn btn-primary btn-lg btn-floating" %>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
-                        כניסה
+                        מתאמנים רשומים - <%= activity.occupancy %>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="no-bullets">
-                            <li class="menu-item"><%= link_to "כניסת מתאמנים", new_user_session_path %></li>
-                            <li class="menu-item"><%= link_to "כניסת מדריכים", new_instructor_session_path %></li>
+                            <% activity.get_enrolled_trainees.each do |trainee| %>
+
+                            <li class="menu-item"><%= link_to trainee.first + ' ' + trainee.last, trainee %></li>
+                            <% end %>
                         </ul>
                     </div>
                     <% else %>

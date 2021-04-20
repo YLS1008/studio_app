@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 
   resources :activities
-  resources :instructors, only: [:show, :index]
+  resources :instructors, only: [:index]
   resources :contacts
   resources :time_slots
   
@@ -27,16 +27,21 @@ Rails.application.routes.draw do
     end
     authenticated :instructor do
       root :to => 'instructors#home', as: :instructor_root
+      
     end
   end
   authenticated :admin do
     root :to => 'admins#dashboard', as: :admin_root
     get '/convert', to: 'contacts#convert', as: :convert
-    get '/load_tickets', to: 'trainee#load_tickets', as: :load_tickets
+    patch '/load_tickets', to: 'trainees#load_tickets', as: :load_tickets
+    get '/enroll', to: 'admins#enroll', as: :enroll
+    patch '/finalize', to: 'admins#finalize', as: :finalize
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
   get 'static_pages/about'
   get 'static_pages/contact'
   get '/thank_you', to: 'static_pages#thanks', as: :after_contact
+  get 'instructors/:id', to: 'instructors#home', as: :instructor
+  get '/cancel_enroll', to: 'trainees#cancel_enroll', as: :cancel_enroll
 end

@@ -1,0 +1,14 @@
+<div class="basic-container first-container">
+
+    <p>
+        רישום לשיעור <%= @time_slot.mother.name %> <br>
+        ביום <%= @time_slot.start_time.strftime("%A") %><br>
+        בשעה <%= @time_slot.start_time.to_s(:time) %> <br>
+    </p>
+
+    <%= bootstrap_form_with(model: @time_slot, url: finalize_path, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
+    <%= f.hidden_field :id, value: @time_slot.id, class: "btn btn-primary" %>
+    <%= f.select :enrolled, @trainee_hash[:t_id].pluck(:name), {}, class: 'js-activities', label: "" %>
+    <%= f.submit "הרשמה לשיעור" %>
+    <% end %>
+</div>
