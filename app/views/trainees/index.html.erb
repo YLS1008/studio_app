@@ -24,6 +24,7 @@
                             <td><%= trainee.email %></td>
                             <td><%= trainee.phone %></td>
                             <td><%= link_to 'פרופיל', trainee %></td>
+                            <td><%= link_to 'רישום', placeholder_path %></td>
                             <td><%= link_to 'ערוך', edit_trainee_path(trainee) %></td>
                             <td><%= link_to 'מחק', trainee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                         </tr>

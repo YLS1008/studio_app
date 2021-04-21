@@ -44,9 +44,9 @@
                             <% @enrolled_activity.each do |activity| %>
                             <tr>
                                 <td><%= activity.mother.name %></td>
-                                <td><%= activity.start_time.to_date %></td>
+                                <td><%= activity.start_time.get_clean(:date) %></td>
                                 <td><%= activity.start_time.wday %></td>
-                                <td><%= activity.start_time.to_s(:time) %></td>
+                                <td><%= activity.start_time.get_clean(:time) %></td>
                                 <td><%= link_to 'בטל רישום', cancel_enroll_path(time_slot_id: activity.id, trainee_id: @trainee.id) %></td>
 
                             </tr>

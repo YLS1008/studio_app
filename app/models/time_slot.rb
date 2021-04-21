@@ -1,9 +1,11 @@
 class TimeSlot < ApplicationRecord
   belongs_to :activity
 
-  def date
-    self.start_time.to_date
+
+  def get_clean(param)
+    self.start_time.to_date.to_s(param)
   end
+
 
   def duration
     duration_in_seconds = Activity.find(self.activity_id).duration * 60
@@ -39,7 +41,7 @@ class TimeSlot < ApplicationRecord
      return @enrolled
   end
 
-  def finalize_enroll(trainee_id)
+def finalize_enroll(trainee_id)
     self.update(enrolled: self.enrolled + "#{trainee_id};")
     self.update(occupancy: self.occupancy + 1)
 end

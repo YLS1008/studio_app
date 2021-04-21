@@ -29,7 +29,9 @@ import 'select2/dist/css/select2.css'
 $(document).on('turbolinks:load', function () {
     $(".js-activities").select2()
 });
+
 require("packs/responsive_nav")
+require("packs/table_switch")
 
 
 
