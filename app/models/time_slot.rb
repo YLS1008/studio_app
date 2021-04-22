@@ -1,10 +1,14 @@
 class TimeSlot < ApplicationRecord
   belongs_to :activity
+  has_many :enrollments
+  has_many :trainees, through: :enrollments
+
 
 
   def get_clean_datetime(param)
     self.start_time.to_s(param)
   end
+
 
 
   def duration
@@ -24,33 +28,6 @@ class TimeSlot < ApplicationRecord
     end
   end
 
-  def cancel_enrollment(cancel_id)
-    enrolled_id_arr = self.enrolled.split(';')
-    enrolled_id_arr.delete(cancel_id)
-    new_enrollment = ""
-    enrolled_id_arr.each do |id|
-        new_enrollment + id + ';'
-    end
-    self.update(enrolled: new_enrollment)
-    self.update(occupancy: self.occupancy - 1)
-  end
-
-  def get_enrolled_trainees
-    trainees_id_arr = self.enrolled.split(';').map(&:to_i)
-    @enrolled = Trainee.find(trainees_id_arr)
-     return @enrolled
-  end
-
-def finalize_enroll(trainee_id)
-    self.update(enrolled: self.enrolled + "#{trainee_id};")
-    self.update(occupancy: self.occupancy + 1)
-end
-
-def get_enrolled_trainees
-  trainee_id_arr = self.enrolled.split(';').map(&:to_i)
-  @trainees_enrolled = Trainee.find(trainee_id_arr)
-   return @trainees_enrolled
-end
 
 end
 

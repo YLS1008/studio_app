@@ -7,10 +7,11 @@ class TraineesController < ApplicationController
     @trainees = Trainee.all
   end
 
+
   # GET /trainees/1
   # GET /trainees/1.json
   def show
-    @enrolled_activity = @trainee.get_enrolled_time_slots
+    @enrolled_activity = @trainee.time_slots.all
     @enrolled_children = Child.where(trainee_id: @trainee.id)
   end
 
@@ -23,11 +24,13 @@ class TraineesController < ApplicationController
   end
 
   def cancel_enroll
-    @trainee = Trainee.find(params[:trainee_id])
-    @time_slot = TimeSlot.find(params[:time_slot_id])
-    @trainee.cancel_enrollment(params[:time_slot_id])
-    @time_slot.cancel_enrollment(params[:trainee_id])
-    redirect_to @trainee
+
+    enroll = Enrollment.where(trainee_id: params[:trainee_id], time_slot_id: params[:time_slot_id])
+
+    trainee = Trainee.find(params[:trainee_id])
+    enroll.destroy_all
+    trainee.refund_ticket
+    redirect_to trainee
   end
 
   # GET /trainees/new
@@ -87,6 +90,6 @@ class TraineesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trainee_params
-      params.require(:trainee).permit(:email, :first, :last, :phone, :ticket, :id)
+      params.require(:trainee).permit(:email, :first, :last, :phone, :ticket, :id, :city_ids => [])
     end
 end

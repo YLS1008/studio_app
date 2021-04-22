@@ -14,24 +14,23 @@ class AdminsController < ApplicationController
   end
 
   def finalize
-    name_arr = params[:time_slot][:enrolled].split(' ')
-    @selected_trainee = Trainee.where(first: name_arr[0], last: name_arr[1])
-    @selected_time_slot = TimeSlot.find(params[:time_slot][:id])
-    @selected_time_slot.finalize_enroll(@selected_trainee.first.id)
-    @selected_trainee.first.finalize_enroll(params[:time_slot][:id])
+
+    enrollment = Enrollment.create(trainee_id: Trainee.get_id_from_full_name(params[:time_slot][:enrolled]),
+                         time_slot_id: params[:time_slot][:id])
+    trainee = Trainee.find(enrollment.trainee_id)
+    trainee.charge_ticket
     redirect_to admin_root_path
   end
 
+
   def enroll
     @time_slot = TimeSlot.find(params[:id])
-    @all_trainees = Trainee.all
-    @trainee_hash = {}
-    @all_trainees.each do |trainee|
-      if !trainee.is_enrolled?(params[:id])
-        t_id = trainee.id
-        @trainee_hash[:t_id] = [name: trainee.first + ' ' + trainee.last]
-      end
+    @available_trainees = Trainee.all - @time_slot.trainees
+    @full_names_arr = []
+    @available_trainees.each do |t|
+      @full_names_arr.push(t.first + ' ' + t.last)
     end
+    
   end
 
 

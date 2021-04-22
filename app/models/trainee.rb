@@ -1,39 +1,27 @@
 class Trainee < ApplicationRecord
 
-has_many :child
-has_many :task
-has_many :conversation
+has_many :children
+has_many :enrollments
+has_many :time_slots, through: :enrollments
+has_many :tasks
+has_many :conversations
 
-    def get_enrolled_time_slots
-        time_slots_id_arr = self.enrolled.split(';').map(&:to_i)
-        @time_slots_enrolled = TimeSlot.find(time_slots_id_arr)
-         return @time_slots_enrolled
-    end
-
-    def cancel_enrollment(cancel_id)
-        time_slots_id_arr = self.enrolled.split(';')
-        time_slots_id_arr.delete(cancel_id)
-        new_enrollment = ""
-        time_slots_id_arr.each do |id|
-            new_enrollment + id + ';'
-        end
-        self.update(enrolled: new_enrollment)
+    def refund_ticket
         self.update(ticket: self.ticket + 1)
+    end 
 
-    end
-
-    def is_enrolled?(time_slot_id)
-        time_slots_id_arr = self.enrolled.split(';').map(&:to_i)
-        time_slots_id_arr.each do |id|
-            if id == time_slot_id
-                return true
-            end
-        end
-        return false
-    end
-
-    def finalize_enroll(time_slot_id)
-        self.update(enrolled: self.enrolled + "#{time_slot_id};")
+    def charge_ticket
         self.update(ticket: self.ticket - 1)
     end
+
+    def full_name
+        self.first + ' ' + self.last
+    end
+
+    def self.get_id_from_full_name(name)
+        name_arr = name.split(' ')
+        @trainee = Trainee.where(first: name_arr[0], last: name_arr[1]).first
+        return @trainee.id
+    end
+
 end

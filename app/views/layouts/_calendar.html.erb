@@ -16,11 +16,11 @@
                     <% if admin_signed_in? %>
                     <%= link_to "הרשמה", enroll_path(id: activity.id), class: "btn btn-primary btn-lg btn-floating" %>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
-                        מתאמנים רשומים - <%= activity.occupancy %>
+                        מתאמנים רשומים - <%= activity.trainees.count %>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="no-bullets">
-                            <% activity.get_enrolled_trainees.each do |trainee| %>
+                            <% activity.trainees.each do |trainee| %>
 
                             <li class="menu-item"><%= link_to trainee.first + ' ' + trainee.last, trainee %></li>
                             <% end %>

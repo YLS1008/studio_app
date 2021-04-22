@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_065934) do
+ActiveRecord::Schema.define(version: 2021_04_22_205348) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 2021_04_22_065934) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trainee_id"], name: "index_conversations_on_trainee_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "trainee_id"
+    t.integer "time_slot_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["time_slot_id"], name: "index_enrollments_on_time_slot_id"
+    t.index ["trainee_id"], name: "index_enrollments_on_trainee_id"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -190,6 +199,8 @@ ActiveRecord::Schema.define(version: 2021_04_22_065934) do
   add_foreign_key "activities", "instructors"
   add_foreign_key "children", "trainees"
   add_foreign_key "conversations", "trainees"
+  add_foreign_key "enrollments", "time_slots"
+  add_foreign_key "enrollments", "trainees"
   add_foreign_key "interests", "time_slots"
   add_foreign_key "tasks", "trainees"
   add_foreign_key "time_slots", "activities"

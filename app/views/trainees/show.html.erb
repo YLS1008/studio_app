@@ -17,6 +17,18 @@
                     <li class="menu-item">מספר טלפון | <%= @trainee.phone %></li>
                     <li class="menu-item">כרטיסים | <%= @trainee.ticket %></li>
                 </ul>
+                <div class="basic-container">
+                    <% if admin_signed_in? %>
+                    <%= bootstrap_form_for(@trainee, url: load_tickets_path, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
+
+                    <%= f.select :ticket, (1..10), label: "מספר הכרטיסים לטעינה" %>
+                    <%= f.hidden_field :id, value: @trainee.id, class: "btn btn-primary" %>
+                    <%= f.submit "טען כרטיסים" %>
+
+                    <% end %>
+
+                    <% end %>
+                </div>
             </div>
 
             <div class="profile-stats">
@@ -44,8 +56,8 @@
                             <% @enrolled_activity.each do |activity| %>
                             <tr>
                                 <td><%= activity.mother.name %></td>
-                                <td><%= activity.get_clean_datetime(:date) %></td>
-                                <td><%= activity.start_time.wday %></td>
+                                <td><%= activity.start_time.to_date %></td>
+                                <td><%= daynum_to_hebrew_day(activity.start_time.wday) %></td>
                                 <td><%= activity.get_clean_datetime(:time) %></td>
                                 <td><%= link_to 'בטל רישום', cancel_enroll_path(time_slot_id: activity.id, trainee_id: @trainee.id) %></td>
 
@@ -57,16 +69,7 @@
                 </div>
             </div>
         </div>
-        <% if admin_signed_in? %>
-        <%= bootstrap_form_for(@trainee, url: load_tickets_path, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
 
-        <%= f.select :ticket, (1..10), label: "מספר הכרטיסים לטעינה" %>
-        <%= f.hidden_field :id, value: @trainee.id, class: "btn btn-primary" %>
-        <%= f.submit "טען כרטיסים" %>
-
-        <% end %>
-
-        <% end %>
 
 
     </div>
