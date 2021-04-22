@@ -1,5 +1,9 @@
 class Trainee < ApplicationRecord
 
+has_many :child
+has_many :task
+has_many :conversation
+
     def get_enrolled_time_slots
         time_slots_id_arr = self.enrolled.split(';').map(&:to_i)
         @time_slots_enrolled = TimeSlot.find(time_slots_id_arr)

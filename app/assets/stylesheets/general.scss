@@ -1,12 +1,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 
-/* mixins, variables, etc. */
+
 
 $gray-medium-light: #eaeaea;
 $container-padding-x: 10%;
 $studio-color: #7acfe3;
 $shadow-color: #c4beab;
+
+
+/* mixins, variables, etc. */
+
+@mixin button-bg($bg) {
+  background: $bg;
+  &:hover {
+    background:darken($bg,8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background:darken($bg,25%);
+  } 
+}
+
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -22,6 +38,25 @@ $shadow-color: #c4beab;
   margin-left: auto;
   
 }
+
+.btn {
+  color:black !important;
+  text-decoration:none;
+  padding:5px 10px;
+  border-radius:3px;
+  /* font-family: 'Poiret One', cursive; */
+  font-size:2em;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+ }
+ 
+ .btn-main {
+    @include button-bg(#ebe9e4);
+ }
+ 
+ .btn-blue {
+    @include button-bg(#3498db);
+ }
 
 .signup{
   max-width: 20% !important;
@@ -120,9 +155,9 @@ $shadow-color: #c4beab;
 }
 
 .profile-stats{
-  background-color: black !important;
+  background-color: white !important;
   border-radius: 13%;
-  color: #eaeaea;
+  color: black;
   text-align: center;
   margin-top: 5px;
   padding-top: 5px;

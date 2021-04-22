@@ -8,13 +8,13 @@
                      loading: "lazy", alt: @activity.name, class: "rounded-full" %>
             </section>
             <section class="name">
-                <%= @activity.name %>
+                <%= link_to "חזרה לעמוד הבית", root_path_helper, class: "btn btn-main btn-lg" %>
             </section>
         </aside>
         <div class="col-md-8">
             <div class="profile-stats">
                 <ul class="no-bullets">
-                    <li class="menu-item">Duration | <%= @activity.duration %></li>
+                    <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
                 </ul>
             </div>
 

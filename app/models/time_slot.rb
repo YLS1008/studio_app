@@ -2,8 +2,8 @@ class TimeSlot < ApplicationRecord
   belongs_to :activity
 
 
-  def get_clean(param)
-    self.start_time.to_date.to_s(param)
+  def get_clean_datetime(param)
+    self.start_time.to_s(param)
   end
 
 

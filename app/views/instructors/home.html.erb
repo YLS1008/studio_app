@@ -14,23 +14,54 @@
         <div class="col-md-8">
             <div class="profile-stats">
                 <ul class="no-bullets">
-                    <li class="menu-item">Speciality | <%= @instructor.speciality %></li>
-                    <li class="menu-item">Years of Experience | <%= @instructor.exp %></li>
+                    <h4>
+                        <li class="menu-item"> <strong><%= @instructor.speciality %></strong> </li>
+                    </h4>
                 </ul>
+                <h4>
+                    <strong> שיעורים בשבועיים הקרובים</strong>
+                </h4>
+                <div class="table-responsive" style="direction: rtl;">
+                    <table class="table table-hover table-bordered" style="background-color: white;">
+                        <thead class="thead-dark" style="color: black;">
+                            <tr>
+                                <th>שיעור </th>
+                                <th>תאריך </th>
+                                <th>יום </th>
+                                <th>שעה </th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="color: black;">
+                            <% @instructor_time_slots.each do |slot| %>
+                            <tr>
+                                <td><%= slot.mother.name %></td>
+                                <td><%= slot.start_time.to_date %></td>
+                                <td><%= daynum_to_hebrew_day(slot.start_time.wday) %></td>
+                                <td><%= slot.get_clean_datetime(:time) %></td>
+
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
 
             <div class="profile-stats">
                 <%= @instructor.description %>
-            </div>
 
-            <% if admin_signed_in? %>
-            <section>
-                <div class="btn btn-secondary">
-                    <%= link_to "Add Activity", new_activity_path(id: @instructor.id) %>
+                <div class="btn btn-main" style="display: block;">
+                    <% if admin_signed_in? %>
+                    <%= link_to "הוסף פעילות", new_activity_path(id: @instructor.id) %>
+                    <% else %>
+                    <%= link_to "חזרה לעמוד הבית", root_path %>
+                    <% end %>
                 </div>
-            </section>
-            <% end %>
-
+            </div>
         </div>
+
+
+
     </div>
 </div>

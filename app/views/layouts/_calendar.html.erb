@@ -27,7 +27,7 @@
                         </ul>
                     </div>
                     <% else %>
-                    <a class="btn btn-primary btn-lg btn-floating" style="background-color: white; color: black;" href="#" role="button"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>פרטים נוספים</a>
+                    <%= link_to "פרטים נוספים", activity.mother, class: "btn btn-main" %>
                     <% end %>
                 </div>
                 <% end %>

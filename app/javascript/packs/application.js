@@ -28,10 +28,18 @@ import 'select2/dist/css/select2.css'
 
 $(document).on('turbolinks:load', function () {
     $(".js-activities").select2()
+    $(".owl-carousel").owlCarousel({
+        navigation: true,
+        paginationSpeed: 1000,
+        goToFirstSpeed: 2000,
+        autoheight: true,
+        transitionStyle: "fade",
+    })
 });
 
 require("packs/responsive_nav")
 require("packs/table_switch")
+
 
 
 

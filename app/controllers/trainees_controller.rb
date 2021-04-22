@@ -11,6 +11,7 @@ class TraineesController < ApplicationController
   # GET /trainees/1.json
   def show
     @enrolled_activity = @trainee.get_enrolled_time_slots
+    @enrolled_children = Child.where(trainee_id: @trainee.id)
   end
 
   def load_tickets

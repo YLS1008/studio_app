@@ -1,4 +1,4 @@
-<%= bootstrap_form_with(model: contact, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |form| %>
+<%= bootstrap_form_with(model: contact, local: true) do |form| %>
 
 <% if contact.errors.any? %>
 <div id="error_explanation">
@@ -17,23 +17,14 @@
 <%= form.text_field :first, label: "שם פרטי", placeholder: "ישראל", required: true %>
 <%= form.text_field :last, label: "שם משפחה", placeholder: "ישראלי", required: true %>
 <%= form.telephone_field :phone, label: "מספר טלפון", placeholder: '0501234567' %>
-
-<label class="center" dir="rtl"> מתעניינ/ת כ: </label>
-
 <br><br>
-
-<%= form.form_group :type_of_contact do %>
-<%= form.radio_button :type_of_contact, "Instructor", label: "מדריכ/ה", required: true %>
-<%= form.radio_button :type_of_contact, "Participent", label: "משתתפ/ת", required: true %>
-<% end %>
-
 
 <label class="center" dir="rtl"> אני מעוניינ/ת בפרטים נוספים על השיעורים הבאים: </label>
 
 
-<%= form.select :interests, @activities.pluck(:name), {}, class: 'js-activities', label: "", multiple: true %>
+<%= form.select :interests, @activities.pluck(:name), {:label => "שיעורי הסטודיו"}, class: 'js-activities', multiple: true %>
 
-
+<%= form.text_area :info, label: " פרטים נוספים", placeholder: 'משהו נוסף שתרצו לספר לנו?' %>
 <div>
     <%= form.submit "שלח/י" %>
 </div>
