@@ -8,11 +8,11 @@
                 <% back_color = "white" if back_color == "" %>
 
                 <div class="card-body" style="background-color: <%= back_color %>; text-align: center; border-radius: 10%; padding-top: 10px; padding-bottom: 10px; margin-top: 5px; font-weight: bold;">
+
                     <h4 class="card-title"><%= activity.mother.name %></h4>
                     <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
-                                                                     activity.mother.instructor %></h5>
-                    <h5> השיעור מתחיל ב: <%= activity.start_time.to_s(:time) %> </h5>
-                    <br>
+                                                                     activity.mother, class: "btn btn-main" %></h5>
+                    <h5> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h5>
                     <% if admin_signed_in? %>
                     <%= link_to "הרשמה", enroll_path(id: activity.id), class: "btn btn-primary btn-lg btn-floating" %>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">

@@ -50,6 +50,9 @@ $shadow-color: #c4beab;
   margin-bottom: 5px !important;
  }
  
+ th {
+  text-align: center;
+ }
  .btn-main {
     @include button-bg(#ebe9e4);
  }
@@ -207,6 +210,14 @@ ul.no-bullets {
 
 li.menu-item:not(:last-child) { 
   margin-bottom: 10px !important; 
+}
+
+.img-circle{
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 /* typography */

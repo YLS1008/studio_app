@@ -27,19 +27,19 @@ module ApplicationHelper
 
   def daynum_to_hebrew_day(num)
     case num
-    when 1
+    when 0
       "יום ראשון"
-    when 2
+    when 1
       "יום שני"
-    when 3
+    when 2
       "יום שלישי"
-    when 4
+    when 3
       "יום רביעי"
-    when 5
+    when 4
       "יום חמישי"
-    when 6
+    when 5
       "יום שישי"
-    when 7
+    when 6
       "יום שבת"
     
   end

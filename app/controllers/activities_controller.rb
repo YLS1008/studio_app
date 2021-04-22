@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
+    @time_slots = @activity.time_slot.where(start_time: Date.today..Date.today + 3.week)
   end
 
   # GET /activities/new
@@ -21,6 +22,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
+    @instructor = Activity.find(params[:id]).instructor
   end
 
   # POST /activities
@@ -30,7 +32,7 @@ class ActivitiesController < ApplicationController
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.html { redirect_to new_time_slot_path(id: @activity.id), notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new }
@@ -71,6 +73,6 @@ class ActivitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:instructor_id, :name, :duration, :start_time, :end_time, :capacity, :reccuring)
+      params.require(:activity).permit(:instructor_id, :name, :duration, :start_time, :end_time, :capacity, :reccuring, :description, :image, :payment)
     end
 end

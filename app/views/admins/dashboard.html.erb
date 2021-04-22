@@ -14,7 +14,6 @@
                             <th>שם משפחה</th>
                             <th>דואר אלקטרוני</th>
                             <th>מספר טלפון</th>
-                            <th>מדריך / משתתף</th>
                             <th>תחומי עניין</th>
                             <th colspan="2"></th>
                         </tr>
@@ -27,7 +26,6 @@
                             <td><%= contact.last %></td>
                             <td><%= contact.email %></td>
                             <td><%= contact.phone %></td>
-                            <td><%= contact.type_of_contact %></td>
                             <td><%= contact.interests %></td>
                             <td><%= link_to 'רישום למערכת', convert_path(id: contact.id) %></td>
                             <td><%= link_to 'מחיקה', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>

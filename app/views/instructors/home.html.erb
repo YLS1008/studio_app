@@ -2,17 +2,21 @@
 <div class="basic-container first-container">
     <div class="row">
         <aside class="col-md-3">
-            <section>
+            <div style="background-color: transparent; display: block; text-align: center; margin-top: 5px;">
 
                 <%= image_tag @instructor.displayed_image,
-                     loading: "lazy", alt: @instructor.first, class: "rounded-full" %>
-            </section>
+                     loading: "lazy", alt: @instructor.first, class: "rounded-full", style: "border-radius: 10%" %>
+            </div>
             <section class="name">
                 <%= @instructor.first.capitalize %> <%= @instructor.last.capitalize %>
             </section>
         </aside>
         <div class="col-md-8">
             <div class="profile-stats">
+                <% if @instructor.activity.exists? %>
+                <%= image_tag @instructor.activity.first.displayed_image,
+                     loading: "lazy", alt: @instructor.activity.first.name, class: "img-circle img-fluid" %>
+                <% end %>
                 <ul class="no-bullets">
                     <h4>
                         <li class="menu-item"> <strong><%= @instructor.speciality %></strong> </li>
@@ -49,7 +53,7 @@
 
 
             <div class="profile-stats">
-                <%= @instructor.description %>
+                <%= simple_format(@instructor.description) %>
 
                 <div class="btn btn-main" style="display: block;">
                     <% if admin_signed_in? %>

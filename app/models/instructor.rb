@@ -2,9 +2,10 @@ class Instructor < ApplicationRecord
   has_many :activity, dependent: :destroy
   has_one_attached :image
 
+
   def displayed_image
     if image.attached?
-      image.variant(resize_to_fill: [265, 350, gravity: 'north'])
+      image.variant(resize_to_fit: [290, 350])
     else
       'default_profile.jpg'
     end

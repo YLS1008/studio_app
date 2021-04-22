@@ -1,35 +1,57 @@
 <% provide(:title, "Instructor Profile") %>
+
+
 <div class="basic-container first-container">
-    <div class="row">
-        <aside class="col-md-3">
-            <section>
 
-                <%= image_tag @activity.displayed_image,
-                     loading: "lazy", alt: @activity.name, class: "rounded-full" %>
-            </section>
-            <section class="name">
-                <%= link_to "חזרה לעמוד הבית", root_path_helper, class: "btn btn-main btn-lg" %>
-            </section>
-        </aside>
-        <div class="col-md-8">
-            <div class="profile-stats">
-                <ul class="no-bullets">
-                    <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
-                </ul>
-            </div>
+    <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
 
-            <div class="profile-stats">
-                <%= @activity.description %>
-            </div>
+    <div class="profile-stats">
+        <ul class="no-bullets">
+            <h4>
+                <li class="menu-item"> <%= @activity.name %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item"> <%=link_to @activity.instructor.first + ' ' + @activity.instructor.last, @activity.instructor %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
+            </h4>
+            <li class="menu-item"> <%=simple_format(@activity.description) %> </li>
 
+        </ul>
+        <h4>
+            השיעורים הקרובים
+        </h4>
+        <div class="table-responsive" style="direction: rtl;">
+            <table class="table table-hover table-bordered" style="background-color: white;  ">
+                <thead class=" thead-dark" style="color: black; text-align: center; ">
+                    <tr>
+                        <th>תאריך </th>
+                        <th>יום </th>
+                        <th>שעה </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% @time_slots.each do |slot| %>
+                    <tr>
+                        <td><%= slot.start_time.to_date %></td>
+                        <td><%= daynum_to_hebrew_day(slot.start_time.to_date.wday) %></td>
+                        <td><%= slot.get_clean_datetime(:time) %></td>
+
+                    </tr>
+                    <% end %>
+
+                </tbody>
+            </table>
             <% if admin_signed_in? %>
-            <section>
-                <div class="btn btn-secondary">
-                    <%= link_to "Schedule Activity", new_time_slot_path(id: @activity.id) %>
-                </div>
-            </section>
+            <%= link_to "הכנס פעילות ללוח שנה", new_time_slot_path(id: @activity.id), class: "btn btn-main" %>
+            <% else %>
+            <%= render 'layouts/contact_links' %>
+            <%= link_to "חזרה לדף הבית", root_path, class: "btn btn-main" %>
             <% end %>
-
         </div>
     </div>
+
 </div>
