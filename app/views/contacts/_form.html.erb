@@ -19,10 +19,6 @@
 <%= form.telephone_field :phone, label: "מספר טלפון", placeholder: '0501234567' %>
 <br><br>
 
-<label class="center" dir="rtl"> אני מעוניינ/ת בפרטים נוספים על השיעורים הבאים: </label>
-
-
-<%= form.select :interests, @activities.pluck(:name), {:label => "שיעורי הסטודיו"}, class: 'js-activities', multiple: true %>
 
 <%= form.text_area :info, label: " פרטים נוספים", placeholder: 'משהו נוסף שתרצו לספר לנו?' %>
 <div>

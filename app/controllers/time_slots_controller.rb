@@ -29,7 +29,6 @@ class TimeSlotsController < ApplicationController
   def create
     @time_slot = TimeSlot.new(time_slot_params)
     if @time_slot.save 
-      byebug
       if time_slot_params[:recurring] != "0"
         loop do
           @last_entry = TimeSlot.last

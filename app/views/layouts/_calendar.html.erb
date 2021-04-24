@@ -12,7 +12,7 @@
 
                     <h4 class="card-title"><%= activity.mother.name %></h4>
                     <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
-                                                                     activity.mother, class: "btn btn-main" %></h5>
+                                                                     activity.mother.instructor, class: "btn btn-main" %></h5>
                     <h5> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h5>
                     <% if admin_signed_in? %>
                     <%= link_to "הרשמה", enroll_path(id: activity.id), class: "btn btn-primary btn-lg btn-floating" %>
@@ -34,9 +34,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="no-bullets">
-                            <% activity.children.each do |child| %>
+                            <% activity.trainees.each do |trainee| %>
 
-                            <li class="menu-item"><%= link_to child.name + ' ' + child.trainee.last, child.trainee %></li>
+                            <li class="menu-item"><%= link_to trainee.first + ' ' + trainee.last, trainee %></li>
                             <% end %>
                         </ul>
                     </div>
@@ -46,6 +46,7 @@
                     <% end %>
                 </div>
                 <% end %>
-                <% end %>
+
             </div>
+            <% end %>
         </div>
