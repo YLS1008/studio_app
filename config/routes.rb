@@ -36,6 +36,12 @@ Rails.application.routes.draw do
     patch '/load_tickets', to: 'trainees#load_tickets', as: :load_tickets
     get '/enroll', to: 'admins#enroll', as: :enroll
     patch '/finalize', to: 'admins#finalize', as: :finalize
+    get '/conversations/:id', to: 'admins#conversation', as: :conversation
+    post '/conversations/log_new', to: 'admins#log_conversation', as: :log_conversation
+    post '/tasks/add_task', to: 'admins#add_task', as: :add_task
+    get '/tasks/closed', to: 'admins#closed_tasks', as: :closed_tasks
+    post '/tasks/update_status', to: 'admins#update_status', as: :update_status
+    post '/trainee/add_child', to: 'trainees#add_child', as: :add_child
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

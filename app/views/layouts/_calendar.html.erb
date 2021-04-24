@@ -3,7 +3,8 @@
 
             <%= date %>
 
-            <% activities.each do |activity| %> <div class="card">
+            <% activities.each do |activity| %>
+            <div class="card">
                 <% back_color = "#{activity.mother.instructor.color}" %>
                 <% back_color = "white" if back_color == "" %>
 
@@ -15,17 +16,31 @@
                     <h5> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h5>
                     <% if admin_signed_in? %>
                     <%= link_to "הרשמה", enroll_path(id: activity.id), class: "btn btn-primary btn-lg btn-floating" %>
+                    <% if activity.mother.payment == "monthly" %>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
+                        ילדים רשומים לחוג - <%= activity.children.count %>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul class="no-bullets">
+                            <% activity.children.each do |child| %>
+
+                            <li class="menu-item"><%= link_to child.name + ' ' + child.trainee.last, child.trainee %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                    <% else %>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
                         מתאמנים רשומים - <%= activity.trainees.count %>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <ul class="no-bullets">
-                            <% activity.trainees.each do |trainee| %>
+                            <% activity.children.each do |child| %>
 
-                            <li class="menu-item"><%= link_to trainee.first + ' ' + trainee.last, trainee %></li>
+                            <li class="menu-item"><%= link_to child.name + ' ' + child.trainee.last, child.trainee %></li>
                             <% end %>
                         </ul>
                     </div>
+                    <% end %>
                     <% else %>
                     <%= link_to "פרטים נוספים", activity.mother, class: "btn btn-main" %>
                     <% end %>

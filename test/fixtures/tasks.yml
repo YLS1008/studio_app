@@ -2,12 +2,12 @@
 
 one:
   trainee: one
-  description: MyText
-  deadline: 2021-04-22 09:59:35
+  content: MyText
+  due_date: 2021-04-23 20:04:23
   status: 1
 
 two:
   trainee: two
-  description: MyText
-  deadline: 2021-04-22 09:59:35
+  content: MyText
+  due_date: 2021-04-23 20:04:23
   status: 1

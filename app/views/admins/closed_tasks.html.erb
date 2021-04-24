@@ -1,0 +1,21 @@
+<div class="basic-container first-container">
+    <div class="table-responsive" style="direction: rtl;">
+        <table class="table table-hover table-bordered" style="background-color: white;">
+            <thead class="thead-dark" style="color: black; ">
+                <tr>
+                    <th class="text-center"> משימה </th>
+                    <th class="text-center">תאריך סגירה </th>
+                </tr>
+            </thead>
+
+            <tbody style="color: black;">
+                <% @closed_tasks.each do |log| %>
+                <tr>
+                    <td><%= simple_format(log.content) %></td>
+                    <td><%= log.updated_at.to_date %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

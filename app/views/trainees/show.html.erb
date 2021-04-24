@@ -16,6 +16,8 @@
                     <li class="menu-item">דואר אלקטרוני | <%= @trainee.email %></li>
                     <li class="menu-item">מספר טלפון | <%= @trainee.phone %></li>
                     <li class="menu-item">כרטיסים | <%= @trainee.ticket %></li>
+                    <li class="menu-item"><%= link_to "יומן שיחות", conversation_path(id: @trainee.id), class: "btn btn-main" %></li>
+
                 </ul>
                 <div class="basic-container">
                     <% if admin_signed_in? %>
@@ -44,10 +46,10 @@
                     <table class="table table-hover table-bordered" style="background-color: white;">
                         <thead class="thead-dark" style="color: black;">
                             <tr>
-                                <th>פעילות </th>
-                                <th>תאריך </th>
-                                <th>יום </th>
-                                <th>שעה </th>
+                                <th class="text-center">פעילות </th>
+                                <th class="text-center">תאריך </th>
+                                <th class="text-center">יום </th>
+                                <th class="text-center">שעה </th>
                                 <th colspan="1"></th>
                             </tr>
                         </thead>
@@ -75,16 +77,21 @@
     </div>
 </div>
 
-<% if !@enrolled_children.empty? %>
 <div class="basic-container">
+    <h3>
+        ילדים של המתאמן
+        <%= link_to "הוסף ילד/ה", add_child_path(trainee_id: @trainee.id), class: "btn btn-main" %>
+    </h3>
+    <% if !@enrolled_children.empty? %>
+
     <div class="table-responsive">
         <table class="table table-hover table-bordered" style="background-color: white;">
             <thead class="thead-dark">
                 <tr>
-                    <th>שם הילד</th>
-                    <th>גיל</th>
-                    <th>חוגים רשומים</th>
-                    <th>מספר טלפון</th>
+                    <th class="text-center">שם הילד</th>
+                    <th class="text-center">גיל</th>
+                    <th class="text-center">חוגים רשומים</th>
+                    <th class="text-center">מספר טלפון</th>
                     <th colspan="2"></th>
                 </tr>
             </thead>
@@ -92,14 +99,15 @@
             <tbody>
                 <% @enrolled_children.each do |child| %>
                 <tr>
-                    <td><%= contact.first %></td>
-                    <td><%= contact.last %></td>
-                    <td><%= contact.email %></td>
-                    <td><%= contact.phone %></td>
-                    <td><%= contact.type_of_contact %></td>
-                    <td><%= contact.interests %></td>
-                    <td><%= link_to 'רישום למערכת', convert_path(id: contact.id) %></td>
-                    <td><%= link_to 'מחיקה', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= child.name %></td>
+                    <td><%= child.age %></td>
+                    <td>
+                        <%= bootstrap_form_for(@child_enrollment, url: add_child_path, local: true) do |f| %>
+                        <%= f.select :time_slot, @uniq_enrolled_classes.pluck(:name) %>
+                        <%= f.hidden_field :child_id, value: child.id %>
+                        <%= f.submit "רישום ילד/ה לשיעור", class: "btn btn-main" %>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>

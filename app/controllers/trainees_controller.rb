@@ -11,8 +11,17 @@ class TraineesController < ApplicationController
   # GET /trainees/1
   # GET /trainees/1.json
   def show
-    @enrolled_activity = @trainee.time_slots.all
+    @enrolled_activity = @trainee.time_slots
+    enrolled_classes = []
+    @enrolled_activity.ids.each do |id|
+      activity = TimeSlot.find(id).mother
+      if activity.payment == "monthly"
+        enrolled_classes.push(activity)
+      end
+    end
+    @uniq_enrolled_classes = enrolled_classes.uniq{|x| x.id}
     @enrolled_children = Child.where(trainee_id: @trainee.id)
+    @child_enrollment = ChildrenEnrollment.new
   end
 
   def load_tickets
@@ -21,6 +30,17 @@ class TraineesController < ApplicationController
     curr_num_tickets = @trainee.ticket
     @trainee.update(ticket: curr_num_tickets + params[:trainee][:ticket].to_i)
     redirect_to @trainee
+  end
+
+  def add_child
+    activity_id = Activity.where(name: params[:children_enrollment][:time_slot]).first
+    @time_slots = TimeSlot.where(activity_id: activity_id)
+    @time_slots.each do |slot|
+    ChildrenEnrollment.create(child_id: params[:children_enrollment][:child_id],
+                                time_slot_id: slot.id)
+    end
+
+    redirect_to Child.find(params[:children_enrollment][:child_id]).trainee
   end
 
   def cancel_enroll

@@ -3,6 +3,9 @@ class TimeSlot < ApplicationRecord
   has_many :enrollments
   has_many :trainees, through: :enrollments
 
+  has_many :children_enrollments
+  has_many :children, through: :children_enrollments
+
 
 
   def get_clean_datetime(param)
