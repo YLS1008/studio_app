@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get '/tasks/closed', to: 'admins#closed_tasks', as: :closed_tasks
     post '/tasks/update_status', to: 'admins#update_status', as: :update_status
     post '/trainee/add_child', to: 'trainees#add_child', as: :add_child
+    get '/calendar', to: 'admins#calendar', as: :calendar
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

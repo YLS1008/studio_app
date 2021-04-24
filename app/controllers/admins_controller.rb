@@ -78,4 +78,10 @@ class AdminsController < ApplicationController
     Task.find(params[:task][:id]).update(status: "closed")
     redirect_to conversation_path(id: params[:task][:trainee_id])
   end
+
+  def calendar
+    @activities = TimeSlot.all
+    @contacts = Contact.all
+    @trainees = Trainee.all
+  end
 end

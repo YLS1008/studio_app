@@ -29,7 +29,8 @@ class TimeSlotsController < ApplicationController
   def create
     @time_slot = TimeSlot.new(time_slot_params)
     if @time_slot.save 
-      if time_slot_params[:recurring]
+      byebug
+      if time_slot_params[:recurring] != "0"
         loop do
           @last_entry = TimeSlot.last
           next_date = copy_recurring_event(@last_entry, @last_entry.start_time)
@@ -61,7 +62,7 @@ class TimeSlotsController < ApplicationController
   def destroy
     @time_slot.destroy
     respond_to do |format|
-      format.html { redirect_to time_slots_url, notice: 'Time slot was successfully destroyed.' }
+      format.html { redirect_to calendar_path, notice: 'Time slot was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

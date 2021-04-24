@@ -11,7 +11,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
-    @time_slots = @activity.time_slot.where(start_time: Date.today..Date.today + 3.week)
+    @time_slots = @activity.time_slot.where(start_time: Date.today..Date.today + 3.week).order(start_time: :asc)
   end
 
   # GET /activities/new
