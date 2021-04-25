@@ -29,7 +29,7 @@ class AdminsController < ApplicationController
       end
 
       trainee = Trainee.find(trainee_id)
-      if time_slot.mother.payment == "Entry"
+      if time_slot.mother.payment == "entry"
         trainee.charge_ticket
       end
       redirect_to admin_root_path

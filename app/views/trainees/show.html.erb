@@ -80,8 +80,13 @@
 <div class="basic-container">
     <h3>
         ילדים של המתאמן
-        <%= link_to "הוסף ילד/ה", add_child_path(trainee_id: @trainee.id), class: "btn btn-main" %>
     </h3>
+    <%= bootstrap_form_for(@child, url: child_info_path, local: true) do |f| %>
+    <%= f.text_field :name, label: "שם פרטי" %>
+    <%= f.text_field :age, label: "גיל" %>
+    <%= f.hidden_field :trainee_id, value: @trainee.id %>
+    <%= f.submit "צור", class: "btn btn-main" %>
+    <% end %>
     <% if !@enrolled_children.empty? %>
 
     <div class="table-responsive">
