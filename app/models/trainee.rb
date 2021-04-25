@@ -20,7 +20,12 @@ has_many :conversations
 
     def self.get_id_from_full_name(name)
         name_arr = name.split(' ')
-        @trainee = Trainee.where(first: name_arr[0], last: name_arr[1]).first
+        if name_arr.length == 2
+            @trainee = Trainee.where(first: name_arr[0], last: name_arr[1]).first
+        elsif name_arr.length == 3
+            @trainee = Trainee.where(first: name_arr[0], last: name_arr[1] + ' ' + name_arr[2]).first
+        end
+
         return @trainee.id
     end
 
