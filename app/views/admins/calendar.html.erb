@@ -15,6 +15,7 @@
             <h5> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h5>
             <% if admin_signed_in? %>
             <%= link_to "הרשמה", enroll_path(id: activity.id), class: "btn btn-primary btn-lg btn-floating" %>
+            <%= link_to "מחיקה", activity, class: "btn btn-primary btn-lg btn-floating", method: :delete, data: { confirm: 'Are you sure?' } %>
             <% if activity.mother.payment == "monthly" %>
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#mobileNav" aria-haspopup="true" aria-expanded="false">
                 ילדים רשומים לחוג - <%= activity.children.count %>
