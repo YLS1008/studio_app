@@ -10,6 +10,7 @@
     "blueimp-gallery": "^3.3.0",
     "bootstrap": "^4.6.0",
     "bootstrap-modal": "^2.2.4",
+    "datatables.net-bs4": "^1.10.24",
     "jquery": "^3.6.0",
     "owl.carousel": "^2.3.4",
     "popper": "^1.0.1",

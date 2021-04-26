@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'enrollments/enroll'
+  get 'enrollments/cancel'
+  get 'enrollments/get_by_trainee'
+  get 'enrollments/get_by_slot'
   resources :trainees
   devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
