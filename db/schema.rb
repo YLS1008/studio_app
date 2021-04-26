@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_172040) do
+ActiveRecord::Schema.define(version: 2021_04_26_123640) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,25 +62,6 @@ ActiveRecord::Schema.define(version: 2021_04_24_172040) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "children", force: :cascade do |t|
-    t.integer "trainee_id", null: false
-    t.string "name"
-    t.integer "age"
-    t.string "enrolled", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["trainee_id"], name: "index_children_on_trainee_id"
-  end
-
-  create_table "children_enrollments", force: :cascade do |t|
-    t.integer "child_id"
-    t.integer "time_slot_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["child_id"], name: "index_children_enrollments_on_child_id"
-    t.index ["time_slot_id"], name: "index_children_enrollments_on_time_slot_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -207,9 +188,6 @@ ActiveRecord::Schema.define(version: 2021_04_24_172040) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "instructors"
-  add_foreign_key "children", "trainees"
-  add_foreign_key "children_enrollments", "children"
-  add_foreign_key "children_enrollments", "time_slots"
   add_foreign_key "conversations", "trainees"
   add_foreign_key "enrollments", "time_slots"
   add_foreign_key "enrollments", "trainees"

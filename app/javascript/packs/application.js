@@ -10,32 +10,32 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-
-require("packs/responsive_nav")
-require("packs/table_switch")
-require('datatables.net-bs4')
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
-
 import "channels"
 import "jquery"
 import "bootstrap"
 import JQuery from 'jquery'
-import $ from 'jquery';
-
-window.$ = window.JQuery = JQuery
-global.$ = jQuery;
-
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel'
 import "@fortawesome/fontawesome-free/css/all"
 import 'select2'
 import 'select2/dist/css/select2.css'
 
+require("packs/responsive_nav")
+require('datatables.net-bs4')
+require("packs/table_switch")
+
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+
+window.$ = window.JQuery = JQuery
+global.$ = jQuery;
 
 $(document).on('turbolinks:load', function () {
+
     $(".js-activities").select2()
+    $('#searchableB').DataTable()
+
     $(".owl-carousel").owlCarousel({
         navigation: true,
         paginationSpeed: 1000,

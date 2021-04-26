@@ -1,6 +1,5 @@
 class Trainee < ApplicationRecord
 
-has_many :children
 has_many :enrollments
 has_many :time_slots, through: :enrollments
 has_many :tasks
@@ -27,6 +26,17 @@ has_many :conversations
         end
 
         return @trainee.id
+    end
+
+    def get_international_number
+        inter_phone = self.phone.dup
+        inter_phone[0] = ''
+        inter_phone = '972' + phone
+        return inter_phone
+    end
+
+    def is_enrolled?(time_slot)
+        self.time_slots.include? time_slot
     end
 
 end

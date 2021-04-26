@@ -1,2 +1,9 @@
-<h1>Enrollments#enroll</h1>
-<p>Find me in app/views/enrollments/enroll.html.erb</p>
+<div class="basic-container first-container">
+
+    <h3>
+        רישום - <%= @trainee.full_name %>
+    </h3>
+
+    <%= render 'layouts/personal_calendar', trainee: @trainee, activities: @time_slots,
+                                            week_number: 1 %>
+</div>

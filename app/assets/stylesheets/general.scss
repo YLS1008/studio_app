@@ -5,7 +5,7 @@
 
 
 $gray-medium-light: #eaeaea;
-$container-padding-x: 10%;
+$container-padding-x: 5%;
 $studio-color: #7acfe3;
 $shadow-color: #c4beab;
 
@@ -64,6 +64,12 @@ $shadow-color: #c4beab;
   align-self: center !important;
 }
 
+.enrolled-activity{
+  background-color: black;
+  border: 2px bold;
+
+}
+
 .buttons{
   margin-top: 10px;
   margin-bottom: 10px;
@@ -77,16 +83,18 @@ $shadow-color: #c4beab;
 
 }
 
+
 .card{
-  &.payments{
-    background-color: blanchedalmond;
-  }
+  width: 100%;
+  text-align: center;
+  border-radius: 8%;
 }
 
 .card-body{
-  &.payments{
-    background-color: blanchedalmond;
-  }
+  width: 80%;
+  height: 90%;
+  display: inline-block;
+  margin: 0 auto;  text-align: center; border-radius: 10%; padding-top: 10px; padding-bottom: 10px; margin-top: 5px; font-weight: bold;
 }
 
 .contact{

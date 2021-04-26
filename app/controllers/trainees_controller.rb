@@ -20,9 +20,6 @@ class TraineesController < ApplicationController
       end
     end
     @uniq_enrolled_classes = enrolled_classes.uniq{|x| x.id}
-    @enrolled_children = Child.where(trainee_id: @trainee.id)
-    @child_enrollment = ChildrenEnrollment.new
-    @child = Child.new
   end
 
   def load_tickets
@@ -33,24 +30,6 @@ class TraineesController < ApplicationController
     redirect_to @trainee
   end
 
-  def child_info
-    @child = Child.create(trainee_id: params[:child][:trainee_id],
-                          age: params[:child][:age],
-                          name: params[:child][:name])
-    redirect_to @child.trainee
-  end
-
-
-  def add_child
-    activity_id = Activity.where(name: params[:children_enrollment][:time_slot]).first
-    @time_slots = TimeSlot.where(activity_id: activity_id)
-    @time_slots.each do |slot|
-    ChildrenEnrollment.create(child_id: params[:children_enrollment][:child_id],
-                                time_slot_id: slot.id)
-    end
-
-    redirect_to Child.find(params[:children_enrollment][:child_id]).trainee
-  end
 
   def cancel_enroll
 

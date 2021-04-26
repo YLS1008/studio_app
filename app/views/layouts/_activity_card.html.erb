@@ -1,0 +1,15 @@
+<div class="card" style="background-color: <%= enrolled_color %>;">
+    <% back_color = "#{activity.mother.instructor.color}" %>
+    <% back_color = "white" if back_color == "" %>
+
+
+    <div class="card-body" style="background-color: <%= back_color %>;">
+
+        <h4 class="card-title"><%= activity.mother.name %></h4>
+        <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
+                                                                     activity.mother.instructor, class: "btn btn-main btn-sm" %></h5>
+        <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
+    </div>
+
+
+</div>

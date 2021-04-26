@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'enrollments/enroll'
-  get 'enrollments/cancel'
-  get 'enrollments/get_by_trainee'
-  get 'enrollments/get_by_slot'
   resources :trainees
   devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
@@ -38,15 +34,14 @@ Rails.application.routes.draw do
     root :to => 'admins#dashboard', as: :admin_root
     get '/convert', to: 'contacts#convert', as: :convert
     patch '/load_tickets', to: 'trainees#load_tickets', as: :load_tickets
-    get '/enroll', to: 'admins#enroll', as: :enroll
-    patch '/finalize', to: 'admins#finalize', as: :finalize
+    get 'enrollments/enroll', to: 'enrollments#enroll', as: :enroll
+    get 'enrollments/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
+    get 'enrollments/finalize', to: 'enrollments#finalize', as: :finalize
     get '/conversations/:id', to: 'admins#conversation', as: :conversation
     post '/conversations/log_new', to: 'admins#log_conversation', as: :log_conversation
     post '/tasks/add_task', to: 'admins#add_task', as: :add_task
     get '/tasks/closed', to: 'admins#closed_tasks', as: :closed_tasks
     post '/tasks/update_status', to: 'admins#update_status', as: :update_status
-    post '/trainee/add_child', to: 'trainees#add_child', as: :add_child
-    post '/trainee/create_child', to: 'trainees#child_info', as: :child_info
     get '/calendar', to: 'admins#calendar', as: :calendar
   end
 

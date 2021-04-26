@@ -1,7 +1,7 @@
 <div class="basic-container first-container">
     <div class="buttons">
         <%= submit_tag "פניות חדשות", :type => 'button', :id => "switchA" %>
-        <%= submit_tag "מתאמנים", :type => 'button', :id => "switchB", :onclick => 'show("It works!")' %>
+        <%= submit_tag "מתאמנים", :type => 'button', :id => "switchB" %>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -55,8 +55,9 @@
                         <tr>
                             <td><%= trainee.first %></td>
                             <td><%= trainee.last %></td>
-                            <td><%= trainee.email %></td>
-                            <td><%= trainee.phone %></td>
+                            <td><%= trainee.email %><span style="float: left;"> | <%= link_to "פרופיל", trainee, class: 'btn btn-main' %>
+                                    | <%= link_to "רישום", enroll_path(id: trainee.id), class: 'btn btn-main'  %></span></td>
+                            <td><%= link_to trainee.phone, "https://wa.me/#{trainee.get_international_number}", target: :_blank  %></td>
                         </tr>
                         <% end %>
                     </tbody>
@@ -86,10 +87,3 @@
 </div>
 <%= render 'layouts/calendar', activities: @activities, week_number: 2,
          date_begin: Date.today.beginning_of_week + 1.week %>
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#searchableB').DataTable();
-    });
-</script>
