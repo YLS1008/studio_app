@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   resources :trainees
-  devise_for :instructors, path: 'instructors', controllers: {registrations: 'instructors/registrations',
+  devise_for :instructors, path: 'devise_instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
-  devise_for :admins, path: 'admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
-  devise_for :users, path: 'users', controllers: {registrations: 'users/registrations',
+  devise_for :admins, path: 'devise_admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
+  devise_for :users, path: 'devise_users', controllers: {registrations: 'users/registrations',
                                                       sessions: 'users/sessions'}
 
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :activities
   resources :instructors, only: [:index]
   resources :contacts
-  resources :time_slots
+  resources :time_slots, except: [:update]
   
 
   unauthenticated :admin do
@@ -43,8 +43,13 @@ Rails.application.routes.draw do
     post '/conversations/log_new', to: 'admins#log_conversation', as: :log_conversation
     post '/tasks/add_task', to: 'admins#add_task', as: :add_task
     get '/tasks/closed', to: 'admins#closed_tasks', as: :closed_tasks
-    post '/tasks/update_status', to: 'admins#update_status', as: :update_status
+    patch '/tasks/update_status', to: 'admins#update_status', as: :update_status
     get '/calendar', to: 'admins#calendar', as: :calendar
+    get '/instructors/edit/(:id)', to: 'instructors#edit', as: :edit_instructor
+    patch '/instructors/update/(:id)', to: 'instructors#update', as: :update_instructor
+    delete '/time_slots/destroy_slot_for/(:id)', to: 'time_slots#destroy_slots', as: :destroy_slots
+    get '/time_slots/change_time_for/(:id)', to: 'time_slots#change_time', as: :change_slot_time
+    patch '/time_slots/reschedule', to: 'time_slots#reschedule', as: :reschedule
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

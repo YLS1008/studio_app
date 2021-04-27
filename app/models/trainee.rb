@@ -1,10 +1,10 @@
 class Trainee < ApplicationRecord
 
-has_many :children
-has_many :enrollments
+has_many :children, dependent: :destroy
+has_many :enrollments, dependent: :destroy
 has_many :time_slots, through: :enrollments
-has_many :tasks
-has_many :conversations
+has_many :tasks, dependent: :destroy
+has_many :conversations, dependent: :destroy
 
     def refund_ticket
         self.update(ticket: self.ticket + 1)
@@ -51,6 +51,10 @@ has_many :conversations
     def get_children_trainees
         @child_ids = Child.where(trainee_id: self.id).pluck(:child_trainee_id)
         return Trainee.find(@child_ids)
+    end
+
+    def open_tasks
+        Task.where(trainee_id: self.id, status: "open")
     end
 
 end

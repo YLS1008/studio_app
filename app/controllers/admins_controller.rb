@@ -57,10 +57,11 @@ class AdminsController < ApplicationController
   end
 
   def log_conversation
-    Conversation.create(trainee_id: params[:task][:trainee_id], content: params[:conversation][:content])
-    @trainee = Trainee.find(params[:task][:trainee_id])
+    Conversation.create(trainee_id: params[:conversation][:trainee_id], content: params[:conversation][:content])
+    @trainee = Trainee.find(params[:conversation][:trainee_id])
     redirect_to conversation_path(@trainee)
   end
+
 
   def add_task
     Task.create(trainee_id: params[:task][:trainee_id],
@@ -84,4 +85,6 @@ class AdminsController < ApplicationController
     @contacts = Contact.all
     @trainees = Trainee.all
   end
+
+  
 end

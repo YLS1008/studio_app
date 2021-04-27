@@ -1,9 +1,33 @@
 class TimeSlot < ApplicationRecord
   belongs_to :activity
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :trainees, through: :enrollments
 
+  def destroy
+    self.trainees.each do |trainee|
+      trainee.refund_ticket
+    end
+    super
+  end
 
+  def self.get_sister_slots(id)
+    slots_to_return = []
+    curr_slot = TimeSlot.find(id)
+    slots_to_return.push(curr_slot)
+    loop do
+      if curr_slot.nil?
+        return slots_to_return.reject {|slot| slot.nil? }
+      end
+      curr_time = curr_slot.start_time
+      next_slot = TimeSlot.where(start_time:  curr_time + 1.week).first
+      if next_slot.nil? && curr_slot.start_time > Date.new(2021, 9, 1)
+        return slots_to_return.reject {|slot| slot.nil? }
+      else
+        curr_slot = next_slot
+      end
+      slots_to_return.push(next_slot)
+    end
+  end
 
 
   def get_clean_datetime(param)

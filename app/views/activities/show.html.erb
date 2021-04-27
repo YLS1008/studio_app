@@ -24,27 +24,7 @@
             השיעורים הקרובים
         </h4>
         <div class="table-responsive" style="direction: rtl;">
-            <table class="table table-hover table-bordered" style="background-color: white;  ">
-                <thead class=" thead-dark" style="color: black; text-align: center; ">
-                    <tr>
-                        <th class="text-center">תאריך </th>
-                        <th class="text-center">יום </th>
-                        <th class="text-center">שעה </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <% @time_slots.each do |slot| %>
-                    <tr>
-                        <td><%= slot.start_time.strftime("%d.%m.%y") %></td>
-                        <td><%= daynum_to_hebrew_day(slot.start_time.strftime("%d.%m.%y").wday) %></td>
-                        <td><%= slot.get_clean_datetime(:time) %></td>
-
-                    </tr>
-                    <% end %>
-
-                </tbody>
-            </table>
+            <%= render 'layouts/calendar', activities: @time_slots, week_number: 1, show_toggle_button: false %>
             <% if admin_signed_in? %>
             <%= link_to "הכנס פעילות ללוח שנה", new_time_slot_path(id: @activity.id), class: "btn btn-main" %>
             <% else %>

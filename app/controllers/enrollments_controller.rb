@@ -11,7 +11,6 @@ class EnrollmentsController < ApplicationController
        
     if @enrollment.save
       if @enrollment.time_slot.mother.payment == "entry"
-        byebug
         @enrollment.trainee.charge_ticket
       end 
       redirect_to enroll_path(id: params[:trainee_id])

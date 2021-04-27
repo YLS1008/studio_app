@@ -1,4 +1,5 @@
 <div class="simple-calendar" , style="margin-top: 30px;">
+    <% if @show_toggle_button == true %>
     <div class="calendar-heading" style="text-align: center;">
         <%= link_to t('simple_calendar.previous', default: 'שבוע קודם'), calendar.url_for_previous_view, class: "btn btn-main btn-lg" %>
         <% if calendar.number_of_weeks == 1 %>
@@ -8,6 +9,7 @@
         <% end %>
         <%= link_to t('simple_calendar.next', default: 'שבוע הבא'), calendar.url_for_next_view, class: "btn btn-main btn-lg" %>
     </div>
+    <% end %>
     <div class="table-responsive" style="direction: rtl;">
         <table class="table table-striped table-bordered">
             <thead style="background-color: black; color: white;">

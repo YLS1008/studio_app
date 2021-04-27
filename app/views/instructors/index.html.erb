@@ -22,7 +22,7 @@
                             <td><%= instructor.speciality %></td>
 
                             <td><%= link_to 'Show', instructor %></td>
-                            <td><%= link_to 'Edit', edit_instructor_registration_path(instructor) %></td>
+                            <td><%= link_to 'Edit', edit_instructor_path(resource: instructor) %></td>
                             <td><%= link_to 'Destroy', registration_path(instructor), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                         </tr>
                         <% end %>

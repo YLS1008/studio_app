@@ -13,6 +13,20 @@ class InstructorsController < ApplicationController
   def index
     @all_instructors = Instructor.all
   end
-    
+
+  def edit
+    @instructor = Instructor.find(params[:resource])
+    render :edit
+  end
+
+  def update
+    Instructor.update(update_params)
+    redirect_to instructors_path
+  end
+
+  private
+  def update_params
+    params.require(:instructor).permit(:email, :first, :last, :phone, :description, :speciality, :color, :image)
+  end
   
 end

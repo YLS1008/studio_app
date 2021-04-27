@@ -1,0 +1,21 @@
+<div class="basic-container first-container">
+
+    <%= bootstrap_form_for(@instructor, url: update_instructor_path) do |f| %>
+
+
+    <%= f.email_field :email, label: "E-mail" %>
+    <%= f.text_field :first, label: "שם פרטי" %>
+    <%= f.text_field :last, label: "שם משפחה" %>
+    <%= f.phone_field :phone, label: "מספר טלפון" %>
+    <%= f.text_area :description, label: "פירוט" %>
+    <%= f.text_area :speciality, label: "תחום התמחות" %>
+    <%= f.color_field :color, label: "בחר צבע עבור המדריך" %>
+    <%= f.file_field :image, label: "תמונת פרופיל" %>
+
+    <div class="actions">
+        <%= f.submit "Update" %>
+    </div>
+    <% end %>
+
+    <%= link_to "Back", :back %>
+</div>

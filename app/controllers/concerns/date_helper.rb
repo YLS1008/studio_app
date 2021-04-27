@@ -5,7 +5,7 @@ module DateHelper
         run_end_date = Date.new(2021, 9, 1)
         next_start = curr_start + 1.week
 
-        if next_start.strftime("%d.%m.%y")time.strftime("%d.%m.%y") > run_end_date
+        if next_start.to_date > run_end_date
             return false
         end
 

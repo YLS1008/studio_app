@@ -9,7 +9,39 @@
         <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
                                                                      activity.mother.instructor, class: "btn btn-main btn-sm" %></h5>
         <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
+        <% if admin_signed_in? %>
+        <div>
+            <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>מתאמנים - <%= activity.trainees.count %></span>
+            </button>
+            <ul class="dropdown-menu no-bullets" style="background-color: info;">
+                <% activity.trainees.each do |trainee| %>
+                <li>
+                    <%= link_to trainee.first + ' ' + trainee.last, trainee, class: "btn btn-main btn-md" %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        <div>
+            <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>פעולות</span>
+            </button>
+            <ul class="dropdown-menu no-bullets" style="background-color: info;">
+                <li>
+                    <%= link_to "שינוי שעת שיעור", change_slot_time_path(id: activity.id), class: "btn btn-main btn-md" %>
+                </li>
+                <li>
+                    <%= link_to "מחיקת שיעור ספציפי", activity, class: "btn btn-main btn-md", method: :delete, data: { confirm: 'האם למחוק את השיבוץ לשיעור?' } %>
+                </li>
+                <li>
+                    <%= link_to "מחיקת כל השיבוצים", destroy_slots_path(activity), class: "btn btn-main btn-md", method: :delete, data: { confirm: 'זהירות! אישור הפעולה ימחק את כל שיבוצי השיעור מהלו"ז.' } %>
+                </li>
+            </ul>
+        </div>
+        <% end %>
     </div>
+
+</div>
 
 
 </div>

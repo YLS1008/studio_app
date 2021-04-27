@@ -47,6 +47,8 @@
                             <th class="text-center">שם משפחה</th>
                             <th class="text-center">דואר אלקטרוני</th>
                             <th class="text-center">טלפון</th>
+                            <th class="text-center">משימות</th>
+
                         </tr>
                     </thead>
 
@@ -56,19 +58,44 @@
                             <td><%= trainee.first %></td>
                             <td><%= trainee.last %></td>
                             <td><%= trainee.email %><span style="float: left;"> | <%= link_to "פרופיל", trainee, class: 'btn btn-main' %>
-                                    | <%= link_to "רישום", enroll_path(id: trainee.id), class: 'btn btn-main'  %></span></td>
+                                    | <%= link_to "רישום", enroll_path(id: trainee.id), class: 'btn btn-main'  %> | <%= link_to "יומן שיחות", conversation_path(id: trainee.id), class: 'btn btn-main'  %> </span></td>
                             <td><%= link_to trainee.phone, "https://wa.me/#{trainee.get_international_number}", target: :_blank  %></td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-
-                <br>
-
-                <%= link_to 'New Trainee', new_trainee_path %>
+                            <td>
+                                <% if trainee.open_tasks.empty? %>
+                                <%= link_to "צור משימה", conversation_path(id: trainee.id), class: 'btn btn-main' %>
+                                <% else %>
+                                <div>
+                                    <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span>משימות פתוחות</span>
+                                    </button>
+                                    <ul class="dropdown-menu no-bullets" style="background-color: info;">
+                                        <% trainee.open_tasks.each do |task| %>
+                                        <li>
+                                            <%= task.content %> | <%= task.due_date.to_date.strftime("%d/%m/%y") %> | <br>
+                                            <%= bootstrap_form_for(task, url: update_status_path, local: true) do |f| %>
+                                            <%= f.hidden_field :id, value: task.id %>
+                                            <%= f.hidden_field :trainee_id, value: trainee.id %>
+                                            <%= f.submit "סגירת משימה", class: "btn btn-main btn-sm" %>
+                                            <% end %>
+                                        </li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+                                <% end %>
             </div>
+            </td>
+            </td>
+            </tr>
+            <% end %>
+            </tbody>
+            </table>
+
+            <br>
+
+            <%= link_to 'New Trainee', new_trainee_path %>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -77,13 +104,7 @@
         השבוע הקרוב
     </h1>
 </div>
-<%= render 'layouts/calendar', activities: @activities, week_number: 1,
-         date_begin: Date.today.beginning_of_week %>
-
-<div class="basic-container">
-    <h1>
-        השבועיים הבאים
-    </h1>
+<div id="events_calendar">
+    <%= render 'layouts/calendar', activities: @activities, week_number: 1,
+         date_begin: Date.today.beginning_of_week, show_toggle_button: true %>
 </div>
-<%= render 'layouts/calendar', activities: @activities, week_number: 2,
-         date_begin: Date.today.beginning_of_week + 1.week %>

@@ -31,7 +31,7 @@
             <div class="basic-container">
 
                 <%= bootstrap_form_for(@task, url: add_task_path, local: true) do |f| %>
-                <%= f.date_field :due_date, label: "תאריך סיום" %>
+                <%= f.date_field :due_date, label: "תאריך סיום", placeholder: Date.today + 2.day %>
                 <%= f.text_area :content, label: "משימה" %>
                 <%= f.hidden_field :trainee_id, value: @trainee.id %>
                 <%= f.submit "צור משימה", class: "btn btn-primary" %>

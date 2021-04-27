@@ -66,6 +66,33 @@ class TimeSlotsController < ApplicationController
     end
   end
 
+  def destroy_slots
+    activity = TimeSlot.find(params[:id]).mother
+    @remove_slots = TimeSlot.get_sister_slots(params[:id])
+    @remove_slots.each do |slot|
+      slot.destroy
+    end
+    redirect_to activity
+  end
+
+  def change_time
+    @time_slot = TimeSlot.find(params[:id])
+  end
+
+  def reschedule
+    @update_slots = TimeSlot.get_sister_slots(params[:time_slot][:id])
+    @update_slots[0].update(time_slot_params)
+    if params[:time_slot][:recurring] != "0"
+      redirect_to admin_root_path
+    else
+      @update_slots.shift
+      @update_slots.each do |slot|
+      slot.update(time_slot_params)
+      end
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -77,4 +104,5 @@ class TimeSlotsController < ApplicationController
     def time_slot_params
       params.require(:time_slot).permit(:activity_id, :start_time, :end_time, :enrolled, :recurring)
     end
+  
 end

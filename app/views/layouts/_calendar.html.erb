@@ -1,4 +1,6 @@
-<%= week_calendar(events: activities, number_of_weeks: week_number) do |date, activities| %>
+<% @show_toggle_button = show_toggle_button %>
+<%= week_calendar(events: activities, number_of_weeks: week_number,
+                    previous_link: events_ajax_previous_link, next_link: events_ajax_next_link) do |date, activities| %>
 
 <%= date %>
 
