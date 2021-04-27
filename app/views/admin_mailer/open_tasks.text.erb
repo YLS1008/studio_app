@@ -1,0 +1,10 @@
+ בוקר טוב לסטודיו 
+
+    משימות פתוחות במערכת:
+    <% @tasks.each do |task| %>
+    # <%= task.trainee.first + ' ' + task.trainee.last %>
+    ## <%= task.content %>
+
+    דדליין:
+    ### <%= task.due_date.to_date.strftime("%d/%m/%y") %>
+    <% end %>
