@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     get 'enrollments/enroll', to: 'enrollments#enroll', as: :enroll
     get 'enrollments/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
     get 'enrollments/finalize', to: 'enrollments#finalize', as: :finalize
+    get 'enrollments/enroll_child', to: 'enrollments#enroll_child', as: :enroll_child
+    post 'enrollments/create_child', to: 'enrollments#create_child', as: :create_child
     get '/conversations/:id', to: 'admins#conversation', as: :conversation
     post '/conversations/log_new', to: 'admins#log_conversation', as: :log_conversation
     post '/tasks/add_task', to: 'admins#add_task', as: :add_task

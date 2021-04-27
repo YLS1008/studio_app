@@ -12,7 +12,7 @@
                 <% @closed_tasks.each do |log| %>
                 <tr>
                     <td><%= simple_format(log.content) %></td>
-                    <td><%= log.updated_at.to_date %></td>
+                    <td><%= log.updated_at.strftime("%d.%m.%y") %></td>
                 </tr>
                 <% end %>
             </tbody>

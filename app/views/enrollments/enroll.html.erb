@@ -1,7 +1,7 @@
 <div class="basic-container first-container">
 
     <h3>
-        רישום - <%= @trainee.full_name %>
+        רישום - <%= link_to @trainee.full_name, @trainee %>
     </h3>
 
     <%= render 'layouts/personal_calendar', trainee: @trainee, activities: @time_slots,

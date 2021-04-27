@@ -36,8 +36,8 @@
                 <tbody>
                     <% @time_slots.each do |slot| %>
                     <tr>
-                        <td><%= slot.start_time.to_date %></td>
-                        <td><%= daynum_to_hebrew_day(slot.start_time.to_date.wday) %></td>
+                        <td><%= slot.start_time.strftime("%d.%m.%y") %></td>
+                        <td><%= daynum_to_hebrew_day(slot.start_time.strftime("%d.%m.%y").wday) %></td>
                         <td><%= slot.get_clean_datetime(:time) %></td>
 
                     </tr>

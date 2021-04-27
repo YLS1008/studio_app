@@ -1,5 +1,6 @@
 class Trainee < ApplicationRecord
 
+has_many :children
 has_many :enrollments
 has_many :time_slots, through: :enrollments
 has_many :tasks
@@ -37,6 +38,19 @@ has_many :conversations
 
     def is_enrolled?(time_slot)
         self.time_slots.include? time_slot
+    end
+
+    def is_child?
+        Child.is_child?(self.id)
+    end
+
+    def get_parent
+        Child.get_parent(self.id)
+    end
+
+    def get_children_trainees
+        @child_ids = Child.where(trainee_id: self.id).pluck(:child_trainee_id)
+        return Trainee.find(@child_ids)
     end
 
 end
