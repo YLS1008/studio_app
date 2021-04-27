@@ -1,5 +1,7 @@
 class Instructor < ApplicationRecord
-  has_many :activity, dependent: :destroy
+
+  has_many :activities, dependent: :destroy
+  has_many :time_slots, through: :activities
   has_one_attached :image
 
 

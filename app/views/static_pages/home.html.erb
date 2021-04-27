@@ -29,62 +29,47 @@
         <div class="col"></div>
     </div>
 
+</div>
 
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-6">
-
-            <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today,  show_toggle_button: false %>
-
-        </div>
-        <div class="col"></div>
-    </div>
-    <br />
-    <br />
-    <br />
-
-
-
-    <div class="row">
-        <div class="col"></div>
-
-        <div class="col-6">
-
-            <%= render 'layouts/calendar', activities: @activities, week_number: 1,
-         date_begin: Date.today.beginning_of_week + 1.week, show_toggle_button: false %>
-
+<div class="row">
+    <div class="basic-container">
+        <div class="owl-carousel">
+            <% @all_instructors.each do |instructor| %>
+            <%= render 'layouts/instructor_card', instructor: instructor %>
+            <% end %>
         </div>
     </div>
+</div>
 
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+
+        <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today,  show_toggle_button: false, show_date: true %>
+
+    </div>
     <div class="col"></div>
 </div>
 <br />
 <br />
 <br />
-<!-- >
+
+
+
 <div class="row">
     <div class="col"></div>
 
     <div class="col-6">
-        <div class="basic-container">
-            <h1>
-                צוות המדריכות
-            </h1>
 
-            <div class="owl-carousel">
+        <%= render 'layouts/calendar', activities: @activities, week_number: 1,
+         date_begin: Date.today.beginning_of_week + 1.week, show_toggle_button: false, show_date: true %>
 
-                <% @all_instructors.each do |instructor| %>
-                <div class="card" style="width: 18rem; ">
-                    <%= link_to image_tag(instructor.displayed_image, :class => "card-img-top", :style => "border-radius: 10%;" ), instructor%>
-                    <div class="card-body">
-                        <p class="card-text" , style="text-align: center;"><strong><%= instructor.first  + ' ' +  instructor.last %></strong></p>
-                    </div>
-                </div>
-                <% end %>
-            </div>
-        </div>
     </div>
-
-    <div class="col"></div>
 </div>
-<!-->
+
+<div class="col"></div>
+</div>
+<br />
+<br />
+<br />

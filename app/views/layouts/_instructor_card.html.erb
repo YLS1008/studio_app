@@ -1,0 +1,22 @@
+<div class="card instructor-card">
+    <div class="row">
+        <%= image_tag instructor.activities.first.displayed_image,
+                     loading: "lazy", class: "img-circle img-fluid", style: "height: 150px;" %>
+    </div>
+
+    <div class="row">
+        <div class="card-body instructor-card" style="background-color: <%= "#{instructor.color}" %>">
+            <ul class="no-bullets">
+                <li>
+                    <h3 style="color: black;"><strong><%= instructor.activities.first.name %></strong></h3>
+                </li>
+                <li>
+                    <h4><%= instructor.first + ' ' + instructor.last %></h4>
+                </li>
+                <li>
+                    <%= link_to "פרטים נוספים", instructor_path(id: instructor.id), class: "btn btn-main btn-lg" %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

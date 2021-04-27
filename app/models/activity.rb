@@ -9,7 +9,7 @@ class Activity < ApplicationRecord
       else
         'default_profile.jpg'
       end
-    end
+  end
 
   def instructor
     Instructor.find(self.instructor_id)

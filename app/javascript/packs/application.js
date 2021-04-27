@@ -10,16 +10,21 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
+
 import "channels"
 import "jquery"
 import "bootstrap"
 import JQuery from 'jquery'
-import 'owl.carousel/dist/assets/owl.carousel.css'
-import 'owl.carousel'
+
+import 'owl.carousel2/dist/assets/owl.carousel.css';
+import 'owl.carousel2'
+
 import "@fortawesome/fontawesome-free/css/all"
+
 import 'select2'
 import 'select2/dist/css/select2.css'
 
+require("packs/app")
 require("packs/responsive_nav")
 require('datatables.net-bs4')
 require("packs/table_switch")
@@ -30,6 +35,8 @@ ActiveStorage.start()
 
 window.$ = window.JQuery = JQuery
 global.$ = jQuery;
+
+
 
 $(document).on('turbolinks:load', function () {
 
