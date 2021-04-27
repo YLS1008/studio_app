@@ -8,9 +8,8 @@ class ContactsController < ApplicationController
 
 
   def create
-    
     @contact = Contact.new(contact_params)
-
+    AdminMailer.new_contact(@contact).deliver_now
     respond_to do |format|
       if @contact.save
         format.html { redirect_to after_contact_path }

@@ -34,7 +34,7 @@
         <div class="col"></div>
         <div class="col-6">
 
-            <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today %>
+            <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today,  show_toggle_button: false %>
 
         </div>
         <div class="col"></div>
@@ -51,7 +51,7 @@
         <div class="col-6">
 
             <%= render 'layouts/calendar', activities: @activities, week_number: 1,
-         date_begin: Date.today.beginning_of_week + 1.week %>
+         date_begin: Date.today.beginning_of_week + 1.week, show_toggle_button: false %>
 
         </div>
     </div>

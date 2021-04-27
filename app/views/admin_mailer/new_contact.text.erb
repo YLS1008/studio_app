@@ -1,12 +1,9 @@
 A new contact has been added to the site.
 
-name: <%= @contact.name %>
-email: <%= @contact.email %>
-phone number: <%= @contact.mobile %>
 
+    name: <%= @contact.first + ' ' + @contact.last %> <br>
+    email: <%= @contact.email %> <br>
+    phone number: <%= @contact.phone %> <br>
 
-type: <%= @contact.type_of_contact %>
-courses: <%= @contact.interests %>
-
-notes: <%= @contact.info %>
+    notes: <%= @contact.info %>
 
