@@ -1,3 +1,11 @@
+100.times do |n|
+    first = Faker::Name.first_name
+    last = Faker::Name.last_name
+    email = "test+#{n+1}@studio.com"
+    phone = rand.to_s[2..11]
+    Trainee.create!(email: email, first: first, last: last, phone: phone, password: "10081990", password_confirmation: "10081990")
+    end
+
 
 10.times do |n|
     first = Faker::Name.first_name
@@ -16,7 +24,7 @@ Instructor.all.each do |instructor|
     duration = 60
     capacity = 15
     payment = "entry"
-    Activity.create(name: name, duration: duration, capacity: capacity, payment: payment, instructor_id: instructor.id)
+    Activity.create!(name: name, duration: duration, capacity: capacity, payment: payment, instructor_id: instructor.id)
 end
 
 
