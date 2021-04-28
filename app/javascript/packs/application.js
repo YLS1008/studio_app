@@ -21,11 +21,11 @@ import 'owl.carousel2'
 
 import "@fortawesome/fontawesome-free/css/all"
 
-import 'select2'
-import 'select2/dist/css/select2.css'
 
-require("packs/responsive_nav")
+require("datatables.net")
 require('datatables.net-bs4')
+require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+require("packs/responsive_nav")
 require("packs/table_switch")
 require("packs/image_carousel")
 

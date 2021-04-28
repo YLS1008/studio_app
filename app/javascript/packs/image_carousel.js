@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).on("turbolinks:before-cache", function () {
     $('.owl-carousel').owlCarousel({
         margin: 200,
         nav: false,

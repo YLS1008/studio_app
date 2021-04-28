@@ -1,4 +1,4 @@
-(function ($) {
+$(document).on("turbolinks:before-cache", function ($) {
 
     $(function () {
         var tableA = $('#tableA'),
