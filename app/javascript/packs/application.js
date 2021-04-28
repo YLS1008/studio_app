@@ -35,6 +35,7 @@ require("packs/responsive_nav")
 require("packs/table_switch")
 require("packs/image_carousel")
 
+
 const dataTables = [];
 
 document.addEventListener("turbolinks:load", () => {
@@ -47,6 +48,8 @@ document.addEventListener("turbolinks:load", () => {
     }
 });
 $(document).ready(function () {
+    $('.carousel').carousel()
+
     $(".owl-carousel").owlCarousel({
         margin: 200,
         nav: false,
