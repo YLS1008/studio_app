@@ -24,10 +24,10 @@ import "@fortawesome/fontawesome-free/css/all"
 import 'select2'
 import 'select2/dist/css/select2.css'
 
-require("packs/app")
 require("packs/responsive_nav")
 require('datatables.net-bs4')
 require("packs/table_switch")
+require("packs/image_carousel")
 
 Rails.start()
 Turbolinks.start()
@@ -37,17 +37,3 @@ window.$ = window.JQuery = JQuery
 global.$ = jQuery;
 
 
-
-$(document).on('turbolinks:load', function () {
-
-    $(".js-activities").select2()
-    $('#searchableB').DataTable()
-
-    $(".owl-carousel").owlCarousel({
-        navigation: true,
-        paginationSpeed: 1000,
-        goToFirstSpeed: 2000,
-        autoheight: true,
-        transitionStyle: "fade",
-    })
-});

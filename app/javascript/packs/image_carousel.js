@@ -1,10 +1,20 @@
 $(document).ready(function () {
     $('.owl-carousel').owlCarousel({
-        navigation: true,
-        paginationSpeed: 1000,
-        goToFirstSpeed: 2000,
-        singleItem: true,
-        autoheight: true,
-        transitionStyle: "fade"
-    });
+        margin: 200,
+        nav: false,
+        pullDrag: true,
+        center: false,
+        loop: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
 });
