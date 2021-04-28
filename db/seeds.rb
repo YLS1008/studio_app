@@ -3,7 +3,7 @@
     last = Faker::Name.last_name
     email = "test+#{n+1}@studio.com"
     phone = rand.to_s[2..11]
-    Trainee.create!(email: email, first: first, last: last, phone: phone, password: "10081990", password_confirmation: "10081990")
+    Trainee.create!(email: email, first: first, last: last, phone: phone)
     end
 
 
