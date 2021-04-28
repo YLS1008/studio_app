@@ -41,11 +41,34 @@ document.addEventListener("turbolinks:load", () => {
     if (dataTables.length === 0 && $('#searchableB').length !== 0) {
         $('#searchableB').each((_, element) => {
             dataTables.push($(element).DataTable({
-                pageLength: 50
+                pageLength: 10
             }));
         });
     }
 });
+
+document.addEventListener("turbolinks:load", () => {
+    $('.owl-carousel').owlCarousel({
+        margin: 200,
+        nav: false,
+        pullDrag: true,
+        center: false,
+        loop: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
+});
+
+
 
 document.addEventListener("turbolinks:before-cache", () => {
     while (dataTables.length !== 0) {
@@ -53,6 +76,28 @@ document.addEventListener("turbolinks:before-cache", () => {
     }
 });
 
+document.addEventListener("turbolinks:load", () => {
+    (function ($) {
+
+        $(function () {
+            var tableA = $('#tableA'),
+                tableB = $('#tableB'),
+                buttonA = $('#switchA'),
+                buttonB = $('#switchB');
+
+            buttonA.click(function () {
+                tableA.show();
+                tableB.hide();
+            });
+
+            buttonB.click(function () {
+                tableA.hide();
+                tableB.show();
+            });
+        });
+
+    })(jQuery);
+});
 
 
 
