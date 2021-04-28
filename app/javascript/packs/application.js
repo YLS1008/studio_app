@@ -46,9 +46,8 @@ document.addEventListener("turbolinks:load", () => {
         });
     }
 });
-
-document.addEventListener("turbolinks:load", () => {
-    $('.owl-carousel').owlCarousel({
+$(document).ready(function () {
+    $(".owl-carousel").owlCarousel({
         margin: 200,
         nav: false,
         pullDrag: true,
@@ -65,9 +64,8 @@ document.addEventListener("turbolinks:load", () => {
                 items: 3
             }
         }
-    })
+    });
 });
-
 
 
 document.addEventListener("turbolinks:before-cache", () => {
