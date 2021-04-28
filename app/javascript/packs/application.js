@@ -21,19 +21,39 @@ import 'owl.carousel2'
 
 import "@fortawesome/fontawesome-free/css/all"
 
-
-require("datatables.net")
-require('datatables.net-bs4')
-require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
-require("packs/responsive_nav")
-require("packs/table_switch")
-require("packs/image_carousel")
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 window.$ = window.JQuery = JQuery
 global.$ = jQuery;
+
+require("datatables.net")
+require('datatables.net-bs4')
+require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+require("packs/datatable_init")
+require("packs/responsive_nav")
+require("packs/table_switch")
+require("packs/image_carousel")
+
+const dataTables = [];
+
+document.addEventListener("turbolinks:load", () => {
+    if (dataTables.length === 0 && $('#searchableB').length !== 0) {
+        $('#searchableB').each((_, element) => {
+            dataTables.push($(element).DataTable({
+                pageLength: 50
+            }));
+        });
+    }
+});
+
+document.addEventListener("turbolinks:before-cache", () => {
+    while (dataTables.length !== 0) {
+        dataTables.pop().destroy();
+    }
+});
+
+
 
 
