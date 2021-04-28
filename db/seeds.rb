@@ -17,6 +17,6 @@ Instructor.all.each do |instructor|
     capacity: 15
     payment: "entry"
     Activity.create(name: name, duration: duration, capacity: capacity, payment: payment, instructor_id: instructor.id)
-
+end
 
 
