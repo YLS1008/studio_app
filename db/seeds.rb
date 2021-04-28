@@ -12,10 +12,10 @@
     end
 
 Instructor.all.each do |instructor|
-    name: instructor.speciality + ' ' + rand(10)
-    duration: 60
-    capacity: 15
-    payment: "entry"
+    name = instructor.speciality + ' ' + rand(10)
+    duration = 60
+    capacity = 15
+    payment = "entry"
     Activity.create(name: name, duration: duration, capacity: capacity, payment: payment, instructor_id: instructor.id)
 end
 
