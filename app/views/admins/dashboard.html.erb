@@ -105,6 +105,6 @@
     </h1>
 </div>
 <div id="events_calendar">
-    <%= render 'layouts/calendar', activities: @activities, week_number: 1,
+    <%= render 'layouts/admin_calendar', activities: @activities, tasks: @open_tasks, week_number: 1,
          date_begin: Date.today.beginning_of_week, show_toggle_button: true, show_date: true %>
 </div>

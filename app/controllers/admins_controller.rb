@@ -3,6 +3,7 @@ class AdminsController < ApplicationController
     @activities = TimeSlot.all
     @contacts = Contact.all
     @trainees = Trainee.all
+    @open_tasks = Task.where(status: "open")
   end
 
   def all_instructors
