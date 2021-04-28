@@ -37,3 +37,5 @@ window.$ = window.JQuery = JQuery
 global.$ = jQuery;
 
 
+
+
