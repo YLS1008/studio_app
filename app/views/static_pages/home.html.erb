@@ -12,6 +12,14 @@
 </div>
 
 <div class="row">
+    <div class="basic-container owl-carousel" style="direction: ltr;">
+        <% @all_instructors.each do |instructor| %>
+        <%= render 'layouts/instructor_card', instructor: instructor %>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
     <div class="col"></div>
 
     <div class="col-6">
@@ -31,13 +39,6 @@
 
 </div>
 
-<div class="row">
-    <div class="basic-container owl-carousel" style="direction: ltr;">
-        <% @all_instructors.each do |instructor| %>
-        <%= render 'layouts/instructor_card', instructor: instructor %>
-        <% end %>
-    </div>
-</div>
 
 
 
@@ -49,13 +50,6 @@
 
     </div>
     <div class="col"></div>
-</div>
-<br />
-<br />
-<br />
-
-
-<div class="col"></div>
 </div>
 <br />
 <br />

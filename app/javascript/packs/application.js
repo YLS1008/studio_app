@@ -16,9 +16,6 @@ import "jquery"
 import "bootstrap"
 import JQuery from 'jquery'
 
-import 'owl.carousel2/dist/assets/owl.carousel.css';
-import 'owl.carousel2'
-
 import "@fortawesome/fontawesome-free/css/all"
 
 Rails.start()
@@ -28,6 +25,8 @@ ActiveStorage.start()
 window.$ = window.JQuery = JQuery
 global.$ = jQuery;
 
+require("owl.carousel2")
+require("owl.carousel2/dist/assets/owl.carousel.css")
 require("datatables.net")
 require('datatables.net-bs4')
 require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
