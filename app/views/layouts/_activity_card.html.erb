@@ -10,10 +10,11 @@
         <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
         <% if admin_signed_in? %>
         <div>
-            <% if activity.mother.groups.nil? %>
-            <% resource = activity %>
-            <% else %>
+            <% byebug %>
+            <% if activity.mother.payment == "monthly" %>
             <% resource = activity.mother %>
+            <% else %>
+            <% resource = activity %>
             <% end %>
             <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>מתאמנים - <%= resource.trainees.count %></span>
