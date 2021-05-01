@@ -1,7 +1,9 @@
 class Activity < ApplicationRecord
   belongs_to :instructor
   has_one_attached :image
-  has_many :time_slot, dependent: :destroy
+  has_many :groups, dependent: :destroy
+  has_many :trainees, through: :groups
+  has_many :time_slots, dependent: :destroy
 
   def displayed_image
       if image.attached?

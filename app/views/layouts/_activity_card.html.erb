@@ -10,11 +10,17 @@
         <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
         <% if admin_signed_in? %>
         <div>
+            <% if activity.mother.groups.nil? %>
+            <% resource = activity %>
+            <% else %>
+            <% resource = activity.mother %>
+            <% end %>
             <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span>מתאמנים - <%= activity.trainees.count %></span>
+                <span>מתאמנים - <%= resource.trainees.count %></span>
             </button>
             <ul class="dropdown-menu no-bullets" style="background-color: info;">
-                <% activity.trainees.each do |trainee| %>
+
+                <% resource.trainees.each do |trainee| %>
                 <li>
                     <%= link_to trainee.first + ' ' + trainee.last, trainee, class: "btn btn-main btn-md" %>
                 </li>

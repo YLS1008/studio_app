@@ -33,16 +33,31 @@
 </div>
 
 
-
+<div class="basic-container">
+    <h1>
+        השבוע הנוכחי
+    </h1>
+</div>
 
 <div class="row">
-    <div class="col"></div>
-    <div class="col-6">
 
-        <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today,  show_toggle_button: false, show_date: true %>
+    <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today,  show_toggle_button: false, show_date: true %>
 
-    </div>
-    <div class="col"></div>
+
+</div>
+
+
+<div class="basic-container">
+    <h1>
+        השבוע הבא
+    </h1>
+</div>
+
+<div class="row">
+
+    <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today.beginning_of_week + 1.week,  show_toggle_button: false, show_date: true %>
+
+
 </div>
 <br />
 <br />

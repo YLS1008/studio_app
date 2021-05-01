@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'groups/index'
+  get 'groups/show'
+  get 'groups/cancel'
+  get 'groups/destroy'
+  get 'groups/change_status'
   resources :trainees
   devise_for :instructors, path: 'devise_instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
     delete '/time_slots/destroy_slot_for/(:id)', to: 'time_slots#destroy_slots', as: :destroy_slots
     get '/time_slots/change_time_for/(:id)', to: 'time_slots#change_time', as: :change_slot_time
     patch '/time_slots/reschedule', to: 'time_slots#reschedule', as: :reschedule
+    get 'groups/index', to: 'groups#index', as: :groups
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
