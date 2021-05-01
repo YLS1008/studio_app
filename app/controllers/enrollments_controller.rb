@@ -7,12 +7,15 @@ class EnrollmentsController < ApplicationController
   end
 
   def finalize
-    @enrollment = Enrollment.new(trainee_id: params[:trainee_id], time_slot_id: params[:slot_id])
-       
+    @slot = TimeSlot.find(params[:slot_id])
+    if @slot.mother.payment == "entry"
+      @enrollment = Enrollment.new(trainee_id: params[:trainee_id], time_slot_id: params[:slot_id])
+      @enrollment.trainee.charge_ticket
+    else
+       @enrollment = Group.new(activity_id: @slot.mother.id, trainee_id: params[:trainee_id], status: "unpayed")
+    end
+    
     if @enrollment.save
-      if @enrollment.time_slot.mother.payment == "entry"
-        @enrollment.trainee.charge_ticket
-      end 
       redirect_to enroll_path(id: params[:trainee_id])
     else
       redirect_to placeholder_path

@@ -16,18 +16,7 @@ import "jquery"
 import "bootstrap"
 import JQuery from 'jquery'
 
-import 'owl.carousel2/dist/assets/owl.carousel.css';
-import 'owl.carousel2'
-
 import "@fortawesome/fontawesome-free/css/all"
-
-import 'select2'
-import 'select2/dist/css/select2.css'
-
-require("packs/responsive_nav")
-require('datatables.net-bs4')
-require("packs/table_switch")
-require("packs/image_carousel")
 
 Rails.start()
 Turbolinks.start()
@@ -35,6 +24,82 @@ ActiveStorage.start()
 
 window.$ = window.JQuery = JQuery
 global.$ = jQuery;
+
+require("owl.carousel2")
+require("owl.carousel2/dist/assets/owl.carousel.css")
+require("datatables.net")
+require('datatables.net-bs4')
+require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+require("packs/datatable_init")
+require("packs/responsive_nav")
+require("packs/table_switch")
+require("packs/image_carousel")
+
+
+const dataTables = [];
+
+document.addEventListener("turbolinks:load", () => {
+    if (dataTables.length === 0 && $('#searchableB').length !== 0) {
+        $('#searchableB').each((_, element) => {
+            dataTables.push($(element).DataTable({
+                pageLength: 10
+            }));
+        });
+    }
+});
+$(document).ready(function () {
+    $('.carousel').carousel()
+
+    $(".owl-carousel").owlCarousel({
+        margin: 200,
+        nav: false,
+        pullDrag: true,
+        center: false,
+        loop: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 3
+            }
+        }
+    });
+});
+
+
+document.addEventListener("turbolinks:before-cache", () => {
+    while (dataTables.length !== 0) {
+        dataTables.pop().destroy();
+    }
+});
+
+document.addEventListener("turbolinks:load", () => {
+    (function ($) {
+
+        $(function () {
+            var tableA = $('#tableA'),
+                tableB = $('#tableB'),
+                buttonA = $('#switchA'),
+                buttonB = $('#switchB');
+
+            buttonA.click(function () {
+                tableA.show();
+                tableB.hide();
+            });
+
+            buttonB.click(function () {
+                tableA.hide();
+                tableB.show();
+            });
+        });
+
+    })(jQuery);
+});
+
 
 
 

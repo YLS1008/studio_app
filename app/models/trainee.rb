@@ -3,6 +3,8 @@ class Trainee < ApplicationRecord
 has_many :children, dependent: :destroy
 has_many :enrollments, dependent: :destroy
 has_many :time_slots, through: :enrollments
+has_many :groups, dependent: :destroy
+has_many :activities, through: :groups
 has_many :tasks, dependent: :destroy
 has_many :conversations, dependent: :destroy
 

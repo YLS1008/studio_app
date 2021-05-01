@@ -48,7 +48,7 @@
         <h4 style="color: black; text-align: center;">
             <strong> השיעורים של <%= @instructor.first %> </strong>
         </h4>
-        <%= render 'layouts/calendar', activities: @instructor.time_slots, show_toggle_button: false, show_date: false, week_number: 1 %>
+        <%= render 'layouts/calendar', activities: @instructor.time_slots, show_toggle_button: false, show_date: false, week_number: 1, date_begin: Date.today.beginning_of_week %>
 
     </div>
 </div>

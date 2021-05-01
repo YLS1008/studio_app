@@ -17,10 +17,11 @@
                 <li><%= link_to('Dashboard', admin_root_path) %></li>
                 <li><%= link_to('לוח שנה', calendar_path) %></li>
                 <li><%= link_to('מתאמנים', trainees_path) %></li>
-                <li><%= link_to('הוסף מתאמן', new_trainee_path) %></li>
+                <li><%= link_to('קבוצות', groups_path) %></li>
                 <li><%= link_to('פעילויות', activities_path) %></li>
                 <li><%= link_to('מדריכים', instructors_path) %></li>
                 <li><%= link_to('הוסף מדריך', new_instructor_registration_path) %></li>
+                <li><%= link_to('הוסף מתאמן', new_trainee_path) %></li>
                 <li><%= link_to('התנתקות', destroy_admin_session_path, method: :delete) %></li>
                 <% end %>
             </ul>

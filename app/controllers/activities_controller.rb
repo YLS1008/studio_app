@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
-    @time_slots = @activity.time_slot.where(start_time: Date.today.beginning_of_week..Date.today.beginning_of_week + 7.day, activity_id: params[:id]).order(start_time: :asc)
+    @time_slots = @activity.time_slots.where(start_time: Date.today.beginning_of_week..Date.today.beginning_of_week + 7.day, activity_id: params[:id]).order(start_time: :asc)
   end
 
   # GET /activities/new
