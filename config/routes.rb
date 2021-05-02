@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get 'groups/cancel'
   get 'groups/destroy'
   get 'groups/change_status'
-  resources :trainees
   devise_for :instructors, path: 'devise_instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
   devise_for :admins, path: 'devise_admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
@@ -18,7 +17,8 @@ Rails.application.routes.draw do
   resources :instructors, only: [:index]
   resources :contacts
   resources :time_slots, except: [:update]
-  
+  resources :trainees
+
 
   unauthenticated :admin do
     unauthenticated :instructor do

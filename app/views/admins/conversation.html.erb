@@ -31,7 +31,7 @@
             <div class="basic-container">
 
                 <%= bootstrap_form_for(@task, url: add_task_path, local: true) do |f| %>
-                <%= f.date_field :due_date, label: "תאריך סיום", placeholder: Date.today + 2.day %>
+                <%= f.date_field :due_date, label: "תאריך סיום" %>
                 <%= f.text_area :content, label: "משימה" %>
                 <%= f.hidden_field :trainee_id, value: @trainee.id %>
                 <%= f.submit "צור משימה", class: "btn btn-primary" %>
@@ -47,6 +47,7 @@
                     <thead class="thead-dark" style="color: black; ">
                         <tr>
                             <th class="text-center"> משימה </th>
+                            <th class="text-center">תאריך פתיחה </th>
                             <th class="text-center">דדליין </th>
                             <th colspan="1"></th>
                         </tr>
@@ -56,11 +57,10 @@
                         <% @task_logs.each do |log| %>
                         <tr>
                             <td><%= simple_format(log.content) %></td>
-
                             <td><%= log.created_at.strftime("%d.%m.%y") %></td>
-
+                            <td><%= log.due_date.strftime("%d.%m.%y") %></td>
                             <td>
-                                <%= bootstrap_form_for(@task, url: update_status_path, local: true) do |f| %>
+                                <%= bootstrap_form_for(log, url: update_status_path, local: true) do |f| %>
                                 <%= f.hidden_field :id, value: log.id %>
                                 <%= f.hidden_field :trainee_id, value: @trainee.id %>
                                 <%= f.submit "סגירת משימה", class: "btn btn-main" %>

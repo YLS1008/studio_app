@@ -13,6 +13,7 @@
         <div class="col-md-4">
             <div class="profile-stats">
                 <ul class="no-bullets">
+                    <li class="menu-item"><%= link_to "עריכת פרופיל", edit_trainee_path(@trainee), class: "btn btn-main btn-lg" %></li>
                     <li class="menu-item"><%= link_to "יומן שיחות", conversation_path(id: @trainee.id), class: "btn btn-main btn-lg" %></li>
                     <li class="menu-item"><%= link_to "   הרשמה   ", enroll_path(id: @trainee.id), class: "btn btn-main btn-lg" %></li>
                     <% if @trainee.is_child? %>
@@ -41,6 +42,7 @@
             <div class="profile-stats">
                 <div class="col">
                     <ul class="no-bullets">
+                        <li class="menu-item">גיל | <%= @trainee.age %></li>
                         <li class="menu-item">דואר אלקטרוני | <%= @trainee.email %></li>
                         <li class="menu-item">מספר טלפון | <%= link_to @trainee.phone, "https://wa.me/#{@trainee.get_international_number}" %></li>
                         <li class="menu-item">כרטיסים | <%= @trainee.ticket %></li>
