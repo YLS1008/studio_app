@@ -23,11 +23,14 @@ class EnrollmentsController < ApplicationController
   end
 
   def cancel
-    @enrollment = Enrollment.where(trainee_id: params[:trainee_id], time_slot_id: params[:slot_id])
-    if @enrollment.first.time_slot.mother.payment == "entry"
-      @enrollment.first.trainee.refund_ticket
+    slot = TimeSlot.find(params[:slot_id])
+    if slot.mother.payment == "monthly"
+      enrollment = Group.where(trainee_id: params[:trainee_id], activity_id: slot.mother.id)
+    else
+      enrollment = Enrollment.where(trainee_id: params[:trainee_id], time_slot_id: slot.id)
+      enrollment.first.trainee.refund_ticket
     end
-    @enrollment.first.destroy
+    enrollment.first.destroy
     redirect_to enroll_path(id: params[:trainee_id])
 
   end

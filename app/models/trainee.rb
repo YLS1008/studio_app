@@ -39,7 +39,11 @@ has_many :conversations, dependent: :destroy
     end
 
     def is_enrolled?(time_slot)
-        self.time_slots.include? time_slot
+        if time_slot.mother.payment == "monthly"
+            self.activities.include? time_slot.mother
+        else
+            self.time_slots.include? time_slot
+        end
     end
 
     def is_child?
@@ -57,6 +61,15 @@ has_many :conversations, dependent: :destroy
 
     def open_tasks
         Task.where(trainee_id: self.id, status: "open")
+    end
+
+    def age
+        if self.birthday.nil?
+            return nil
+        else
+            now = Time.now.utc.to_date
+            return now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
+        end
     end
 
 end

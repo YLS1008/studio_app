@@ -98,6 +98,6 @@ class TraineesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trainee_params
-      params.require(:trainee).permit(:email, :first, :last, :phone, :ticket, :id, :age)
+      params.require(:trainee).permit(:email, :first, :last, :phone, :ticket, :id, :birthday)
     end
 end

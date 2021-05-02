@@ -17,11 +17,11 @@
                 </div>
                 <% end %>
 
-                <%= f.email_field :email, label: "E-mail", autofocus: true, required: true %>
-                <%= f.text_field :first, label: "First Name", required: true %>
-                <%= f.text_field :last, label: "Last Name", required: true %>
-                <%= f.telephone_field :phone, label: "Phone Number", required: true %>
-                <%= f.number_field :age, label: "Age" %>
+                <%= f.email_field :email, label: "אימייל", autofocus: true, required: true %>
+                <%= f.text_field :first, label: "שם פרטי", required: true %>
+                <%= f.text_field :last, label: "שם משפחה", required: true %>
+                <%= f.telephone_field :phone, label: "מספר טלפון", required: true %>
+                <%= f.date_field :birthday, label: "תאריך לידה" %>
                 <div class="row" , style="align: center">
                     <div>
                         <%= f.submit "רישום" %><br>

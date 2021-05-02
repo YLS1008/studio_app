@@ -11,7 +11,7 @@
     </button>
     <ul class="dropdown-menu no-bullets" style="background-color: info;">
         <% tasks.each do |task| %>
-        <% if task.due_date.to_date <= date + 2.day %>
+        <% if task.due_date.to_date == date %>
         <li>
             <%= task.trainee.first + ' ' + task.trainee.last %> |<br> <%= task.content %> |<br> <%= task.due_date.to_date.strftime("%d/%m/%y") %> | <br>
             <%= bootstrap_form_for(task, url: update_status_path, local: true) do |f| %>
