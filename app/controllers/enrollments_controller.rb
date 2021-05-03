@@ -1,6 +1,6 @@
 class EnrollmentsController < ApplicationController
   
-  before_action :set_trainee, only: [:cancel]
+  before_action :set_trainee, only: [:cancel, :history]
 
 
   def enroll
@@ -47,6 +47,11 @@ class EnrollmentsController < ApplicationController
     child_trainee = Trainee.create(enroll_params)
     @test = Child.create(trainee_id: params[:trainee][:parent_id], child_trainee_id: child_trainee.id)
     redirect_to child_trainee
+  end
+
+  def history
+    trainee_enrollments = Enrollment.where(trainee_id: @trainee.id).pluck(:time_slot_id)
+    @past_time_slots = TimeSlot.find(trainee_enrollments).select {|x| x.start_time.to_date < Date.today}
   end
 
 

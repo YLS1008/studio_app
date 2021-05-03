@@ -78,4 +78,50 @@ class Trainee < ApplicationRecord
         Payment.trainee_tickets(self.id) - self.time_slots.count
     end
 
+    def interests
+        enrolled_slots = self.time_slots
+        interests = []
+        enrolled_slots.each do |slot|
+            interests.push(slot.mother.name)
+        end
+        unique_interests = interests.uniq
+
+        if unique_interests.length == 1
+            return  unique_interests[0]
+        elsif unique_interests.length == 0
+            return "ללא רישום"
+        else
+            return "אופציונלי"
+        end
+    end
+
+    def enroll_count
+        enrolled_slots = self.time_slots
+        name_arr = []
+
+        if !enrolled_slots.empty?
+            enrolled_slots.each do |slot|
+                activity_name = slot.mother.name
+                if name_arr.include? activity_name
+                    next
+                else
+                    name_arr.push(activity_name)
+                end
+            end
+            occurances_hash = {}
+            enrolled_slots.each do |slot|
+                activity_name = slot.mother.name
+                occurances_hash[activity_name] = 0
+            end
+            
+            enrolled_slots.each do |slot|
+                occurances_hash[slot.mother.name] += 1
+            end
+           
+            return occurances_hash
+        else
+            return {"ללא רישום" => "ללא רישום"}
+        end
+    end
+
 end

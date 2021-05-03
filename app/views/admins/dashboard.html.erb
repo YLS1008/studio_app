@@ -46,8 +46,8 @@
                             <th class="text-center">שם משפחה</th>
                             <th class="text-center">דואר אלקטרוני</th>
                             <th class="text-center">טלפון</th>
+                            <th class="text-center">תחומי עניין</th>
                             <th class="text-center">משימות</th>
-
                         </tr>
                     </thead>
 
@@ -56,9 +56,28 @@
                         <tr>
                             <td><%= trainee.first %></td>
                             <td><%= trainee.last %></td>
-                            <td><%= trainee.email %><span style="float: left;"> | <%= link_to "פרופיל", trainee, class: 'btn btn-main' %>
-                                    | <%= link_to "רישום", enroll_path(id: trainee.id), class: 'btn btn-main'  %> | <%= link_to "יומן שיחות", conversation_path(id: trainee.id), class: 'btn btn-main'  %> </span></td>
+                            <td>
+                                <%= trainee.email %>
+                                <span style="float: left;"> | <%= link_to "פרופיל", trainee, class: 'btn btn-main' %>
+                                    | <%= link_to "רישום", enroll_path(id: trainee.id), class: 'btn btn-main'  %> | <%= link_to "יומן שיחות", conversation_path(id: trainee.id), class: 'btn btn-main'  %>
+                                </span>
+                            </td>
                             <td><%= link_to trainee.phone, "https://wa.me/#{trainee.get_international_number}", target: :_blank  %></td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span> <%= trainee.interests %> </span>
+                                    </button>
+                                    <ul class="dropdown-menu no-bullets" style="background-color: info;">
+                                        <% trainee.enroll_count.each do |name, count| %>
+                                        <li>
+                                            <%= name %> | <%= count %>
+                                        </li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+
+                            </td>
                             <td>
                                 <% if trainee.open_tasks.empty? %>
                                 <%= link_to "צור משימה", conversation_path(id: trainee.id), class: 'btn btn-main' %>
@@ -81,13 +100,14 @@
                                     </ul>
                                 </div>
                                 <% end %>
+
+                            </td>
+
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
             </div>
-            </td>
-            </td>
-            </tr>
-            <% end %>
-            </tbody>
-            </table>
 
             <br>
 

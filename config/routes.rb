@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       
     end
   end
+
   authenticated :admin do
     root :to => 'admins#dashboard', as: :admin_root
     get '/convert', to: 'contacts#convert', as: :convert
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
     get 'groups/index', to: 'groups#index', as: :groups
     get 'payments/index', to: 'payments#index', as: :payments_index
     patch 'payments/pay', to: 'payments#pay', as: :payment
-
+    get 'enrollments/history/(:id)', to: 'enrollments#history', as: :enroll_history
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
