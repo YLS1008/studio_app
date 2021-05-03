@@ -55,6 +55,9 @@ Rails.application.routes.draw do
     get 'payments/index', to: 'payments#index', as: :payments_index
     patch 'payments/pay', to: 'payments#pay', as: :payment
     get 'enrollments/history/(:id)', to: 'enrollments#history', as: :enroll_history
+    get '/payments/refund/(:id)', to: 'payments#refund', as: :refund_payment
+    get '/groups/change_status/(:id)', to: 'groups#change_status', as: :change_status
+    get 'groups/cancel_group/(:id)', to: 'groups#cancel', as: :cancel_group
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

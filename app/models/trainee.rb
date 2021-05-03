@@ -10,14 +10,6 @@ class Trainee < ApplicationRecord
     has_many :payments, dependent: :destroy
 
 
-    def refund_ticket
-        self.update(ticket: self.ticket + 1)
-    end 
-
-    def charge_ticket
-        self.update(ticket: self.ticket - 1)
-    end
-
     def full_name
         self.first + ' ' + self.last
     end

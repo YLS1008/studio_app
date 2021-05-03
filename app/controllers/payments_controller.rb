@@ -11,5 +11,8 @@ class PaymentsController < ApplicationController
   end
 
   def refund
+    Payment.find(params[:id]).destroy
+    redirect_back(fallback_location: payments_index_path)
   end
+
 end

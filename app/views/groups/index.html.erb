@@ -14,8 +14,31 @@
                 <tr>
                     <td><%= activity.name %></td>
                     <td>
-                        <% activity.trainees.each do |trainee| %>
-                        <%= trainee.first + ' ' + trainee.last + ' | ' %>
+                        <% activity.trainees.each do |t| %>
+                        <% if activity.need_to_payed_for_group?(t.id) %>
+                        <% color = "red" %>
+                        <% tag = "רישום לאחר תשלום" %>
+                        <% path = change_status_path(id: t.id, activity_id: activity.id) %>
+                        <% else %>
+                        <% color = "green" %>
+                        <% tag = "ביטול רישום" %>
+                        <% path = cancel_group_path(id: t.id, activity_id: activity.id) %>
+                        <% end %>
+                        <div>
+                            <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color: <%= color %>;"><%= t.full_name %> </span>
+                            </button>
+
+
+                            <ul class="dropdown-menu no-bullets" style="background-color: info;">
+                                <li>
+                                    <%= link_to tag, path, class: "btn btn-main" %>
+                                </li>
+                                <li>
+                                    <%= link_to "לפרופיל", t, class: "btn btn-main" %>
+                                </li>
+                            </ul>
+                        </div>
                         <% end %>
                     </td>
                 </tr>

@@ -42,8 +42,29 @@ module ApplicationHelper
     when 6
       "יום שבת"
     
+    end
   end
 
+  def dropdown_links(btn_writing, color, resource_hash)
+    color_string = "color: " + color + ' ' + '!important' ';'
+    x =
+
+    "<div>
+    <button class=#{"btn btn-main dropdown-toggle"}  type=#{"button"} id=#{"dropdownMenuButton"} data-toggle=#{"dropdown"} aria-haspopup=#{"true"} aria-expanded=#{"false"}>
+        <span style=#{color_string}> #{btn_writing} </span>
+    </button>
+
+    
+    <ul class=#{"dropdown-menu no-bullets"} style=#{"background-color: info;"}>
+
+        <% #{resource_hash}.each do |name, path| %>
+        <li>
+            <%= link_to name, path, class: #{"btn btn-main"}  %>
+        </li>
+        <% end %>
+    </ul>
+    </div>"
+    return x.html_safe
   end
 
   

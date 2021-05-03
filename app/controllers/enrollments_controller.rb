@@ -31,7 +31,6 @@ class EnrollmentsController < ApplicationController
       enrollment = Group.where(trainee_id: @trainee.id, activity_id: slot.mother.id)
     else
       enrollment = Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id)
-      @trainee.refund_ticket
     end
     enrollment.first.destroy
     redirect_back(fallback_location: @trainee )

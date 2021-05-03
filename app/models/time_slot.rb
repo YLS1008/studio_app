@@ -3,13 +3,6 @@ class TimeSlot < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :trainees, through: :enrollments
 
-  def destroy
-    self.trainees.each do |trainee|
-      trainee.refund_ticket
-    end
-    super
-  end
-
   def self.get_sister_slots(id)
     slots_to_return = []
     curr_slot = TimeSlot.find(id)

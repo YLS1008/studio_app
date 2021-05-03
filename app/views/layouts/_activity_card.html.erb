@@ -22,7 +22,7 @@
 
                 <% resource.trainees.each do |trainee| %>
                 <li>
-                    <%= link_to trainee.first + ' ' + trainee.last, trainee, class: "btn btn-main btn-md" %>
+                    <%= link_to trainee.full_name, trainee, class: "btn btn-main btn-md" %>
                 </li>
                 <% end %>
             </ul>

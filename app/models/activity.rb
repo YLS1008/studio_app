@@ -16,4 +16,8 @@ class Activity < ApplicationRecord
   def instructor
     Instructor.find(self.instructor_id)
   end
+
+  def need_to_payed_for_group?(trainee_id)
+    Group.where(activity_id: self.id, trainee_id: trainee_id, status: "payed").empty?
+  end
 end
