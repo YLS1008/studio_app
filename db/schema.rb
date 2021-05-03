@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_080623) do
+ActiveRecord::Schema.define(version: 2021_05_02_110838) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -141,6 +141,15 @@ ActiveRecord::Schema.define(version: 2021_05_02_080623) do
     t.index ["time_slot_id"], name: "index_interests_on_time_slot_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "trainee_id", null: false
+    t.integer "sum"
+    t.integer "number_of_tickets"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trainee_id"], name: "index_payments_on_trainee_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer "trainee_id", null: false
     t.text "content"
@@ -213,6 +222,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_080623) do
   add_foreign_key "groups", "activities"
   add_foreign_key "groups", "trainees"
   add_foreign_key "interests", "time_slots"
+  add_foreign_key "payments", "trainees"
   add_foreign_key "tasks", "trainees"
   add_foreign_key "time_slots", "activities"
 end

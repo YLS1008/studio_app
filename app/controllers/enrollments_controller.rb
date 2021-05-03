@@ -1,5 +1,8 @@
 class EnrollmentsController < ApplicationController
   
+  before_action :set_trainee, only: [:cancel]
+
+
   def enroll
     @trainee = Trainee.find(params[:id])
     @trainee_enrollment = @trainee.enrollments
@@ -16,7 +19,7 @@ class EnrollmentsController < ApplicationController
     end
     
     if @enrollment.save
-      redirect_to enroll_path(id: params[:trainee_id])
+      redirect_back(fallback_location: enroll_path(id: params[:trainee_id]))
     else
       redirect_to placeholder_path
     end
@@ -25,13 +28,13 @@ class EnrollmentsController < ApplicationController
   def cancel
     slot = TimeSlot.find(params[:slot_id])
     if slot.mother.payment == "monthly"
-      enrollment = Group.where(trainee_id: params[:trainee_id], activity_id: slot.mother.id)
+      enrollment = Group.where(trainee_id: @trainee.id, activity_id: slot.mother.id)
     else
-      enrollment = Enrollment.where(trainee_id: params[:trainee_id], time_slot_id: slot.id)
-      enrollment.first.trainee.refund_ticket
+      enrollment = Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id)
+      @trainee.refund_ticket
     end
     enrollment.first.destroy
-    redirect_to enroll_path(id: params[:trainee_id])
+    redirect_back(fallback_location: @trainee )
 
   end
 
@@ -50,5 +53,9 @@ class EnrollmentsController < ApplicationController
   private
   def enroll_params
     params.require(:trainee).permit(:email, :first, :last, :phone)
+  end
+
+  def set_trainee
+    @trainee = Trainee.find(params[:trainee_id])
   end
 end

@@ -11,35 +11,14 @@ class TraineesController < ApplicationController
   # GET /trainees/1
   # GET /trainees/1.json
   def show
-    @enrolled_activity = @trainee.time_slots
-    enrolled_classes = []
-    @enrolled_activity.ids.each do |id|
-      activity = TimeSlot.find(id).mother
-      if activity.payment == "monthly"
-        enrolled_classes.push(activity)
-      end
-    end
-    @uniq_enrolled_classes = enrolled_classes.uniq{|x| x.id}
+    trainee_enrollments = Enrollment.where(trainee_id: @trainee.id)
+    @trainee_time_slots = TimeSlot.find(trainee_enrollments.collect { |x| x.time_slot_id }).select { |x| x.start_time.to_date > Date.today }
+    trainee_groups = Group.where(trainee_id: @trainee.id)
+    @trainee_group_slots = (TimeSlot.where(activity_id: trainee_groups.collect { |x| x.activity_id })
+                                              .select { |x| x.start_time.to_date >= Date.today}).uniq{ |x| x.start_time.wday }
+
   end
 
-  def load_tickets
-
-    @trainee = Trainee.find(params[:trainee][:id])
-    curr_num_tickets = @trainee.ticket
-    @trainee.update(ticket: curr_num_tickets + params[:trainee][:ticket].to_i)
-    redirect_to @trainee
-  end
-
-
-  def cancel_enroll
-
-    enroll = Enrollment.where(trainee_id: params[:trainee_id], time_slot_id: params[:time_slot_id])
-
-    trainee = Trainee.find(params[:trainee_id])
-    enroll.destroy_all
-    trainee.refund_ticket
-    redirect_to trainee
-  end
 
   # GET /trainees/new
   def new

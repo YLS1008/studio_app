@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'groups/index'
-  get 'groups/show'
-  get 'groups/cancel'
-  get 'groups/destroy'
-  get 'groups/change_status'
   devise_for :instructors, path: 'devise_instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
   devise_for :admins, path: 'devise_admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
@@ -56,6 +51,9 @@ Rails.application.routes.draw do
     get '/time_slots/change_time_for/(:id)', to: 'time_slots#change_time', as: :change_slot_time
     patch '/time_slots/reschedule', to: 'time_slots#reschedule', as: :reschedule
     get 'groups/index', to: 'groups#index', as: :groups
+    get 'payments/index', to: 'payments#index', as: :payments_index
+    patch 'payments/pay', to: 'payments#pay', as: :payment
+
   end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

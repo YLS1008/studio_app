@@ -1,0 +1,73 @@
+<div class="basic-container first-container">
+    <div class="buttons">
+        <%= submit_tag "חשבונות פתוחים", :type => 'button', :id => "switchA" %>
+        <%= submit_tag "כל התשלומים", :type => 'button', :id => "switchB" %>
+    </div>
+    <div id='tableA' style="display:none;">
+        <table class="table table-hover table-bordered" id="searchableB" style="background-color: white; direction: rtl;">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">שם פרטי</th>
+                    <th class="text-center">שם משפחה</th>
+                    <th class="text-center">טלפון</th>
+                    <th class="text-center">חוב מתאמן</th>
+                    <th class="text-center">הזן כרטיסים</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @need_to_pay.each do |trainee| %>
+                <tr>
+                    <td><%= trainee.first %></td>
+                    <td><%= trainee.last %></td>
+                    <td><%= link_to trainee.phone, "https://wa.me/#{trainee.get_international_number}", target: :_blank  %></td>
+                    <td><%= trainee.payment_status %></td>
+                    <td>
+                        <%= bootstrap_form_for(trainee, url: payment_path, local: true) do |f| %>
+
+                        <%= f.select :ticket, (1..10), label: "מספר הכרטיסים לטעינה" %>
+                        <%= f.hidden_field :id, value: trainee.id %>
+                        <%= f.submit "טען כרטיסים", class: "btn btn-primary" %>
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <div id='tableB'>
+        <table class="table table-hover table-bordered" id="searchableB" style="background-color: white;">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">שם פרטי</th>
+                    <th class="text-center">שם משפחה</th>
+                    <th class="text-center">טלפון</th>
+                    <th class="text-center">תאריך רכישה</th>
+                    <th class="text-center">מספר כרטיסים</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @past_payments.each do |payment| %>
+                <tr>
+                    <td><%= payment.trainee.first %></td>
+                    <td><%= payment.trainee.last %></td>
+                    <td><%= link_to payment.trainee.first, "https://wa.me/#{payment.trainee.get_international_number}", target: :_blank  %></td>
+                    <td><%= payment.created_at.to_date %></td>
+                    <td><%= payment.number_of_tickets %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+</div>
+
+
+
+<div class="basic-container">
+
+</div>

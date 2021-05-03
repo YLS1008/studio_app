@@ -27,7 +27,7 @@
 
                 </ul>
                 <% if admin_signed_in? %>
-                <%= bootstrap_form_for(@trainee, url: load_tickets_path, local: true) do |f| %>
+                <%= bootstrap_form_for(@trainee, url: payment_path, local: true) do |f| %>
 
                 <%= f.select :ticket, (1..10), label: "מספר הכרטיסים לטעינה" %>
                 <%= f.hidden_field :id, value: @trainee.id %>
@@ -45,7 +45,7 @@
                         <li class="menu-item">גיל | <%= @trainee.age %></li>
                         <li class="menu-item">דואר אלקטרוני | <%= @trainee.email %></li>
                         <li class="menu-item">מספר טלפון | <%= link_to @trainee.phone, "https://wa.me/#{@trainee.get_international_number}" %></li>
-                        <li class="menu-item">כרטיסים | <%= @trainee.ticket %></li>
+                        <li class="menu-item">כרטיסים | <%= @trainee.payment_status %></li>
                     </ul>
                 </div>
             </div>
@@ -58,7 +58,7 @@
             <h3 style="margin-top: 5px;">
                 השיעורים שלי
             </h3>
-            <% if @enrolled_activity.empty? %>
+            <% if @trainee_time_slots.empty? %>
             <h3>
                 אינך רשום לאף שיעור
             </h3>
@@ -76,7 +76,7 @@
                     </thead>
 
                     <tbody style="color: black;">
-                        <% @enrolled_activity.each do |activity| %>
+                        <% @trainee_time_slots.each do |activity| %>
                         <tr>
                             <td><%= activity.mother.name %></td>
                             <td><%= activity.start_time.strftime("%d.%m.%y") %></td>
@@ -91,5 +91,51 @@
                 </table>
             </div>
         </div>
+        <br>
+        <br>
+
+
+        <div class="row">
+            <div class="profile-stats">
+                <h3 style="margin-top: 5px;">
+                    החוגים שלי
+                </h3>
+                <% if @trainee_group_slots.empty? %>
+                <h3>
+                    אינך רשום לאף חוג
+                </h3>
+                <% else %>
+                <div class="table-responsive" style="direction: rtl;">
+                    <table class="table table-hover table-bordered" style="background-color: white;">
+                        <thead class="thead-dark" style="color: black;">
+                            <tr>
+                                <th class="text-center">חוג </th>
+                                <th class="text-center">תאריך </th>
+                                <th class="text-center">יום </th>
+                                <th class="text-center">שעה </th>
+                                <th colspan="1"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="color: black;">
+                            <% @trainee_group_slots.each do |slot| %>
+                            <tr>
+                                <td><%= slot.mother.name %></td>
+                                <td><%=slot.start_time.strftime("%d.%m.%y") %></td>
+                                <td><%= daynum_to_hebrew_day(slot.start_time.wday) %></td>
+                                <td><%= slot.get_clean_datetime(:time) %></td>
+                                <td><%= link_to 'בטל רישום', cancel_enrollment_path(slot_id: slot.id, trainee_id: @trainee.id) %></td>
+
+                            </tr>
+                            <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
     </div>
-</div>

@@ -37,7 +37,7 @@ class TimeSlotsController < ApplicationController
         end  
       end
     end
-    redirect_to root_path
+    redirect_to calendar_path
   end
 
 
@@ -61,7 +61,7 @@ class TimeSlotsController < ApplicationController
   def destroy
     @time_slot.destroy
     respond_to do |format|
-      format.html { redirect_to calendar_path, notice: 'Time slot was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: calendar_path)}
       format.json { head :no_content }
     end
   end
@@ -83,7 +83,7 @@ class TimeSlotsController < ApplicationController
     @update_slots = TimeSlot.get_sister_slots(params[:time_slot][:id])
     @update_slots[0].update(time_slot_params)
     if params[:time_slot][:recurring] != "0"
-      redirect_to admin_root_path
+      redirect_back(fallback_location: admin_root_path)
     else
       @update_slots.shift
       @update_slots.each do |slot|

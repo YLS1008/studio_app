@@ -1,12 +1,14 @@
 class Trainee < ApplicationRecord
 
-has_many :children, dependent: :destroy
-has_many :enrollments, dependent: :destroy
-has_many :time_slots, through: :enrollments
-has_many :groups, dependent: :destroy
-has_many :activities, through: :groups
-has_many :tasks, dependent: :destroy
-has_many :conversations, dependent: :destroy
+    has_many :children, dependent: :destroy
+    has_many :enrollments, dependent: :destroy
+    has_many :time_slots, through: :enrollments
+    has_many :groups, dependent: :destroy
+    has_many :activities, through: :groups
+    has_many :tasks, dependent: :destroy
+    has_many :conversations, dependent: :destroy
+    has_many :payments, dependent: :destroy
+
 
     def refund_ticket
         self.update(ticket: self.ticket + 1)
@@ -70,6 +72,10 @@ has_many :conversations, dependent: :destroy
             now = Time.now.utc.to_date
             return now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
         end
+    end
+
+    def payment_status
+        Payment.trainee_tickets(self.id) - self.time_slots.count
     end
 
 end

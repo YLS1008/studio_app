@@ -14,7 +14,6 @@ class AdminsController < ApplicationController
     @all_users = User.all
   end
 
-
   def conversation
     @task = Task.new
     @trainee = Trainee.find(params[:id])
@@ -45,7 +44,7 @@ class AdminsController < ApplicationController
 
   def update_status
     Task.find(params[:task][:id]).update(status: "closed")
-    redirect_to conversation_path(id: params[:task][:trainee_id])
+    redirect_back(fallback_location: conversation_path(id: params[:task][:trainee_id]))
   end
 
   def calendar
@@ -53,6 +52,8 @@ class AdminsController < ApplicationController
     @contacts = Contact.all
     @trainees = Trainee.all
   end
+
+  
 
   
 end
