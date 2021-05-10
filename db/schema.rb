@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_110838) do
+ActiveRecord::Schema.define(version: 2021_05_10_192630) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_110838) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.string "payment"
+    t.string "contract"
     t.index ["instructor_id"], name: "index_activities_on_instructor_id"
   end
 
@@ -139,6 +140,20 @@ ActiveRecord::Schema.define(version: 2021_05_02_110838) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["time_slot_id"], name: "index_interests_on_time_slot_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "instructor_id"
+    t.integer "admin_id"
+    t.boolean "seen"
+    t.text "content"
+    t.string "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_notifications_on_admin_id"
+    t.index ["instructor_id"], name: "index_notifications_on_instructor_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|

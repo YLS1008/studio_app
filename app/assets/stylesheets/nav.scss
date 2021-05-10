@@ -1,82 +1,146 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900");
-body {
-  font-family: 'Lato', Arial, sans-serif;
-  color: #6b6b6b;
-  font-size: 17px;
-  line-height: 1.6;
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+$studio-color: #7acfe3;
+.navbar{
+  background-color: black !important;
+
 }
-.hero {
+
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
   position: relative;
-  height: 60vh;
-  z-index: -2;
-  background: url("https://unsplash.it/2000/800?image=563") center top/cover no-repeat;
+  width: 36px;
+  font-size: 24px;
 }
-.overlay {
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 1.5rem;
   position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0,0,0,0.6);
+  right: 0;
+  font-family: sans-serif;
 }
-.main-content {
-  background: #f2f2f2;
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  top: 3px;
+  line-height: 12px;
 }
-section {
-  background: #fff;
-  padding: 4rem 0 7rem;
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  top: -10px;
 }
-section:nth-child(even) {
-  background: #f5f5f5;
+
+@media (min-width: 576px) {
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
 }
-h2,
-h3 {
-  padding: 2rem 0 0.75rem;
-  font-weight: 700;
-  color: #4b4b4b;
+
+@media (min-width: 768px) {
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-toggler{
+      display: none;
+    }
+  }
+  
+  .navbar-toggler{
+    text-align: right;
+  }
+
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
 }
-/* ===================================== */
-/* ===== THE INTERESTING STUFF NOW ===== */
-/* ===================================== */
-.navbar {
-  border: none;
-  transition: 0.4s;
-/* --- navbar sizes --- */
-/* --- navbar colors --- */
+
+@media (min-width: 992px) {
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
 }
-.navbar-brand {
-  max-height: 50px;
-  max-width: 100px;
+
+@media (min-width: 1200px) {
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
 }
-.navbar--size--xl {
-  padding: 4rem 0;
+.nav-right{
+  float: right;
+  margin-right: 20px;
+  margin-top: 25px;
+  
 }
-.navbar--size--lg {
-  padding: 2rem 0;
+
+.dropdown-menu{
+  background-color: black;
+  left: -130%;
+  border-radius: 15%;
+  text-align: center;
 }
-.navbar--size--md {
-  padding: 1rem 0;
-}
-.navbar--size--sm {
-  padding: 0;
-}
-.navbar--color--white {
-  background: #fff;
-}
-.navbar--color--primary {
-  background: #000000;
-}
-.navbar--color--secondary {
-  background: #77E8F4;
-}
-.navbar--color--ghost {
-  background: rgba(0,0,0,0.2);
-}
-.navbar--color--ghost .navbar-brand,
-.navbar--color--ghost .navbar-text,
-.navbar--color--ghost a {
-  color: white;
-}
+

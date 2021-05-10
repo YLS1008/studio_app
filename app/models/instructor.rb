@@ -2,6 +2,7 @@ class Instructor < ApplicationRecord
 
   has_many :activities, dependent: :destroy
   has_many :time_slots, through: :activities
+  has_many :notifications, dependent: :destroy
   has_one_attached :image
 
 
@@ -11,6 +12,10 @@ class Instructor < ApplicationRecord
     else
       'default_profile.jpg'
     end
+  end
+
+  def full_name
+    self.first.capitalize + ' ' + self.last.capitalize
   end
 
   # Include default devise modules. Others available are:

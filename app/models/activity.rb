@@ -5,6 +5,8 @@ class Activity < ApplicationRecord
   has_many :trainees, through: :groups
   has_many :time_slots, dependent: :destroy
 
+  
+
   def displayed_image
       if image.attached?
         image.variant(resize_to_fit: [120, 120])

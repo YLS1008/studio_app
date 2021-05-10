@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
     authenticated :instructor do
       root :to => 'instructors#home', as: :instructor_root
-      
+      get '/instructor/(:id)/salary', to: 'instructors#salary', as: :salary
     end
   end
 
@@ -64,6 +64,6 @@ Rails.application.routes.draw do
   get 'static_pages/about'
   get 'static_pages/contact'
   get '/thank_you', to: 'static_pages#thanks', as: :after_contact
-  get 'instructors/:id', to: 'instructors#home', as: :instructor
+  get 'instructors/:id', to: 'instructors#show', as: :instructor
   get '/cancel_enroll', to: 'trainees#cancel_enroll', as: :cancel_enroll
 end

@@ -1,31 +1,30 @@
-<div class="basic-container first-container">
-    <h1>
-        היסטוריית שיעורים
-    </h1>
-    <div class="table-responsive" style="direction: rtl;">
-        <table class="table table-hover table-bordered" style="background-color: white;">
-            <thead class="thead-dark" style="color: black;">
-                <tr>
-                    <th class="text-center">פעילות </th>
-                    <th class="text-center">תאריך </th>
-                    <th class="text-center">יום </th>
-                    <th class="text-center">שעה </th>
-                    <th colspan="1"></th>
-                </tr>
-            </thead>
+<% provide(:title, "Instructor Profile") %>
 
-            <tbody style="color: black;">
-                <% @past_time_slots.each do |activity| %>
-                <tr>
-                    <td><%= activity.mother.name %></td>
-                    <td><%= activity.start_time.strftime("%d.%m.%y") %></td>
-                    <td><%= daynum_to_hebrew_day(activity.start_time.wday) %></td>
-                    <td><%= activity.get_clean_datetime(:time) %></td>
-                    <td><%= link_to 'בטל רישום', cancel_enrollment_path(slot_id: activity.id, trainee_id: @trainee.id) %></td>
 
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
-</div>
+<div class="basic-container">
+
+    <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
+
+    <div class="profile-stats">
+        <ul class="no-bullets">
+            <h4>
+                <li class="menu-item"> <%= @activity.name %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item"> <%=link_to @activity.instructor.first + ' ' + @activity.instructor.last, @activity.instructor %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
+            </h4>
+            <li class="menu-item"> <%=simple_format(@activity.description) %> </li>
+
+        </ul>
+        <h4>
+            השיעורים הקרובים
+        </h4>
+        <div class="table-responsive" style="direction: rtl;">
+            <%= render 'layouts/calendar', activities: @time_slots, week_number: 1, date_begin: Date.today.beginning_of_week, show_toggle_button: false, show_date: true %>
+            <% if admin_signed_in? %>
+            <%= link_to "הכנס פעילות ללוח שנה", new_time_slot_path(id: @activity.id), class: "btn btn-main" %>
+            <% else %>

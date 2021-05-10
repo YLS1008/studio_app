@@ -1,33 +1,20 @@
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <div class="nav navbar-nav" , style="max-width: 100px; max-height: 30px;">
-            <%= link_to image_tag("logo-small.jpg", :alt => "The Studio"), root_path_helper %>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <% if current_user %>
-
-                <li><%= link_to('רכישת כרטיסים', user_purchase_path) %></li>
-                <li><%= link_to('התנתקות', destroy_user_session_path, method: :delete) %></li>
-                <% elsif current_instructor %>
-                <li><%= link_to('Profile', current_instructor) %></li>
-                <li><%= link_to('Summary', placeholder_path) %></li>
-                <li><%= link_to('Sign Out', destroy_instructor_session_path, method: :delete) %></li>
-                <% elsif current_admin %>
-                <li><%= link_to('Dashboard', admin_root_path) %></li>
-                <li><%= link_to('לוח שנה', calendar_path) %></li>
-                <li><%= link_to('מתאמנים', trainees_path) %></li>
-                <li><%= link_to('קבוצות', groups_path) %></li>
-                <li><%= link_to('פעילויות', activities_path) %></li>
-                <li><%= link_to('מדריכים', instructors_path) %></li>
-                <li><%= link_to('חשבונות', payments_index_path) %></li>
-                <li><%= link_to('הוסף מדריך', new_instructor_registration_path) %></li>
-                <li><%= link_to('הוסף מתאמן', new_trainee_path) %></li>
-                <li><%= link_to('התנתקות', destroy_admin_session_path, method: :delete) %></li>
-                <% end %>
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+    <ul class="navbar-nav mr-auto no-bullets">
+        <%= link_to root_path do %>
+        <li><%= image_tag("logo-small.jpg", alt: 'The Studio')%></li>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <% if anyone_signed_in? %>
+        <%= render 'layouts/resource_header', resource: current_resource %>
+        <% else %>
+        <ul class="navbar-nav mr-auto no-bullets nav-right">
+            <li><%= link_to "כניסת מדריכים", new_instructor_session_path, class: "nav-link btn btn-primary sqs-block-button-element" %></li>
+            <li> <%= link_to "כניסת מתאמנים", placeholder_path, class: "nav-link btn btn-primary sqs-block-button-element" %></li>
+        </ul>
+        <% end %>
     </div>
-    <!--/.container-fluid -->
 </nav>

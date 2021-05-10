@@ -1,21 +1,20 @@
-<div class="basic-container first-container">
-
-    <%= bootstrap_form_for(@instructor, url: update_instructor_path) do |f| %>
+<% provide(:title, "Instructor Profile") %>
 
 
-    <%= f.email_field :email, label: "E-mail" %>
-    <%= f.text_field :first, label: "שם פרטי" %>
-    <%= f.text_field :last, label: "שם משפחה" %>
-    <%= f.phone_field :phone, label: "מספר טלפון" %>
-    <%= f.text_area :description, label: "פירוט" %>
-    <%= f.text_area :speciality, label: "תחום התמחות" %>
-    <%= f.color_field :color, label: "בחר צבע עבור המדריך" %>
-    <%= f.file_field :image, label: "תמונת פרופיל" %>
+<div class="basic-container">
 
-    <div class="actions">
-        <%= f.submit "Update" %>
-    </div>
-    <% end %>
+    <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
 
-    <%= link_to "Back", :back %>
-</div>
+    <div class="profile-stats">
+        <ul class="no-bullets">
+            <h4>
+                <li class="menu-item"> <%= @activity.name %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item"> <%=link_to @activity.instructor.first + ' ' + @activity.instructor.last, @activity.instructor %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
+            </h4>
+            <li class="menu-item"> <%=simple_format(@activity.description) %> </li>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  instructor: one
+  admin: one
+  seen: false
+  content: MyText
+  level: MyString
+
+two:
+  user: two
+  instructor: two
+  admin: two
+  seen: false
+  content: MyText
+  level: MyString

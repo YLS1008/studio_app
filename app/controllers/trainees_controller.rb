@@ -12,7 +12,7 @@ class TraineesController < ApplicationController
   # GET /trainees/1.json
   def show
     trainee_enrollments = Enrollment.where(trainee_id: @trainee.id)
-    @trainee_time_slots = TimeSlot.find(trainee_enrollments.collect { |x| x.time_slot_id }).select { |x| x.start_time.to_date > Date.today }
+    @trainee_time_slots = TimeSlot.find(trainee_enrollments.collect { |x| x.time_slot_id }).select { |x| x.start_time.to_date >= Date.today }
     trainee_groups = Group.where(trainee_id: @trainee.id)
     @trainee_group_slots = (TimeSlot.where(activity_id: trainee_groups.collect { |x| x.activity_id })
                                               .select { |x| x.start_time.to_date >= Date.today}).uniq{ |x| x.start_time.wday }

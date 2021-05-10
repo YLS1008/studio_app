@@ -45,28 +45,57 @@ module ApplicationHelper
     end
   end
 
-  def dropdown_links(btn_writing, color, resource_hash)
-    color_string = "color: " + color + ' ' + '!important' ';'
-    x =
-
-    "<div>
-    <button class=#{"btn btn-main dropdown-toggle"}  type=#{"button"} id=#{"dropdownMenuButton"} data-toggle=#{"dropdown"} aria-haspopup=#{"true"} aria-expanded=#{"false"}>
-        <span style=#{color_string}> #{btn_writing} </span>
-    </button>
-
-    
-    <ul class=#{"dropdown-menu no-bullets"} style=#{"background-color: info;"}>
-
-        <% #{resource_hash}.each do |name, path| %>
-        <li>
-            <%= link_to name, path, class: #{"btn btn-main"}  %>
-        </li>
-        <% end %>
-    </ul>
-    </div>"
-    return x.html_safe
+  def current_resource
+    if current_admin
+      return current_admin
+    elsif current_instructor
+      return current_instructor
+    elsif current_user
+      return current_user
+    else
+      return nil
+    end
   end
 
+  def actions_helper(resource)
+    if resource.class == Admin
+      [
+       link_to('Dashboard', admin_root_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('לוח שנה', calendar_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('מתאמנים', trainees_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('קבוצות', groups_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('פעילויות', activities_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('מדריכים', instructors_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('הוסף מדריך', new_instructor_registration_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('הוסף מתאמן', new_trainee_path, class: "btn btn-primary btn-lg sqs-block-button-element")
+      ]
+
+    elsif resource.class == Instructor
+      []
+    elsif resource.class == User
+      []
+    end
+  end
+
+  def edit_resource_path(resource)
+    if resource.class == Admin
+      instructors_path
+    elsif resource.class == Instructor
+      edit_instructor_path
+    elsif resource.class == User
+      edit_user_path
+    end
+  end
+
+  def destroy_resource_session_path(resource)
+    if resource.class == Admin
+      destroy_admin_session_path
+    elsif resource.class == Instructor
+      destroy_instructor_session_path
+    elsif resource.class == User
+      destroy_user_session_path
+    end
+  end
   
 end
 

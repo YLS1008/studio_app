@@ -1,14 +1,13 @@
-<div class="basic-container first-container">
-
-    <%= bootstrap_form_for(@time_slot, url: reschedule_url ) do |f| %>
-
-    <%= f.datetime_select :start_time, label: "בחר שיבוץ חדש לשיעור"%>
-    <%= f.check_box :recurring, label: "האם לשנות את השיבוץ לכל השיעורים?"%>
-    <%= f.hidden_field :id, value: @time_slot.id %>
+<% provide(:title, "Instructor Profile") %>
 
 
-    <div class="actions">
-        <%= f.submit "עדכון שיבוץ" %>
-    </div>
-    <% end %>
-</div>
+<div class="basic-container">
+
+    <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
+
+    <div class="profile-stats">
+        <ul class="no-bullets">
+            <h4>
+                <li class="menu-item"> <%= @activity.name %> </li>
+            </h4>

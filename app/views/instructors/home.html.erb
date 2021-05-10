@@ -1,54 +1,9 @@
 <% provide(:title, "Instructor Profile") %>
-<div class="basic-container first-container">
-    <div class="row">
-        <aside class="col-md-3">
-            <div style="background-color: transparent; display: block; text-align: center; margin-top: 5px;">
-
-                <%= image_tag @instructor.displayed_image,
-                     loading: "lazy", alt: @instructor.first, class: "rounded-full", style: "border-radius: 10%" %>
-            </div>
-            <section class="name">
-                <%= @instructor.first.capitalize %> <%= @instructor.last.capitalize %>
-            </section>
-        </aside>
-
-        <div class="col-md-8">
-            <div class="profile-stats">
-                <% if @instructor.activities.exists? %>
-                <%= image_tag @instructor.activities.first.displayed_image,
-                     loading: "lazy", alt: @instructor.activities.first.name, class: "img-circle img-fluid" %>
-                <% end %>
-                <ul class="no-bullets">
-                    <h4>
-                        <li class="menu-item"> <strong><%= @instructor.speciality %></strong> </li>
-                    </h4>
-                    <%= simple_format(@instructor.description) %>
-
-                </ul>
-            </div>
 
 
-            <div class="profile-stats">
+<div class="basic-container">
 
+    <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
 
-                <div class="btn btn-main" style="display: block;">
-                    <% if admin_signed_in? %>
-                    <%= link_to "הוסף פעילות", new_activity_path(id: @instructor.id), class: "btn btn-main btn-lg" %>
-                    <% else %>
-                    <%= link_to "חזרה לעמוד הבית", root_path, class: "btn btn-main btn-lg" %>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
-    <div class="row">
-        <h4 style="color: black; text-align: center;">
-            <strong> השיעורים של <%= @instructor.first %> </strong>
-        </h4>
-        <%= render 'layouts/calendar', activities: @instructor.time_slots, show_toggle_button: false, show_date: false, week_number: 1, date_begin: Date.today.beginning_of_week %>
-
-    </div>
-</div>
+    <div class="profile-stats">

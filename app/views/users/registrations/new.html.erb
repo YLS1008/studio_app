@@ -1,23 +1,22 @@
-<div class="basic-container first-container signup-container">
-
-    <h2> הרשמה לסטודיו </h2>
-    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout: :horizontal, label_col: "col-lg-12", control_col: "col-lg-12") do |f| %>
-    <%= render "instructors/shared/error_messages", resource: resource %>
-
-    <%= f.email_field :email, label: "דואר אלקטרוני",  autofocus: true, required: true %>
-    <%= f.text_field :first, label: "שם פרטי", dir: "rtl", required: true %>
-    <%= f.text_field :last, label: "שם משפחה", dir: "rtl", required: true %>
-    <%= f.telephone_field :phone, label: "מספר טלפון", required: true %>
-    <%= f.password_field :password, label: "סיסמא", required: true %>
-    <%= f.password_field :password_confirmation, label: "הכנס סיסמא שוב", required: true %>
-    <div class="row" , style="align: center">
-        <div>
-            <%= f.submit "הרשמה" %><br>
-        </div>
-        <br />
-    </div>
-
-    <% end %>
+<% provide(:title, "Instructor Profile") %>
 
 
-</div>
+<div class="basic-container">
+
+    <%= image_tag @activity.displayed_image,
+                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
+
+    <div class="profile-stats">
+        <ul class="no-bullets">
+            <h4>
+                <li class="menu-item"> <%= @activity.name %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item"> <%=link_to @activity.instructor.first + ' ' + @activity.instructor.last, @activity.instructor %> </li>
+            </h4>
+            <h4>
+                <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
+            </h4>
+            <li class="menu-item"> <%=simple_format(@activity.description) %> </li>
+
+        </ul>

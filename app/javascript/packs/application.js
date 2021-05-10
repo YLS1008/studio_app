@@ -31,7 +31,6 @@ require("datatables.net")
 require('datatables.net-bs4')
 require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
 require("packs/datatable_init")
-require("packs/responsive_nav")
 require("packs/table_switch")
 require("packs/image_carousel")
 
