@@ -112,16 +112,23 @@ $shadow-color: #c4beab;
 
 .contact{
   border-radius: 13%;
+  background-color: black !important;
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 20px;
+  margin-top: 20px;
   position: relative;
 
 }
 
+.spacer-div{
+  margin-top: 150px;
+  background-color: transparent;
+  min-height: 20px;
+}
 .basic-container {
   @include make-container();
   border-radius: 13%;
@@ -132,8 +139,7 @@ $shadow-color: #c4beab;
   padding-top: 30px;
   direction: rtl;
   
-  &.first-container{
-    margin-top: 250px !important;
+  &.actions-container{
     background-image:linear-gradient(black, black) !important;
     padding-top: 10px !important;
     text-align: center;
@@ -159,7 +165,6 @@ $shadow-color: #c4beab;
 
 
 .back-image {
-  overflow: hidden;
   position: relative;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -476,3 +481,9 @@ h2 {
       padding: 0.8em 0.3em !important;
       display: inline-block;
 	}}
+
+  #sticky {
+    display: sticky;
+    background-color: $studio-color;
+}
+

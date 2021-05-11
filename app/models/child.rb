@@ -17,7 +17,7 @@ class Child < ApplicationRecord
 
   private
   def destroy_child_trainee
-    Trainee.where(id: self.child_trainee_id).destroy
+    Trainee.where(id: self.child_trainee_id).destroy_all
   end
-  
+
 end
