@@ -28,10 +28,10 @@
             </div>
 
 
-            <div class="profile-stats">
+            <div class="profile-stats" style="background-color: transparent !important;">
 
 
-                <div class="btn btn-main" style="display: block;">
+                <div style="display: block;">
                     <% if admin_signed_in? %>
                     <%= link_to "הוסף פעילות", new_activity_path(id: @instructor.id), class: "btn btn-main btn-lg" %>
                     <% else %>

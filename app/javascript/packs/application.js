@@ -35,6 +35,7 @@ require("packs/table_switch")
 require("packs/image_carousel")
 
 
+
 const dataTables = [];
 
 document.addEventListener("turbolinks:load", () => {
