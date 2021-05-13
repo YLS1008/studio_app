@@ -1,20 +1,29 @@
-<% provide(:title, "Instructor Profile") %>
-
-
 <div class="basic-container">
 
-    <%= image_tag @activity.displayed_image,
-                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
+    <%= bootstrap_form_for(@instructor, url: update_instructor_path, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
+    <div class="row">
+        <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent;">
+            <div class="col-md-10 col-md-offset-2">
 
-    <div class="profile-stats">
-        <ul class="no-bullets">
-            <h4>
-                <li class="menu-item"> <%= @activity.name %> </li>
-            </h4>
-            <h4>
-                <li class="menu-item"> <%=link_to @activity.instructor.first + ' ' + @activity.instructor.last, @activity.instructor %> </li>
-            </h4>
-            <h4>
-                <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
-            </h4>
-            <li class="menu-item"> <%=simple_format(@activity.description) %> </li>
+                <%= f.email_field :email, label: "E-mail", autofocus: true %>
+                <%= f.text_field :first, label: "First Name" %>
+                <%= f.text_field :last, label: "Last Name" %>
+                <%= f.telephone_field :phone, label: "Phone Number" %>
+                <%= f.text_field :exp, label: "Years of Experience" %>
+                <%= f.text_field :speciality, label: "Speciality" %>
+                <%= f.text_area :description, label: "Description" %>
+                <%= f.color_field :color, label: "Instructor Color" %>
+                <%= f.file_field :image, label: "Profile Image" %>
+                <%= f.password_field :password, label: "Password" %>
+                <%= f.password_field :password_confirmation, label: "Password Confirmation" %>
+                <div class="row" , style="align: center">
+                    <div>
+                        <%= f.submit "עדכן פרופיל מדריך" %><br>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

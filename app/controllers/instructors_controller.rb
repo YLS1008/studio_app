@@ -11,16 +11,20 @@ class InstructorsController < ApplicationController
                                 :start_time => (Date.today..Date.today + 2.week)).order(start_time: :desc)
   end
 
+
   def index
     @all_instructors = Instructor.all
   end
 
   def edit
-    @instructor = Instructor.find(params[:resource])
-    render :edit
+    @instructor = Instructor.find(params[:id])
+  end
+
+  def instructor_edit_profile
   end
 
   def update
+    byebug
     Instructor.update(update_params)
     redirect_to instructors_path
   end

@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     authenticated :instructor do
       root :to => 'instructors#home', as: :instructor_root
       get '/instructor/(:id)/salary', to: 'instructors#salary', as: :salary
+      get '/instructor/(:id)/classes', to: 'instructors#my_classes', as: :my_classes
+      get '/instructor/(:id)/instructor_edit_profile', to: 'instructors#instructor_edit_profile', as: :instructor_edit_profile
+      patch 'instructor/(:id)/update', to: 'instructors#update', as: :update_instructor_profile
     end
   end
 
@@ -47,7 +50,7 @@ Rails.application.routes.draw do
     patch '/tasks/update_status', to: 'admins#update_status', as: :update_status
     get '/calendar', to: 'admins#calendar', as: :calendar
     get '/instructors/edit/(:id)', to: 'instructors#edit', as: :edit_instructor
-    patch '/instructors/update/(:id)', to: 'instructors#update', as: :update_instructor
+    patch '/instructors/(:id)/update', to: 'instructors#update', as: :update_instructor
     delete '/time_slots/destroy_slot_for/(:id)', to: 'time_slots#destroy_slots', as: :destroy_slots
     get '/time_slots/change_time_for/(:id)', to: 'time_slots#change_time', as: :change_slot_time
     patch '/time_slots/reschedule', to: 'time_slots#reschedule', as: :reschedule
