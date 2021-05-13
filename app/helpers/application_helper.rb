@@ -100,6 +100,10 @@ module ApplicationHelper
       destroy_user_session_path
     end
   end
+
+  def form_tag_helper
+    
+  end
   
 end
 

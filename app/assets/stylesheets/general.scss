@@ -213,6 +213,12 @@ body {
 section {
   overflow: auto;
 }
+  .mini-form{
+    text-align: center !important;
+    background-color: black;
+    color: white;
+  }
+
 
 textarea {
   resize: vertical;
@@ -486,4 +492,6 @@ h2 {
     display: sticky;
     background-color: $studio-color;
 }
+
+
 

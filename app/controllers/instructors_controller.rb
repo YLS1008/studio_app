@@ -21,10 +21,10 @@ class InstructorsController < ApplicationController
   end
 
   def instructor_edit_profile
+    @instructor = Instructor.find(params[:id])
   end
 
   def update
-    byebug
     Instructor.update(update_params)
     redirect_to instructors_path
   end
