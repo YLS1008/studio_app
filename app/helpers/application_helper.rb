@@ -73,7 +73,6 @@ module ApplicationHelper
     elsif resource.class == Instructor
       [
         link_to('Dashboard', instructor_root_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-        link_to('השיעורים שלי', my_classes_path(current_instructor), class: "btn btn-primary btn-lg sqs-block-button-element"),
         link_to('תשלומים', salary_path(current_instructor), class: "btn btn-primary btn-lg sqs-block-button-element"),
       ]
     elsif resource.class == User

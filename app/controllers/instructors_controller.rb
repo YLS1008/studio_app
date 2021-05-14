@@ -30,6 +30,8 @@ class InstructorsController < ApplicationController
   end
 
   def salary
+    if params[:view_month].nil? then @month = Date.today.month else @month = params[:view_month] end
+    @activities = current_instructor.activities
   end
   
 
@@ -37,5 +39,6 @@ class InstructorsController < ApplicationController
   def update_params
     params.require(:instructor).permit(:email, :first, :last, :phone, :description, :speciality, :color, :image)
   end
+  
   
 end

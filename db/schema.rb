@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_192630) do
+ActiveRecord::Schema.define(version: 2021_05_14_095740) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2021_05_10_192630) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.string "payment"
-    t.string "contract"
     t.index ["instructor_id"], name: "index_activities_on_instructor_id"
   end
 
@@ -83,6 +82,15 @@ ActiveRecord::Schema.define(version: 2021_05_10_192630) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "info"
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer "activity_id", null: false
+    t.integer "rate_type", default: 0
+    t.string "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_contracts_on_activity_id"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -231,6 +239,7 @@ ActiveRecord::Schema.define(version: 2021_05_10_192630) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "instructors"
   add_foreign_key "children", "trainees"
+  add_foreign_key "contracts", "activities"
   add_foreign_key "conversations", "trainees"
   add_foreign_key "enrollments", "time_slots"
   add_foreign_key "enrollments", "trainees"

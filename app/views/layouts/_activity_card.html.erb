@@ -8,7 +8,7 @@
         <h5 class="card-subtitle mb-2 text-muted"><%= link_to activity.mother.instructor.first.capitalize + ' ' + activity.mother.instructor.last.capitalize,
                                                                      activity.mother.instructor, class: "btn btn-main btn-sm sqs-block-button-element" %></h5>
         <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
-        <% if admin_signed_in? %>
+        <% if admin_signed_in? || instructor_signed_in? %>
         <div>
             <% if activity.mother.payment == "monthly" %>
             <% resource = activity.mother %>
@@ -27,6 +27,7 @@
                 <% end %>
             </ul>
         </div>
+        <% if admin_signed_in? %>
         <div>
             <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>פעולות</span>
@@ -43,6 +44,7 @@
                 </li>
             </ul>
         </div>
+        <% end %>
         <% end %>
     </div>
 

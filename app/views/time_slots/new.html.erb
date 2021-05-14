@@ -1,9 +1,9 @@
-<% provide(:title, "Instructor Profile") %>
+<div class="basic-container first-container" , style="max-width: 700px;">
+    <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent; margin-top: 20px;">
+        <div class="col-md-10 col-md-offset-2">
 
-
-<div class="basic-container">
-
-    <%= image_tag @activity.displayed_image,
-                     loading: "lazy", alt: @activity.name, class: "img-circle img-fluid" %>
-
-    <div class="profile-stats">
+            <%= render 'form', time_slot: @time_slot %>
+            <%= link_to 'Back', time_slots_path %>
+        </div>
+    </div>
+</div>

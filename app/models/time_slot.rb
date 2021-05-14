@@ -46,7 +46,6 @@ class TimeSlot < ApplicationRecord
     end
   end
 
-
 end
 
 

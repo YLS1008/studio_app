@@ -27,4 +27,11 @@ Instructor.all.each do |instructor|
     Activity.create!(name: name, duration: duration, capacity: capacity, payment: payment, instructor_id: instructor.id)
 end
 
+Activity.all.each do |activity|
+    activity.build_contract(rate_type: rand(0..4), rate: "50")
+end
+
+
+
+
 
