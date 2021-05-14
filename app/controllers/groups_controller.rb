@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   def index
-    @activities = Activity.where(payment: "monthly")
+    @activities = Activity.all.contract.select {|x| x.rate_type == "monthly"}
   end
 
   def show

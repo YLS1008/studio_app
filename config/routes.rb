@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   devise_for :instructors, path: 'devise_instructors', controllers: {registrations: 'instructors/registrations',
                                                                 sessions: 'instructors/sessions'}
   devise_for :admins, path: 'devise_admins', :skip => [:registrations] , controllers: { sessions: 'admins/sessions' }
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
 
   resources :activities
   resources :instructors, only: [:index]
-  resources :contacts
   resources :time_slots, except: [:update]
   resources :trainees
 
@@ -36,7 +36,6 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     root :to => 'admins#dashboard', as: :admin_root
-    get '/convert', to: 'contacts#convert', as: :convert
     patch '/load_tickets', to: 'trainees#load_tickets', as: :load_tickets
     get 'enrollments/enroll', to: 'enrollments#enroll', as: :enroll
     get 'enrollments/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
@@ -60,13 +59,15 @@ Rails.application.routes.draw do
     get 'enrollments/history/(:id)', to: 'enrollments#history', as: :enroll_history
     get '/payments/refund/(:id)', to: 'payments#refund', as: :refund_payment
     get '/groups/change_status/(:id)', to: 'groups#change_status', as: :change_status
-    get 'groups/cancel_group/(:id)', to: 'groups#cancel', as: :cancel_group
-  end
+    get '/groups/cancel_group/(:id)', to: 'groups#cancel', as: :cancel_group 
+    get '/activities/(:id)/contract/new_contract', to: 'contracts#new', as: :new_contract
+    get '/activities/(:id)/contract/edit_contract', to: 'contracts#edit', as: :edit_contract
+    post '/activities/(:id)/contracts/set_contract', to: 'contracts#set', as: :set_contract
+    patch '/activities/(:id)/contracts/update_contract', to: 'contracts#update', as: :update_contract
+    end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
   get 'static_pages/about'
-  get 'static_pages/contact'
-  get '/thank_you', to: 'static_pages#thanks', as: :after_contact
   get 'instructors/:id', to: 'instructors#show', as: :instructor
   get '/cancel_enroll', to: 'trainees#cancel_enroll', as: :cancel_enroll
 end

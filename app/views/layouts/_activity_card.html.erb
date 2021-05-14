@@ -10,7 +10,7 @@
         <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
         <% if admin_signed_in? || instructor_signed_in? %>
         <div>
-            <% if activity.mother.payment == "monthly" %>
+            <% if activity.mother.contract_if_exists.rate_type == "monthly" %>
             <% resource = activity.mother %>
             <% else %>
             <% resource = activity %>

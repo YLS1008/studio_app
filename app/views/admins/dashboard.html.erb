@@ -1,43 +1,6 @@
 <div class="basic-container">
-    <div class="buttons">
-        <%= submit_tag "פניות חדשות", :type => 'button', :id => "switchA" %>
-        <%= submit_tag "מתאמנים", :type => 'button', :id => "switchB" %>
-    </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="table-responsive" id="tableA" style="direction: rtl; display:none;">
-                <table class="table table-hover table-bordered" style="background-color: white;">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th class="text-center">שם פרטי</th>
-                            <th class="text-center">שם משפחה</th>
-                            <th class="text-center">דואר אלקטרוני</th>
-                            <th class="text-center">מספר טלפון</th>
-                            <th class="text-center">תחומי עניין</th>
-                            <th colspan="2"></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <% @contacts.each do |contact| %>
-                        <tr>
-                            <td><%= contact.first %></td>
-                            <td><%= contact.last %></td>
-                            <td><%= contact.email %></td>
-                            <td><%= contact.phone %></td>
-                            <td><%= contact.interests %></td>
-                            <td><%= link_to 'רישום למערכת', convert_path(id: contact.id) %></td>
-                            <td><%= link_to 'מחיקה', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-
-                <br>
-
-                <%= link_to 'New Contact', new_contact_path %>
-
-            </div>
             <div class="table-responsive" id="tableB" style="direction: rtl;">
                 <table class="table table-hover table-bordered" id="searchableB" style="background-color: white;">
                     <thead class="thead-dark">

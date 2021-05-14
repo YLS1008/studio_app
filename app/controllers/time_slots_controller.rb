@@ -37,7 +37,7 @@ class TimeSlotsController < ApplicationController
         end  
       end
     end
-    redirect_to calendar_path
+    redirect_to new_contract_path(id: params[:time_slot][:activity_id])
   end
 
 

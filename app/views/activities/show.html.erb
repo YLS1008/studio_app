@@ -27,6 +27,8 @@
             <%= render 'layouts/calendar', activities: @time_slots, week_number: 1, date_begin: Date.today.beginning_of_week, show_toggle_button: false, show_date: true %>
             <% if admin_signed_in? %>
             <%= link_to "הכנס פעילות ללוח שנה", new_time_slot_path(id: @activity.id), class: "btn btn-main" %>
+            <% if @activity.contract.nil? then path = new_contract_path(id: @activity.id) else path = edit_contract_path(id: @activity.id) end %>
+            <%= link_to "עדכן חוזה", path, class: "btn btn-main" %>
             <% else %>
             <%= render 'layouts/contact_links' %>
             <%= link_to "חזרה לדף הבית", root_path, class: "btn btn-main" %>

@@ -11,9 +11,9 @@ class EnrollmentsController < ApplicationController
 
   def finalize
     @slot = TimeSlot.find(params[:slot_id])
-    if @slot.mother.payment == "entry"
+    if ["per_head", "gradient", "hourly", "undefined"].include? @slot.mother.contract_if_exists.rate_type
       @enrollment = Enrollment.new(trainee_id: params[:trainee_id], time_slot_id: params[:slot_id])
-    else
+    elsif @slot.mother.contract_if_exists.rate_type == "monthly"
        @enrollment = Group.new(activity_id: @slot.mother.id, trainee_id: params[:trainee_id], status: "unpayed")
     end
     
@@ -26,7 +26,7 @@ class EnrollmentsController < ApplicationController
 
   def cancel
     slot = TimeSlot.find(params[:slot_id])
-    if slot.mother.payment == "monthly"
+    if slot.mother.contract_if_exists.rate_type == "monthly"
       enrollment = Group.where(trainee_id: @trainee.id, activity_id: slot.mother.id)
     else
       enrollment = Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id)

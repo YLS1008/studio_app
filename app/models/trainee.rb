@@ -33,7 +33,7 @@ class Trainee < ApplicationRecord
     end
 
     def is_enrolled?(time_slot)
-        if time_slot.mother.payment == "monthly"
+        if time_slot.mother.contract_if_exists.rate_type == "monthly"
             self.activities.include? time_slot.mother
         else
             self.time_slots.include? time_slot

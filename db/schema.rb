@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_095740) do
+ActiveRecord::Schema.define(version: 2021_05_14_213109) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_05_14_095740) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
-    t.string "payment"
     t.index ["instructor_id"], name: "index_activities_on_instructor_id"
   end
 
@@ -72,24 +71,12 @@ ActiveRecord::Schema.define(version: 2021_05_14_095740) do
     t.index ["trainee_id"], name: "index_children_on_trainee_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.string "email"
-    t.string "first"
-    t.string "last"
-    t.string "type_of_contact"
-    t.string "phone"
-    t.string "interests"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "info"
-  end
-
   create_table "contracts", force: :cascade do |t|
     t.integer "activity_id", null: false
     t.integer "rate_type", default: 0
-    t.string "rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rate"
     t.index ["activity_id"], name: "index_contracts_on_activity_id"
   end
 

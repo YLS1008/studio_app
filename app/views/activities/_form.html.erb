@@ -25,12 +25,6 @@
             <%= f.text_area :description, label: "Description"%>
             <%= f.file_field :image, label: "Activity Image" %>
 
-            <%= f.form_group :payment do %>
-            <%= f.radio_button :payment, "monthly", required: true %>
-            <%= f.radio_button :payment, "entry", required: true %>
-            <% end %>
-
-
             <div class="row" , style="align: center">
                 <div>
                     <%= f.submit "Create New Activity" %><br>

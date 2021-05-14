@@ -38,4 +38,12 @@ class Activity < ApplicationRecord
     payment_hash = self.contract.calc_payout(slots_in_month)
     return {slots_arr: slots_in_month, trainees_avg: avg, payment: payment_hash}
   end
+
+  def contract_if_exists
+    if self.contract.nil?
+      return Contract.new(activity_id: self.id, rate: 1, rate_type: "undefined")
+    else
+      return self.contract
+    end
+  end
 end
