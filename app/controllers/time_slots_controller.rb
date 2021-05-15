@@ -92,7 +92,15 @@ class TimeSlotsController < ApplicationController
     end
   end
 
-
+  def lock
+    slot = TimeSlot.find(params[:id])
+    if slot.locked
+      slot.update(locked: false)
+    else
+      slot.update(locked: true)
+    end
+    redirect_back(fallback_location: calendar_path)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

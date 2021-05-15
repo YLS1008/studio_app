@@ -101,9 +101,6 @@ module ApplicationHelper
     end
   end
 
-  def form_tag_helper
-    
-  end
   
 end
 

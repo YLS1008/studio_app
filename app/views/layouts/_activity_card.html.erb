@@ -14,6 +14,9 @@
             <% resource = activity.mother %>
             <% else %>
             <% resource = activity %>
+            <% if resource.locked %>
+            <span class="glyphicon glyphicon-lock"></span>
+            <% end %>
             <% end %>
             <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>מתאמנים - <%= resource.trainees.count %></span>
@@ -41,6 +44,10 @@
                 </li>
                 <li>
                     <%= link_to "מחיקת כל השיבוצים", destroy_slots_path(activity), class: "btn btn-main btn-md", method: :delete, data: { confirm: 'זהירות! אישור הפעולה ימחק את כל שיבוצי השיעור מהלו"ז.' } %>
+                </li>
+                <% if activity.locked then lock_link_text = "שחרור נעילה" else lock_link_text = "נעילת שיעור" end %>
+                <li>
+                    <%= link_to lock_link_text, lock_time_slot_path(id: activity.id), class: "btn btn-main btn-md" %>
                 </li>
             </ul>
         </div>

@@ -14,22 +14,9 @@ class Activity < ApplicationRecord
     Group.where(activity_id: self.id, trainee_id: trainee_id, status: "payed").empty?
   end
 
-  def slots_in_month(month)
-    self.time_slots.select {|x| x.start_time.month == month}
-  end
-
-  def avg_trainees_in_month(month)
-    total = 0
-    slots_arr = self.slots_in_month(month)
-    slots_arr.each do |slot|
-      total += slot.trainees.count
-    end
-
-    return total/slots_arr.count
-  end
 
   def monthly_data(month)
-    slots_in_month = self.time_slots.select {|x| x.start_time.month == month}
+    slots_in_month = self.time_slots.select {|x| x.start_time.month == month.to_i}
     total_trainees = 0
     slots_in_month.each do |slot|
       total_trainees += slot.trainees.count

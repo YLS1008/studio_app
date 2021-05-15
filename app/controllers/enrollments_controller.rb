@@ -20,7 +20,8 @@ class EnrollmentsController < ApplicationController
     if @enrollment.save
       redirect_back(fallback_location: enroll_path(id: params[:trainee_id]))
     else
-      redirect_to placeholder_path
+      flash[:alert] = "השיעור ננעל על ידי מנהל, לא ניתן לשנות את הרישום לשיעור."
+      redirect_to calendar_path
     end
   end
 
@@ -31,8 +32,12 @@ class EnrollmentsController < ApplicationController
     else
       enrollment = Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id)
     end
-    enrollment.first.destroy
-    redirect_back(fallback_location: @trainee )
+    if enrollment.first.destroy
+      redirect_back(fallback_location: @trainee )
+    else
+      flash[:alert] = "השיעור ננעל על ידי מנהל, לא ניתן לשנות את הרישום לשיעור."
+      redirect_back(fallback_location: @trainee)
+    end
   end
 
   def enroll_child
