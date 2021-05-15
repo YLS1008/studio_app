@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   def index
-    @activities = Activity.all.contract.select {|x| x.rate_type == "monthly"}
+    activities_ids = Contract.where(rate_type: "monthly").pluck(:activity_id)
+    @activities = Activity.find(activities_ids)
   end
 
   def show

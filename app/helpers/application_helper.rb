@@ -61,6 +61,7 @@ module ApplicationHelper
     if resource.class == Admin
       [
        link_to('Dashboard', admin_root_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
+       link_to('תשלומי מדריכים', all_salaries_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
        link_to('לוח שנה', calendar_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
        link_to('מתאמנים', trainees_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
        link_to('קבוצות', groups_path, class: "btn btn-primary btn-lg sqs-block-button-element"),

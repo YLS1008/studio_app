@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     get '/activities/(:id)/contract/edit_contract', to: 'contracts#edit', as: :edit_contract
     post '/activities/(:id)/contracts/set_contract', to: 'contracts#set', as: :set_contract
     patch '/activities/(:id)/contracts/update_contract', to: 'contracts#update', as: :update_contract
+    get '/all_salaries', to: 'admins#all_salaries', as: :all_salaries
     end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder

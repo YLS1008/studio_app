@@ -35,7 +35,7 @@ class Activity < ApplicationRecord
       total_trainees += slot.trainees.count
     end
     if slots_in_month.count != 0 then avg = total_trainees/slots_in_month.count.to_f else avg = 0 end
-    payment_hash = self.contract.calc_payout(slots_in_month)
+    payment_hash = self.contract_if_exists.calc_payout(slots_in_month)
     return {slots_arr: slots_in_month, trainees_avg: avg, payment: payment_hash}
   end
 

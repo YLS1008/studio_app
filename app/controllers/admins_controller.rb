@@ -51,6 +51,11 @@ class AdminsController < ApplicationController
     @trainees = Trainee.all
   end
 
+  def all_salaries
+    if params[:view_month].nil? then @month = Date.today.month else @month = params[:view_month] end
+    @activities = Activity.all
+  end
+
   
 
   
