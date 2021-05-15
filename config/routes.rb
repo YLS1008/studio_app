@@ -36,12 +36,15 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     root :to => 'admins#dashboard', as: :admin_root
-    patch '/load_tickets', to: 'trainees#load_tickets', as: :load_tickets
-    get 'enrollments/enroll', to: 'enrollments#enroll', as: :enroll
-    get 'enrollments/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
-    get 'enrollments/finalize', to: 'enrollments#finalize', as: :finalize
-    get 'enrollments/enroll_child', to: 'enrollments#enroll_child', as: :enroll_child
-    post 'enrollments/create_child', to: 'enrollments#create_child', as: :create_child
+
+    scope '/enrollments' do
+      get '/enroll', to: 'enrollments#enroll', as: :enroll
+      get '/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
+      get '/finalize', to: 'enrollments#finalize', as: :finalize
+      get '/enroll_child', to: 'enrollments#enroll_child', as: :enroll_child
+    end
+
+    post '/create_child', to: 'enrollments#create_child', as: :create_child
     get '/conversations/:id', to: 'admins#conversation', as: :conversation
     post '/conversations/log_new', to: 'admins#log_conversation', as: :log_conversation
     post '/tasks/add_task', to: 'admins#add_task', as: :add_task
@@ -69,7 +72,7 @@ Rails.application.routes.draw do
     end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
-  get 'static_pages/about'
+  get 'static_pages/coming_soon', to: 'static_pages#coming_soon', as: :coming_soon
   get 'instructors/:id', to: 'instructors#show', as: :instructor
   get '/cancel_enroll', to: 'trainees#cancel_enroll', as: :cancel_enroll
 end

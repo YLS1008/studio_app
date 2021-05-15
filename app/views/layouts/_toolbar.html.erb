@@ -3,6 +3,7 @@
     <%= image_tag("logo-small.jpg", alt: 'The Studio')%>
     <div style="float: right !important;">
         <%= render 'layouts/resource_header', resource: current_resource %>
+        <%= render 'layouts/action_buttons', resource: current_resource %>
     </div>
     <% end %>
 </nav>

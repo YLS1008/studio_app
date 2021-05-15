@@ -60,16 +60,19 @@ module ApplicationHelper
   def actions_helper(resource)
     if resource.class == Admin
       [
-       link_to('Dashboard', admin_root_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('תשלומי מדריכים', all_salaries_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('לוח שנה', calendar_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('מתאמנים', trainees_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('קבוצות', groups_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('פעילויות', activities_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('מדריכים', instructors_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('הוסף מדריך', new_instructor_registration_path, class: "btn btn-primary btn-lg sqs-block-button-element"),
-       link_to('הוסף מתאמן', new_trainee_path, class: "btn btn-primary btn-lg sqs-block-button-element")
-      ]
+       link_to('Dashboard', admin_root_path, class: "nav-link dropdown-toggle btn btn-primary sqs-block-button-element"),
+       link_to('תשלומי מדריכים', all_salaries_path, class: "nav-link dropdown-toggle btn btn-primary sqs-block-button-element"),
+       link_to('לוח שנה', calendar_path, class: "nav-link dropdown-toggle btn btn-primary sqs-block-button-element"),
+       ['רשימות',
+       link_to('מתאמנים', trainees_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+       link_to('קבוצות', groups_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+       link_to('פעילויות', activities_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+       link_to('מדריכים', instructors_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+      ],
+      ['הוסף',
+       link_to('הוסף מדריך', new_instructor_registration_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+       link_to('הוסף מתאמן', new_trainee_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+      ],]
 
     elsif resource.class == Instructor
       [

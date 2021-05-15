@@ -2,6 +2,22 @@
 
 <% else %>
 <% actions_helper(resource).each do |action| %>
-<%= action %>
+<div class="navbar-nav mr-auto nav-right dropdown dropleft">
+    <% if action.class == Array %>
+    <a class="nav-link dropdown-toggle btn btn-primary sqs-block-button-element" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="glyphicon glyphicon-plus"></span>
+        <%= action[0] %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <% action.each_with_index do |a, index| %>
+        <% next if index == 0 %>
+        <%= a %>
+        <% end %>
+    </div>
+
+    <% else %>
+    <%= action %>
+    <% end %>
+</div>
 <% end %>
 <% end %>

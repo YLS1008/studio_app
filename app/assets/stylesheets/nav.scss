@@ -139,9 +139,12 @@ $studio-color: #7acfe3;
 
 .dropdown-menu{
   background-color: black;
-  left: -200%;
   border-radius: 15%;
   text-align: center !important;
+
+  &.dropdown-menu-left{
+    left: -250%;
+  }
 
 }
 

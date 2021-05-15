@@ -16,7 +16,7 @@ class Activity < ApplicationRecord
 
 
   def monthly_data(month)
-    slots_in_month = self.time_slots.select {|x| x.start_time.month == month.to_i}
+    slots_in_month = self.locked_time_slots.select {|x| x.start_time.month == month.to_i }
     total_trainees = 0
     slots_in_month.each do |slot|
       total_trainees += slot.trainees.count
@@ -32,5 +32,9 @@ class Activity < ApplicationRecord
     else
       return self.contract
     end
+  end
+
+  def locked_time_slots
+    slots = self.time_slots.select {|x| x.locked }
   end
 end
