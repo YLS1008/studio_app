@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Instructors::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_admin, only: [:new, :create, :destroy, :edit]
+  before_action :authenticate_admin!, only: [:new, :create, :destroy, :edit]
   
   before_action :configure_sign_up_params, only: [:create]
 
