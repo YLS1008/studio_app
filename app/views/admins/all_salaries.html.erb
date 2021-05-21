@@ -19,7 +19,7 @@
                         <% @activities.each_with_index do |activity, index1| %>
                         <% target = "extra" + index1.to_s %>
                         <% monthly_hash = activity.monthly_data(@month) %>
-                        <tr data-toggle="collapse" data-target=<%= "." + target %> style="background-color: grey;">
+                        <tr data-toggle="collapse" data-target=<%= "." + target %> style="font-weight: bold; color: black; background-color: <%= activity.instructor.color %>;">
                             <td><%= activity.instructor.full_name %></td>
                             <td><%= activity.name %></td>
                             <td><%= monthly_hash[:slots_arr].count %></td>

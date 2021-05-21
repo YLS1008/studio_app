@@ -52,7 +52,7 @@ class AdminsController < ApplicationController
 
   def all_salaries
     if params[:view_month].nil? then @month = Date.today.month else @month = params[:view_month] end
-    @activities = Activity.all
+    @activities = Activity.all.order(:instructor_id)
   end
 
   
