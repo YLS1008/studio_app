@@ -86,7 +86,7 @@ $('.collapse').on('show.bs.collapse', function () {
 });
 
 $(document).ready(function () {
-    $('select').select2({
+    $('select2-style').select2({
 
         allowClear: true,
         multiple: true

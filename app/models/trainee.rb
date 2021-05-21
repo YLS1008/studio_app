@@ -1,6 +1,5 @@
 class Trainee < ApplicationRecord
 
-    has_many :children, dependent: :destroy
     has_many :enrollments, dependent: :destroy
     has_many :time_slots, through: :enrollments
     has_many :tasks, dependent: :destroy
@@ -34,19 +33,15 @@ class Trainee < ApplicationRecord
         self.time_slots.include? time_slot
     end
 
-    def is_child?
-        Child.is_child?(self.id)
-    end
-
-    def get_parent
-        Child.get_parent(self.id)
+    def parent
+        Trainee.find_by(id: self.parent_id)
     end
 
     def get_children_trainees
-        @child_ids = Child.where(trainee_id: self.id).pluck(:child_trainee_id)
-        return Trainee.find(@child_ids)
+        return Trainee.where(parent_id: self.id)
     end
 
+    
     def open_tasks
         Task.where(trainee_id: self.id, status: "open")
     end

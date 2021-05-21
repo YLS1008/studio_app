@@ -19,13 +19,13 @@
                     <li class="menu-item"><%= link_to "   הרשמה   ", enroll_path(id: @trainee.id), class: "btn btn-main btn-lg" %></li>
                     <li class="menu-item"><%= link_to "   היסטוריית שיעורים   ", enroll_history_path(trainee_id: @trainee.id), class: "btn btn-main btn-lg" %></li>
 
-                    <% if @trainee.is_child? %>
-                    <li class="menu-item"><%= link_to "   דף הורה   ", @trainee.get_parent, class: "btn btn-main btn-lg" %></li>
-                    <% else %>
+                    <% if @trainee.parent.nil? %>
                     <li class="menu-item"><%= link_to "   רשום ילד   ", enroll_child_path(id: @trainee.id), class: "btn btn-main btn-lg" %></li>
                     <% @trainee.get_children_trainees.each do |child| %>
-                    <li class="menu-item"><%= link_to child.first + ' ' + child.last, child %></li>
+                    <li class="menu-item"><%= link_to child.full_name, child, class: "btn btn-primary btn-sm" %></li>
                     <% end %>
+                    <% else %>
+                    <li class="menu-item"><%= link_to "   דף הורה   ", @trainee.parent, class: "btn btn-main btn-lg" %></li>
                     <% end %>
 
                 </ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_120003) do
+ActiveRecord::Schema.define(version: 2021_05_21_155134) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,14 +61,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_120003) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "children", force: :cascade do |t|
-    t.integer "trainee_id"
-    t.integer "child_trainee_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["trainee_id"], name: "index_children_on_trainee_id"
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -182,6 +174,8 @@ ActiveRecord::Schema.define(version: 2021_05_20_120003) do
     t.integer "ticket", default: 0
     t.date "birthday"
     t.boolean "active", default: true
+    t.integer "child_id", default: 0
+    t.integer "parent_id", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -217,7 +211,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_120003) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "instructors"
-  add_foreign_key "children", "trainees"
   add_foreign_key "contracts", "activities"
   add_foreign_key "conversations", "trainees"
   add_foreign_key "enrollments", "time_slots"

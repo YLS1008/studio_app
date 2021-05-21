@@ -17,10 +17,10 @@
                 </div>
                 <% end %>
 
-                <%= f.hidden_field :email, value: @trainee.email %>
+                <%= f.email_field :email, label: "E-Mail" %>
                 <%= f.text_field :first, label: "First Name", required: true %>
                 <%= f.text_field :last, label: "Last Name", required: true %>
-                <%= f.hidden_field :phone, value: @trainee.phone %>
+                <%= f.text_field :phone, label: "Phone Number" %>
                 <%= f.hidden_field :parent_id, value: @trainee.id %>
 
                 <div class="row" , style="align: center">

@@ -47,8 +47,10 @@ class EnrollmentsController < ApplicationController
   end
 
   def create_child
+    parent = Trainee.find(enroll_params[:parent_id])
+    if enroll_params["email"].empty? then enroll_params["email"] = parent.email end
+    if enroll_params["phone"].empty? then enroll_params["phone"] = parent.email end
     child_trainee = Trainee.create(enroll_params)
-    @test = Child.create(trainee_id: params[:trainee][:parent_id], child_trainee_id: child_trainee.id)
     redirect_to child_trainee
   end
 
@@ -67,13 +69,13 @@ class EnrollmentsController < ApplicationController
     updated_enrollments_ids.each do |x|
       Enrollment.find_or_create_by(trainee_id: x.to_i, time_slot_id: params[:id] )
     end
-    redirect_back(fallback_location: admin_root_path)
+    redirect_to admin_root_path
   end
 
 
   private
   def enroll_params
-    params.require(:trainee).permit(:email, :first, :last, :phone)
+    params.require(:trainee).permit(:email, :first, :last, :phone, :parent_id)
   end
 
   def set_trainee
