@@ -27,4 +27,5 @@ class Enrollment < ApplicationRecord
       Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id).destroy
     end
   end
+
 end

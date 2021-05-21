@@ -19,6 +19,15 @@ class Activity < ApplicationRecord
     return {slots_arr: slots_in_month, trainees_avg: avg, payment: payment_hash}
   end
 
+  def payment_hash
+    current_month = Date.today.month
+    if self.contract_if_exists.rate_type == 'monthly'
+        trainee_ids = self.time_slots.first.trainee_ids
+        trainee_status_hash = MonthlyPayment.status(current_month, trainee_ids, self.id)
+        return trainee_status_hash
+    end
+  end
+
   def contract_if_exists
     if self.contract.nil?
       return Contract.new(activity_id: self.id, rate: 1, rate_type: "undefined")

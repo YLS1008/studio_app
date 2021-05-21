@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_155134) do
+ActiveRecord::Schema.define(version: 2021_05_21_171512) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -119,6 +119,17 @@ ActiveRecord::Schema.define(version: 2021_05_21_155134) do
     t.index ["time_slot_id"], name: "index_interests_on_time_slot_id"
   end
 
+  create_table "monthly_payments", force: :cascade do |t|
+    t.integer "activity_id", null: false
+    t.integer "trainee_id", null: false
+    t.integer "sum"
+    t.integer "month"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_monthly_payments_on_activity_id"
+    t.index ["trainee_id"], name: "index_monthly_payments_on_trainee_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
     t.integer "instructor_id"
@@ -216,6 +227,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_155134) do
   add_foreign_key "enrollments", "time_slots"
   add_foreign_key "enrollments", "trainees"
   add_foreign_key "interests", "time_slots"
+  add_foreign_key "monthly_payments", "activities"
+  add_foreign_key "monthly_payments", "trainees"
   add_foreign_key "payments", "trainees"
   add_foreign_key "tasks", "trainees"
   add_foreign_key "time_slots", "activities"

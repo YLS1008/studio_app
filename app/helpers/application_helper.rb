@@ -67,6 +67,7 @@ module ApplicationHelper
        link_to('מתאמנים', trainees_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
        link_to('פעילויות', activities_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
        link_to('מדריכים', instructors_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
+       link_to('תשלומי מתאמנים', payments_index_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
       ],
       ['הוסף',
        link_to('הוסף מדריך', new_instructor_registration_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),

@@ -47,6 +47,13 @@ Rails.application.routes.draw do
 
     end
 
+    scope '/payments' do
+      get '/index', to: 'payments#index', as: :payments_index
+      patch '/pay', to: 'payments#pay', as: :payment
+      get '/refund', to: 'payments#refund', as: :refund_payment
+      get '/monthly_payment', to: 'payments#monthly_payment', as: :monthly_payment
+    end
+
     post '/create_child', to: 'enrollments#create_child', as: :create_child
     get '/conversations/:id', to: 'admins#conversation', as: :conversation
     post '/conversations/log_new', to: 'admins#log_conversation', as: :log_conversation
@@ -59,10 +66,7 @@ Rails.application.routes.draw do
     delete '/time_slots/destroy_slot_for/(:id)', to: 'time_slots#destroy_slots', as: :destroy_slots
     get '/time_slots/change_time_for/(:id)', to: 'time_slots#change_time', as: :change_slot_time
     patch '/time_slots/reschedule', to: 'time_slots#reschedule', as: :reschedule
-    get 'payments/index', to: 'payments#index', as: :payments_index
-    patch 'payments/pay', to: 'payments#pay', as: :payment
     get 'enrollments/history/(:id)', to: 'enrollments#history', as: :enroll_history
-    get '/payments/refund/(:id)', to: 'payments#refund', as: :refund_payment
     get '/activities/(:id)/contract/new_contract', to: 'contracts#new', as: :new_contract
     get '/activities/(:id)/contract/edit_contract', to: 'contracts#edit', as: :edit_contract
     post '/activities/(:id)/contracts/set_contract', to: 'contracts#set', as: :set_contract

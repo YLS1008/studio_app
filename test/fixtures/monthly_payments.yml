@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  activity: one
+  trainee: one
+  sum: 1
+  month: 1
+
+two:
+  activity: two
+  trainee: two
+  sum: 1
+  month: 1
