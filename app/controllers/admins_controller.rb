@@ -1,7 +1,6 @@
 class AdminsController < ApplicationController
   def dashboard
     @activities = TimeSlot.all
-    @trainees = Trainee.all
     @open_tasks = Task.where(status: "open")
   end
 

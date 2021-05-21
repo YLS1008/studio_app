@@ -1,0 +1,8 @@
+<div class="basic-container">
+    <div class="select">
+        <%= bootstrap_form_for(@slot, url: finalize_for_slot_path(id: @slot.id), local: true) do |f| %>
+        <%= f.collection_select :trainee_ids, @trainees, :id, :full_name, { class: 'form-select js-source-programs' }, label: "", multiple: true %>
+        <%= f.submit "רשום מתאמנים", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>

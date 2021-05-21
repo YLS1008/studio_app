@@ -1,10 +1,11 @@
 class TraineesController < ApplicationController
-  before_action :set_trainee, only: [:show, :edit, :update, :destroy]
+  before_action :set_trainee, only: [:show, :edit, :update, :destroy, :inactive]
 
   # GET /trainees
   # GET /trainees.json
   def index
-    @trainees = Trainee.all
+    @trainees = Trainee.where(active: true)
+    @deactivated = Trainee.where(active: false)
   end
 
 
@@ -13,10 +14,6 @@ class TraineesController < ApplicationController
   def show
     trainee_enrollments = Enrollment.where(trainee_id: @trainee.id)
     @trainee_time_slots = TimeSlot.find(trainee_enrollments.collect { |x| x.time_slot_id }).select { |x| x.start_time.to_date >= Date.today }
-    trainee_groups = Group.where(trainee_id: @trainee.id)
-    @trainee_group_slots = (TimeSlot.where(activity_id: trainee_groups.collect { |x| x.activity_id })
-                                              .select { |x| x.start_time.to_date >= Date.today}).uniq{ |x| x.start_time.wday }
-
   end
 
 
@@ -67,6 +64,11 @@ class TraineesController < ApplicationController
       format.html { redirect_to trainees_url, notice: 'Trainee was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def inactive
+    @trainee.update(active: false)
+    redirect_back(fallback_location: admin_root_path)
   end
 
   private

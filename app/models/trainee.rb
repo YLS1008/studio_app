@@ -3,8 +3,6 @@ class Trainee < ApplicationRecord
     has_many :children, dependent: :destroy
     has_many :enrollments, dependent: :destroy
     has_many :time_slots, through: :enrollments
-    has_many :groups, dependent: :destroy
-    has_many :activities, through: :groups
     has_many :tasks, dependent: :destroy
     has_many :conversations, dependent: :destroy
     has_many :payments, dependent: :destroy
@@ -33,11 +31,7 @@ class Trainee < ApplicationRecord
     end
 
     def is_enrolled?(time_slot)
-        if time_slot.mother.contract_if_exists.rate_type == "monthly"
-            self.activities.include? time_slot.mother
-        else
-            self.time_slots.include? time_slot
-        end
+        self.time_slots.include? time_slot
     end
 
     def is_child?
@@ -67,7 +61,7 @@ class Trainee < ApplicationRecord
     end
 
     def payment_status
-        Payment.trainee_tickets(self.id) - self.time_slots.count
+        Payment.trainee_tickets(self.id) - (self.time_slots.select {|x| x.mother.contract_if_exists.rate_type != "monthly"}).count
     end
 
     def interests

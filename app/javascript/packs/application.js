@@ -15,6 +15,8 @@ import "channels"
 import "jquery"
 import "bootstrap"
 import JQuery from 'jquery'
+import select2 from 'select2';
+import 'select2/dist/css/select2.css';
 
 import "@fortawesome/fontawesome-free/css/all"
 
@@ -30,9 +32,10 @@ require("owl.carousel2/dist/assets/owl.carousel.css")
 require("datatables.net")
 require('datatables.net-bs4')
 require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
-require("packs/datatable_init")
-require("packs/table_switch")
-require("packs/image_carousel")
+
+
+
+
 
 
 
@@ -81,6 +84,15 @@ document.addEventListener("turbolinks:load", () => {
 $('.collapse').on('show.bs.collapse', function () {
     $('.collapse.in').collapse('hide');
 });
+
+$(document).ready(function () {
+    $('select').select2({
+
+        allowClear: true,
+        multiple: true
+    });
+});
+
 
 
 

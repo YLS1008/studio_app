@@ -9,4 +9,12 @@ module AdminsHelper
         return ret_arr.map {|x| [x, x.to_datetime.month]}
     end
 
+    def current_page_helper? (hash)
+        hash.each do |controller, actions_arr|
+            actions_arr.each do |action|
+                if current_page?(controller: controller, action: action) then return true else next end
+            end
+        end
+        return false
+    end
 end

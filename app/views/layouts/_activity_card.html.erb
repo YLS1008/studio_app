@@ -10,32 +10,30 @@
         <h6> <%= activity.start_time.to_s(:time) %> - <%= (activity.start_time + activity.mother.duration.minutes).to_s(:time) %></h6>
         <% if admin_signed_in? || instructor_signed_in? %>
         <div>
-            <% if activity.mother.contract_if_exists.rate_type == "monthly" %>
-            <% resource = activity.mother %>
-            <% else %>
-            <% resource = activity %>
-            <% if resource.locked %>
-            <span class="glyphicon glyphicon-lock"></span>
-            <% end %>
+
+            <% if activity.locked %>
+            <div class="circle">
+                <span class="glyphicon glyphicon-lock"></span>
+            </div>
             <% end %>
             <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span>מתאמנים - <%= resource.trainees.count %></span>
+                <span>מתאמנים - <%= activity.trainees.count %></span>
             </button>
             <ul class="dropdown-menu no-bullets" style="background-color: info;">
 
-                <% resource.trainees.each do |trainee| %>
+                <% activity.trainees.each do |trainee| %>
                 <li>
                     <%= link_to trainee.full_name, trainee, class: "btn btn-main btn-md" %>
                 </li>
                 <% end %>
             </ul>
         </div>
-        <% if admin_signed_in? %>
+        <% if current_page_helper?({'admins' => ['dashboard', 'calendar'] }) %>
         <div>
             <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span>פעולות</span>
             </button>
-            <ul class="dropdown-menu no-bullets" style="background-color: info;">
+            <ul class="dropdown-menu no-bullets">
                 <li>
                     <%= link_to "שינוי שעת שיעור", change_slot_time_path(id: activity.id), class: "btn btn-main btn-md" %>
                 </li>
@@ -44,6 +42,9 @@
                 </li>
                 <li>
                     <%= link_to "מחיקת כל השיבוצים", destroy_slots_path(activity), class: "btn btn-main btn-md", method: :delete, data: { confirm: 'זהירות! אישור הפעולה ימחק את כל שיבוצי השיעור מהלו"ז.' } %>
+                </li>
+                <li>
+                    <%= link_to "רישום לשיעור", enroll_via_slot_path(id: activity.id), class: "btn btn-main btn-md" %>
                 </li>
                 <% if activity.locked then lock_link_text = "שחרור נעילה" else lock_link_text = "נעילת שיעור" end %>
                 <li>

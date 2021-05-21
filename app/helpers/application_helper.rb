@@ -65,7 +65,6 @@ module ApplicationHelper
        link_to('לוח שנה', calendar_path, class: "nav-link dropdown-toggle btn btn-primary sqs-block-button-element"),
        ['רשימות',
        link_to('מתאמנים', trainees_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
-       link_to('קבוצות', groups_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
        link_to('פעילויות', activities_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
        link_to('מדריכים', instructors_path, class: "dropdown-item btn btn-primary btn-m sqs-block-button-element"),
       ],

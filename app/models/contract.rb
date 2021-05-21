@@ -49,17 +49,17 @@ class Contract < ApplicationRecord
   private
   def gradient_pay(count)
     total = 0
-    (1..count).times do |index|
+    count.times do |index|
       case index
-      when 1..5
+      when 0..4
         total += 15
-      when 6..10
+      when 5..9
         total += 20
-      when 11..inf
+      when 10..100
         total += 25
       end
-      return total
     end
+    return total
   end
   
 end

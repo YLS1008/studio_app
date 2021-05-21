@@ -501,5 +501,21 @@ td {
   text-align: center;
 }
 
+.circle{
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+  margin: 0 auto;
+}
+
+.select{
+  min-height: 150px !important;
+  max-height: 150px !important;
+  overflow-y: auto;
+}
+
 
 

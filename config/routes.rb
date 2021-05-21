@@ -42,6 +42,9 @@ Rails.application.routes.draw do
       get '/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
       get '/finalize', to: 'enrollments#finalize', as: :finalize
       get '/enroll_child', to: 'enrollments#enroll_child', as: :enroll_child
+      get '/enroll_via_slot', to: 'enrollments#enroll_via_slot', as: :enroll_via_slot
+      patch '/finalize_for_slot', to: 'enrollments#finalize_for_slot', as: :finalize_for_slot
+
     end
 
     post '/create_child', to: 'enrollments#create_child', as: :create_child
@@ -56,13 +59,10 @@ Rails.application.routes.draw do
     delete '/time_slots/destroy_slot_for/(:id)', to: 'time_slots#destroy_slots', as: :destroy_slots
     get '/time_slots/change_time_for/(:id)', to: 'time_slots#change_time', as: :change_slot_time
     patch '/time_slots/reschedule', to: 'time_slots#reschedule', as: :reschedule
-    get 'groups/index', to: 'groups#index', as: :groups
     get 'payments/index', to: 'payments#index', as: :payments_index
     patch 'payments/pay', to: 'payments#pay', as: :payment
     get 'enrollments/history/(:id)', to: 'enrollments#history', as: :enroll_history
     get '/payments/refund/(:id)', to: 'payments#refund', as: :refund_payment
-    get '/groups/change_status/(:id)', to: 'groups#change_status', as: :change_status
-    get '/groups/cancel_group/(:id)', to: 'groups#cancel', as: :cancel_group 
     get '/activities/(:id)/contract/new_contract', to: 'contracts#new', as: :new_contract
     get '/activities/(:id)/contract/edit_contract', to: 'contracts#edit', as: :edit_contract
     post '/activities/(:id)/contracts/set_contract', to: 'contracts#set', as: :set_contract
