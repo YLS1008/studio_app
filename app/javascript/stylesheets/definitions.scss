@@ -1,0 +1,15 @@
+$gray-medium-light: #eaeaea;
+$container-padding-x: 5%;
+$studio-color: #7acfe3;
+$shadow-color: #c4beab;
+
+@mixin button-bg($bg) {
+    background: $bg;
+    &:hover {
+      background:darken($bg,8%);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      background:darken($bg,25%);
+    } 
+  }
