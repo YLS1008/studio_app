@@ -1,0 +1,16 @@
+<% @show_toggle_button = show_toggle_button %>
+<%= week_calendar(events: activities, number_of_weeks: week_number, start_date: date_begin,
+                    previous_link: events_ajax_previous_link, next_link: events_ajax_next_link) do |date, activities| %>
+
+<% if show_date %>
+    <%= date %>
+<% end %>
+
+<% activities.each do |activity| %>
+
+
+<%= render 'layouts/activity_card', activity: activity, enrolled_color: "white" %>
+
+
+<% end %>
+<% end %>

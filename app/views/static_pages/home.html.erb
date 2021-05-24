@@ -1,13 +1,77 @@
-<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-  Tooltip on top
-</button>
-<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
-  Tooltip on right
-</button>
-<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom">
-  Tooltip on bottom
-</button>
-<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Test">
-  Tooltip on left
-</button>
+<%= javascript_pack_tag 'home_screen', 'data-turbolinks-track': 'reload' %>
 
+<div class="row">
+
+    <div class="col"></div>
+
+    <div class="col-10 contact" >
+        <%= image_pack_tag 'biglogo.jpg', class: 'img-fluid' %>
+        <%= render 'layouts/contact_links' %>
+        <%= link_to image_pack_tag( 'sign_up.png'), "#" %>
+    </div>
+
+    <div class="col"></div>
+</div>
+
+<div class="row">
+
+    <div class="col"></div>
+
+    <div class="col-10 transparent" >
+        <%= render 'layouts/about' %>
+    </div>
+
+    <div class="col"></div>
+</div>
+
+<div class="row">
+<div class="col"></div>
+  <div class="col-8">
+      <div class="basic-container">
+        <h1>
+            השבוע הנוכחי
+        </h1>
+      </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+<div class="row">
+<div class="col"></div>
+
+    <div class="col-10" >
+      <div class="basic-container">
+          <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today,  show_toggle_button: false, show_date: true %>
+      </div>
+    </div>
+    <div class="col"></div>
+
+</div>
+
+
+<div class="row">
+<div class="col"></div>
+  <div class="col-8">
+      <div class="basic-container">
+        <h1>
+            השבוע הבא
+        </h1>
+      </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+<div class="row">
+<div class="col"></div>
+
+    <div class="col-10" >
+    <div class="basic-container">
+      <%= render 'layouts/calendar', activities: @activities, week_number: 1, date_begin: Date.today.beginning_of_week + 1.week,  show_toggle_button: false, show_date: true %>
+    </div>
+    </div>
+    <div class="col"></div>
+
+</div>
+<br />
+<br />
+<br />

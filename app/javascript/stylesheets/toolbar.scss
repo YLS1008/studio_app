@@ -18,3 +18,9 @@ nav {
         background-color: lighten($color: white, $amount: 25%) !important ;
     }
   }
+
+  .spacer{
+    margin-top: 150px;
+    background-color: transparent !important;
+    min-height: 20px;
+  }

@@ -48,6 +48,49 @@
       background-color: transparent;
   }
 
+  .contact {
+	  text-align: center;
+	  background-color: black;
+	  border-radius: 10%;
+	  padding-top: 35px;
+  }
+
+  .basic-container {
+	@include make-container();
+	border-radius: 10%;
+	border: 2px solid;
+	background-color: rgba(122,207,227,0.6);
+	margin-top: 30px;
+	padding-top: 30px;
+	direction: rtl;
+	text-align: center;
+	
+	&.login-container{
+	  max-width: 400px;
+	  float: right;
+	  padding-bottom: 20px;
+	  }
+  }
+
+  html { 
+	background: url("../images/background_image.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+  }
+
+  body {
+	  background-color: transparent;
+  }
+
+  .transparent {
+	background-color: rgba(122,207,227,0.6);
+	direction: rtl;
+	border-radius: 10%;
+	margin-top: 30px;
+  }
+
   
 
 

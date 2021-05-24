@@ -11,12 +11,15 @@ import "channels"
 
 // Packages
 import "bootstrap"
+import "@fortawesome/fontawesome-free/css/all"
 
 
 // Stylesheets
 import "../stylesheets/application"
 import "../stylesheets/general"
 import "../stylesheets/toolbar"
+import "../stylesheets/mobile"
+import "../stylesheets/calendar"
 
 
 // Custom and vendor JS files

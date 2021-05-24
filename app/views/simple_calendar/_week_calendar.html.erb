@@ -1,0 +1,47 @@
+<div class="simple-calendar" , style="margin-top: 30px;">
+    <% if @show_toggle_button == true %>
+    <div class="calendar-heading">
+        <%= link_to t('simple_calendar.next', default: 'שבוע הבא'), calendar.url_for_next_view, class: "btn btn-main btn-lg" %>
+        <% if calendar.number_of_weeks == 1 %>
+        <span class="calendar-title"><%= t('simple_calendar.week', default: 'שבוע') %> <%= calendar.week_number %></span>
+        <% else %>
+        <span class="calendar-title"><%= t('simple_calendar.week', default: 'שבוע') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
+        <% end %>
+        <%= link_to t('simple_calendar.previous', default: 'שבוע קודם'), calendar.url_for_previous_view, class: "btn btn-main btn-lg" %>
+    </div>
+    <% end %>
+    <div class="table-responsive" style="direction: rtl;">
+        <table class="table table-striped table-bordered">
+            <thead style="background-color: black; color: white;">
+                <tr>
+                    <th style="text-align: center;">ראשון</th>
+                    <th style="text-align: center;">שני</th>
+                    <th style="text-align: center;">שלישי</th>
+                    <th style="text-align: center;">רביעי</th>
+                    <th style="text-align: center;">חמישי</th>
+                    <th style="text-align: center;">שישי</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <% date_range.each_slice(7) do |week| %>
+                <tr>
+                    <% week.each do |day| %>
+                    <% next if day.wday == 0 %>
+                    <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+                    <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                    <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+                    <% else %>
+                    <% passed_block.call day, sorted_events.fetch(day, []) %>
+                    <% end %>
+                    <% end %>
+                    <% end %>
+                </tr>
+
+                <% end %>
+
+            </tbody>
+        </table>
+    </div>
+</div>
