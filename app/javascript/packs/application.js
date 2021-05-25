@@ -8,10 +8,11 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-
 // Packages
 import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
+import "datatables.net"
+import 'datatables.net-bs4'
 
 
 // Stylesheets
@@ -23,7 +24,7 @@ import "../stylesheets/calendar"
 
 
 // Custom and vendor JS files
-
+require("../src/tableSearch")
 
 
 // Static Assets
