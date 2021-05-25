@@ -1,0 +1,37 @@
+<h1>
+    New Activity for <%= @instructor.first %> <%= @instructor.last %>
+</h1>
+
+<%= bootstrap_form_with(model: activity, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
+<% if activity.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+    <ul>
+        <% activity.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="row">
+    <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent;">
+        <div class="col-md-10 col-md-offset-2">
+            <%= f.text_field :instructor_id, value: @instructor.id %>
+            <%= f.text_field :name, label: "Name", autofocus: true, required: true %>
+            <%= f.number_field :duration, label: "Duration", required: true %>
+            <%= f.text_field :capacity, label: "Max. Capacity", required: true %>
+            <%= f.text_area :description, label: "Description"%>
+            <%= f.file_field :image, label: "Activity Image" %>
+
+            <div class="row" , style="align: center">
+                <div>
+                    <%= f.submit "Create New Activity" %><br>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

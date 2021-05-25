@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="basic-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-body">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="text-center">Instructor</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Duration</th>
+                            <th class="text-center">Capacity</th>
+                            <th colspan="4"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @activities.each do |activity| %>
+                        <tr>
+                            <td><%= activity.instructor.first %> <%= activity.instructor.last %></td>
+                            <td><%= activity.name %></td>
+                            <td><%= activity.duration %></td>
+                            <td><%= activity.capacity %></td>
+                            <td><%= link_to 'Show', activity %></td>
+                            <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+                            <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

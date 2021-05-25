@@ -1,0 +1,37 @@
+<div class="basic-container">
+
+    <h2>רישום ילד/ה חדש/ה</h2>
+    <%= bootstrap_form_for(@trainee_child, url: create_child_path, html: { autocomplete: "off" }, local: true, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-10") do |f| %>
+    <div class="row">
+        <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent;">
+            <div class="col-md-10 col-md-offset-2">
+                <% if @trainee.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@trainee.errors.count, "error") %> prohibited this trainee from being saved:</h2>
+
+                    <ul>
+                        <% @trainee.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <% end %>
+
+                <%= f.email_field :email, label: "E-Mail" %>
+                <%= f.text_field :first, label: "First Name", required: true %>
+                <%= f.text_field :last, label: "Last Name", required: true %>
+                <%= f.text_field :phone, label: "Phone Number" %>
+                <%= f.hidden_field :parent_id, value: @trainee.id %>
+
+                <div class="row" , style="align: center">
+                    <div>
+                        <%= f.submit "רישום" %><br>
+                    </div>
+                    <br />
+                </div>
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+</div>

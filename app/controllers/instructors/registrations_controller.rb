@@ -38,7 +38,7 @@ class Instructors::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
-   end
+  end
 
   # PUT /resource
   # def update
@@ -63,7 +63,7 @@ class Instructors::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:image, :color])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:image, :color, :logo])
    end
 
   # If you have extra params to permit, append them to the sanitizer.

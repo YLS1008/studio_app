@@ -37,7 +37,7 @@ class InstructorsController < ApplicationController
 
   private
   def update_params
-    params.require(:instructor).permit(:email, :first, :last, :phone, :description, :speciality, :color, :image)
+    params.require(:instructor).permit(:email, :first, :last, :phone, :description, :speciality, :color, :image, :logo)
   end
   
   

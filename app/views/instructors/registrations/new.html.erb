@@ -1,0 +1,40 @@
+<div class="basic-container">
+    <div class="col"></div>
+    <div class="col-10">
+        <h2>צור מדריכ/ה חדש/ה</h2><br>
+        <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, layout:
+            :horizontal ) do |f| %>
+            <%= render "instructors/shared/error_messages" , resource: resource %>
+
+
+
+                <%= f.email_field :email, label: "אימייל" , autofocus: true, required: true %><br>
+                    <%= f.text_field :first, label: "שם פרטי" , required: true %><br>
+                        <%= f.text_field :last, label: "שם משפחה" , required: true %><br>
+                            <%= f.telephone_field :phone, label: "מספר טלפון" , required: true %><br>
+                                <%= f.text_field :exp, label: "שנות ניסיון" , required: true %><br>
+                                    <%= f.text_field :speciality, label: "התמחות" , required: true %><br>
+                                        <%= f.text_area :description, label: "תיאור" , required: true %><br>
+                                            <%= f.color_field :color, label: "בחר צבע לשיעור" , required: true %><br>
+                                                <%= f.file_field :image, label: "העלה תמונת פרופיל" %><br>
+                                                    <%= f.file_field :logo, label: "לוגו שיעור (אם יש)" %><br>
+                                                        <%= f.password_field :password, label: "ססמה" , required: true
+                                                            %><br>
+                                                            <%= f.password_field :password_confirmation,
+                                                                label: "הקש ססמה פעם שנייה" , required: true %><br>
+                                                                <div class="row">
+                                                                    <div>
+                                                                        <%= f.submit "צור מדריכ/ה חדש/ה" %>
+                                                                            <br>
+                                                                    </div>
+                                                                    <br />
+                                                                </div>
+
+
+
+
+                                                                <% end %>
+
+    </div>
+    <div class="col"></div>
+</div>

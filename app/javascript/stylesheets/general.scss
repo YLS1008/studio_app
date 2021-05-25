@@ -42,10 +42,21 @@
       }
   }
 
+  .btn-calendar {
+    background-color: white;
+    color: black;
+      &:hover, &:focus {
+          background-color: lighten($color: white, $amount: 25%) !important ;
+          color: black !important;
+      }
+  }
+
 
   .dropdown-menu{
-      margin-right: 15px;
-      background-color: transparent;
+      background-color: black;
+	  padding: 5px;
+	  text-align: center;
+	  border-radius: 5%;
   }
 
   .contact {
@@ -70,6 +81,12 @@
 	  float: right;
 	  padding-bottom: 20px;
 	  }
+	&.black-container{
+		background-color: black;
+		color: $studio-color;
+		max-width: 400px;
+		padding-bottom: 20px;
+	}
   }
 
   html { 
@@ -89,6 +106,16 @@
 	direction: rtl;
 	border-radius: 10%;
 	margin-top: 30px;
+  }
+
+  .actions {
+	  background-color: black;
+	  direction: rtl;
+	  border-radius: 10%;
+	  text-align: center;
+	  width: fit-content;
+	  padding: 10px;
+	  margin: 0 auto;
   }
 
   

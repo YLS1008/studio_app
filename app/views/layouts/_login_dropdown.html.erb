@@ -1,0 +1,22 @@
+<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 30px;">
+  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+    <li class="nav-item dropdown dropstart">
+      <a class="nav-link dropdown-toggle btn btn-primary btn-lg " href="#" id="navbarDropdown" role="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        התחברות
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li>
+          <%= link_to "כניסת מתאמנים" , coming_soon_path, class: "btn btn-primary" %>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <%= link_to "כניסת מדריכים" , new_instructor_session_path, class: "btn btn-primary" %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

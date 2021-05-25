@@ -1,0 +1,50 @@
+<% provide(:title, "Instructor Profile") %>
+<div class="basic-container">
+    <div class="row">
+        <aside class="col-md-3">
+            <div style="background-color: transparent; display: block; text-align: center; margin-top: 5px;">
+
+                <%= image_tag @instructor.displayed_image,
+                     loading: "lazy", alt: @instructor.first, class: "rounded-full", style: "border-radius: 10%" %>
+            </div>
+            <section class="mini-form">
+                <%= bootstrap_form_for(@instructor, url: update_instructor_profile_path, local: true) do |f| %>
+                <%= f.file_field :image %>
+                <%= f.hidden_field :id, value: @instructor.id %>
+                <%= f.submit "עדכן תמונה", class: "btn btn-primary" %>
+                <% end %>
+            </section>
+            <section class="name">
+                <%= @instructor.first.capitalize %> <%= @instructor.last.capitalize %>
+            </section>
+        </aside>
+
+        <div class="col-md-8">
+            <div class="profile-stats">
+
+                <%= image_tag @instructor.displayed_logo, loading: "lazy", class: "img-circle img-fluid" %>
+                <div class="mini-form">
+                    <%= bootstrap_form_for(@instructor, url: update_instructor_profile_path, local: true) do |f| %>
+                    <%= f.file_field :logo %>
+                    <%= f.hidden_field :id, value: @instructor.id %>
+                    <%= f.submit "עדכן לוגו", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+                <ul class="no-bullets">
+                    <h4>
+                        <li class="menu-item"> <strong><%= @instructor.speciality %></strong> </li>
+                    </h4>
+                    <%= simple_format(@instructor.description) %>
+                    <div class="mini-form">
+                        <%= bootstrap_form_for(@instructor, url: update_instructor_profile_path, local: true) do |f| %>
+                        <%= f.text_area :description %>
+                        <%= f.hidden_field :id, value: @instructor.id %>
+                        <%= f.submit "עדכן תיאור", class: "btn btn-primary" %>
+                        <% end %>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

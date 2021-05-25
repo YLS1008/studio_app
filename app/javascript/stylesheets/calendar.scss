@@ -10,3 +10,34 @@
     display: inline-block;
     margin: 0 auto;  text-align: center; border-radius: 10%; padding-top: 10px; padding-bottom: 10px; margin-top: 5px; font-weight: bold;
 }
+
+.calendar-heading{
+  text-align: center;
+  max-width: 50%;
+  background-color: black;
+  border-radius: 10%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.calendar-title{
+  color: white;
+  font-size: large;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.weekdays{
+  background-color: black;
+  color: white;
+}
+
+.lock-circle{
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+  margin: 0 auto;
+}

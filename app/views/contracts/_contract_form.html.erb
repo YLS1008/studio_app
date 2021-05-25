@@ -1,0 +1,18 @@
+<%= bootstrap_form_for(contract, url: path, local: true) do |f| %>
+<div class="row">
+    <div class="container-fluid rounded p-3 my-3 text-white" , style="background-color: transparent;">
+        <div class="col-md-10 col-md-offset-2">
+            <%= f.hidden_field :activity_id, value: activity.id %>
+            <%= f.select :rate_type, rates, label: "בחר את סוג החוזה" %>
+            <%= f.number_field :rate, label: "קבע את התעריף", required: true %>
+
+            <div class="row" , style="align: center">
+                <div>
+                    <%= f.submit "עדכן חוזה" %><br>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

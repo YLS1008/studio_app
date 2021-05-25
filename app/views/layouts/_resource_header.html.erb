@@ -1,9 +1,35 @@
-<div class="navbar-nav mr-auto nav-right dropdown">
-    <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        התחברות
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to "כניסת מדריכים", '#', class: "dropdown-item btn btn-primary btn-m sqs-block-button-element" %>
-        <%= link_to "כניסת מתאמנים", '#', class: "dropdown-item btn btn-primary btn-m sqs-block-button-element" %>
-    </div>
+<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 30px;">
+  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+    <li class="nav-item dropdown dropstart">
+      <a class="nav-link dropdown-toggle btn btn-primary btn-lg " href="#" id="navbarDropdown" role="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <%= resource.full_name %>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li>
+          <%= link_to "עריכת פרופיל" , edit_resource_path(resource), class: "btn btn-primary btn-lg" %>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <%= link_to placeholder_path do %>
+            <span class="dropdown-item btn btn-primary btn-lg"><i class="fa fa-bell">
+                <span class="badge badge-info">
+                  <%= resource.notifications.count %>
+                </span>
+              </i>הודעות</span>
+            <% end %>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <%= link_to "התנתקות" , destroy_resource_session_path(resource),method: :delete,
+            class: "dropdown-item btn btn-primary btn-lg" %>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>

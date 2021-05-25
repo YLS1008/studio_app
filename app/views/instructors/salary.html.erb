@@ -1,0 +1,61 @@
+<div class="basic-container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-body">
+                <table class="table table-hover table-bordered" style="background-color: white; border-collapseLcollapse;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="text-center"> שם השיעור </th>
+                            <th class="text-center"> מספר שיעורים החודש </th>
+                            <th class="text-center"> משתתפים </th>
+                            <th class="text-center"> תשלום כולל </th>
+                            <th class="text-center"> (לחץ לצפייה בפירוט השיעורים) </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @activities.each_with_index do |activity, index1| %>
+                        <% target = "extra" + index1.to_s %>
+                        <% monthly_hash = activity.monthly_data(@month) %>
+                        <tr data-toggle="collapse" data-target=<%= "." + target %> style="background-color: grey;">
+                            <td><%= activity.name %></td>
+                            <td><%= monthly_hash[:slots_arr].count %></td>
+                            <td><%= monthly_hash[:trainees_avg].round(2) %> (ממוצע)</td>
+                            <td> <%= monthly_hash[:payment][:total] %> </td>
+                            <td> <span class="glyphicon glyphicon-plus"></span> </td>
+                        </tr>
+                        <% monthly_hash[:slots_arr].each_with_index do |slot, index2| %>
+                        <tr>
+                            <td class="hiddenRow">
+                                <div class="collapse <%= target %>"><%= index2 %></div>
+                            </td>
+                            <td class="hiddenRow">
+                                <div class="collapse <%= target %>"><%= slot.start_time.strftime("%d/%m/%y") %></div>
+                            </td>
+                            <td class="hiddenRow">
+                                <div class="collapse <%= target %>"><%= slot.trainees.count %></div>
+                            </td>
+                            <td class="hiddenRow">
+                                <div class="collapse <%= target %>"><%= monthly_hash[:payment][slot.id] %></div>
+                            </td>
+                            <td class="hiddenRow">
+                                <div class="collapse <%= target %>">
+                                    <% slot.trainees.each do |trainee| %>
+                                    <%= trainee.full_name + ' | ' %>
+                                    <% end %>
+                                </div>
+                            </td>
+                        </tr>
+                        <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <%= render 'layouts/salary_months', activities: @activities %>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="basic-container login-container">
+
+    <h2>כניסת מדריכים</h2>
+
+    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-floating mb-3">
+        <%= f.email_field :email, label: "דואר אלקטרוני", style: "float: right;", autofocus: true, autocomplete: "email", required: true %>
+    </div>
+    <div class="form-floating mb-3">
+        <%= f.password_field :password, label: "סיסמה", autofocus: true, autocomplete: "current-password", required: true %>
+    </div>
+
+    <%= f.check_box :remember_me , label: "זכור אותי", style: "float: right;", autofocus: true%>
+    <%= f.submit "התחברות" %>
+    <% end %>
+    <br>
+    <%= link_to "כניסת מנהלים", new_admin_session_path, class: "btn btn-primary", style: "background-color: #f5f1f0;" %>
+</div>

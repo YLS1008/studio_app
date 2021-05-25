@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>StudioApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
+
+<head>
+  <title>StudioApp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+      <%= stylesheet_link_tag 'application' , {:media=> 'all', 'data-turbolinks-track'=> 'reload'} %>
+        <%= stylesheet_pack_tag 'application' , {:media=> 'all', 'data-turbolinks-track'=> 'reload'} %>
+          <%= javascript_pack_tag 'application' , 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  </head>
+<body>
+  <%= render 'layouts/toolbar' %>
+    <%= if anyone_signed_in? then render 'layouts/action_buttons', resource: current_resource end %>
+      <%= yield %>
+</body>
 
-  <body>
-    <%= render 'layouts/toolbar' %>
-    <%= yield %>
-  </body>
 </html>

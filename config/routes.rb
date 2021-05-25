@@ -76,7 +76,7 @@ Rails.application.routes.draw do
     end
 
   get '/TBD', to: 'static_pages#placeholder', as: :placeholder
-  get 'static_pages/coming_soon', to: 'static_pages#coming_soon', as: :coming_soon
+  get '/coming_soon', to: 'static_pages#coming_soon', as: :coming_soon
   get 'instructors/:id', to: 'instructors#show', as: :instructor
   get '/cancel_enroll', to: 'trainees#cancel_enroll', as: :cancel_enroll
 end

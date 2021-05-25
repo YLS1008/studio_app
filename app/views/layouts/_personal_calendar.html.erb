@@ -1,0 +1,25 @@
+<% @show_toggle_button = show_toggle_button %>
+
+<%= week_calendar(events: activities, number_of_weeks: week_number) do |date, activities| %>
+
+<%= date %>
+
+<% activities.each do |activity| %>
+<% enrolled_color = "white" %>
+<% enrolled_color = "black" if trainee.is_enrolled?(activity) %>
+
+<%= render 'layouts/activity_card', activity: activity, enrolled_color: enrolled_color %>
+<% if trainee.is_enrolled?(activity) %>
+<%= link_to "ביטול הרשמה", cancel_enrollment_path(slot_id: activity.id, trainee_id: trainee.id), class: "btn btn-main btn-sm btn-floating", style: "width: 100%;", data: { confirm: 'האם לבטל את הרישום לשיעור?' } %>
+
+<% else %>
+<% if activity.mother.contract_if_exists.rate_type != "monthly" %>
+<%= link_to "הרשמה לשיעור", finalize_path(slot_id: activity.id, trainee_id: trainee.id), class: "btn btn-main btn-floating", style: "width: 100%;", data: { confirm: 'האם לרשום את המתאמן לשיעור?' } %>
+<% else %>
+<%= link_to "הרשמה לקבוצה", finalize_path(slot_id: activity.id, trainee_id: trainee.id), class: "btn btn-main btn-floating", style: "width: 100%;", data: { confirm: 'האם לרשום את המתאמן לקבוצה?' } %>
+<% end %>
+<% end %>
+
+
+<% end %>
+<% end %>

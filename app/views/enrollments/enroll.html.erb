@@ -1,0 +1,9 @@
+<div class="basic-container">
+
+    <h3>
+        רישום - <%= link_to @trainee.full_name, @trainee %>
+    </h3>
+
+    <%= render 'layouts/personal_calendar', trainee: @trainee, activities: @time_slots,
+                                            week_number: 1, show_toggle_button: true %>
+</div>

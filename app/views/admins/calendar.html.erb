@@ -1,0 +1,13 @@
+<div class="basic-container">
+    <%= month_calendar(events: @activities) do |date, activities| %>
+    <%= date %>
+
+    <% activities.each do |activity| %>
+    <% enrolled_color = "white" %>
+
+    <%= render 'layouts/activity_card', activity: activity, enrolled_color: enrolled_color %>
+
+    <% end %>
+    <% end %>
+
+</div>

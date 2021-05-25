@@ -1,0 +1,24 @@
+<div class="actions">
+    <% actions_helper(resource).each do |action| %>
+        <% if action.class==Array %>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-m sqs-block-button-element dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <%= action[0] %>
+                </button>
+                <ul class="dropdown-menu">
+                    <% action.each_with_index do |a, index| %>
+                        <% next if index==0 %>
+                            <li>
+                                <%= a %>
+                            </li>
+                            <% end %>
+            </div>
+
+
+            <% else %>
+                <%= action %>
+                    <% end %>
+                        <% end %>
+</div>
