@@ -2,10 +2,8 @@ class EnrollmentsController < ApplicationController
   
   before_action :set_trainee, only: [:cancel, :history]
 
-
   def enroll
-    @trainee = Trainee.find(params[:id])
-    @trainee_enrollment = @trainee.enrollments
+    @trainees = Trainee.where(active: true)
     @time_slots = TimeSlot.all
   end
 
@@ -27,18 +25,15 @@ class EnrollmentsController < ApplicationController
 
   def cancel
     slot = TimeSlot.find(params[:slot_id])
-    if slot.mother.contract_if_exists.rate_type == "monthly"
-      enrollment = Enrollment.cancel_group_enrollment(trainee_id: @trainee.id, activity_id: slot.mother.id)
-      redirect_back(fallback_location: @trainee)
+    if slot.mother.contract_if_exists.rate_type == 'monthly'
+      Enrollment.cancel_group_enrollment(trainee_id: @trainee.id, activity_id: slot.mother.id)
     else
       enrollment = Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id)
-      if enrollment.first.destroy
-        redirect_back(fallback_location: @trainee )
-      else
-        flash[:alert] = "השיעור ננעל על ידי מנהל, לא ניתן לשנות את הרישום לשיעור."
-        redirect_back(fallback_location: @trainee)
+      unless enrollment.first.destroy
+        flash[:alert] = 'השיעור ננעל על ידי מנהל, לא ניתן לשנות את הרישום לשיעור.'
       end
     end
+    redirect_back(fallback_location: @trainee)
   end
 
   def enroll_child

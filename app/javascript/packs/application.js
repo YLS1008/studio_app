@@ -13,6 +13,8 @@ import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
 import "datatables.net"
 import 'datatables.net-bs4'
+import 'select2'
+import 'select2-bootstrap-theme/dist/select2-bootstrap'
 
 
 // Stylesheets
@@ -25,10 +27,12 @@ import "../stylesheets/calendar"
 
 // Custom and vendor JS files
 require("../src/tableSearch")
+require("../src/enroll")
 
 
 // Static Assets
 require("../images/logo-small")
+require("../images/default_profile")
 
 
 Rails.start()

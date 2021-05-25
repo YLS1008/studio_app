@@ -1,9 +1,23 @@
+<div class="row">
+    <div class="basic-container">
+        <div class="actions" style="margin-bottom: 30px;">
+            <label for="select-trainees" >
+                <span style="color: white;">בחר מתאמנים לרישום</span> 
+                <select class="js-example-basic-multiple" multiple="multiple" id="select-trainees" name="trainees[]">
+                    <% @trainees.each do |trainee| %>
+                    <option value="<%= trainee.id %>" ><%= trainee.full_name %></option>
+                    <% end %>
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
 <div class="basic-container">
 
-    <h3>
-        רישום - <%= link_to @trainee.full_name, @trainee %>
-    </h3>
-
-    <%= render 'layouts/personal_calendar', trainee: @trainee, activities: @time_slots,
-                                            week_number: 1, show_toggle_button: true %>
+    <%= render 'layouts/calendar', activities: @time_slots,
+         week_number: 1, show_toggle_button: true,
+          date_begin: Date.today.beginning_of_week, show_date: true %>
+</div>
 </div>

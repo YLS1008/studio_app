@@ -1,37 +1,42 @@
-<% @show_toggle_button = show_toggle_button %>
-<%= week_calendar(events: activities, number_of_weeks: week_number,
-                    previous_link: events_ajax_previous_link, next_link: events_ajax_next_link) do |date, activities| %>
+<% @show_toggle_button=show_toggle_button %>
+    <%= week_calendar(events: activities, number_of_weeks: week_number, previous_link: events_ajax_previous_link,
+        next_link: events_ajax_next_link) do |date, activities| %>
 
-<% if show_date %>
-<%= date %>
-<% if admin_signed_in? %>
-<div>
-    <button class="btn btn-main dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span>משימות</span>
-    </button>
-    <ul class="dropdown-menu no-bullets" style="background-color: info;">
-        <% tasks.each do |task| %>
-        <% if task.due_date.to_date == date %>
-        <li>
-            <%= task.trainee.first + ' ' + task.trainee.last %> |<br> <%= task.content %> |<br> <%= task.due_date.to_date.strftime("%d/%m/%y") %> | <br>
-            <%= bootstrap_form_for(task, url: update_status_path, local: true) do |f| %>
-            <%= f.hidden_field :id, value: task.id %>
-            <%= f.hidden_field :trainee_id, value: task.trainee_id %>
-            <%= f.submit "סגירת משימה", class: "btn btn-main btn-sm" %>
-            <% end %>
-        </li>
-        <% end %>
-        <% end %>
-    </ul>
-</div>
-<% end %>
-<% end %>
+        <% if show_date %>
+            <%= date %>
+                <% if admin_signed_in? %>
+                    <div>
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span>משימות</span>
+                        </button>
+                        <ul class="dropdown-menu no-bullets" style="background-color: info;">
+                            <% tasks.each do |task| %>
+                                <% if task.due_date.to_date==date %>
+                                    <li>
+                                        <%= task.trainee.first + ' ' + task.trainee.last %> |<br>
+                                            <%= task.content %> |<br>
+                                                <%= task.due_date.to_date.strftime("%d/%m/%y") %> | <br>
+                                                    <%= bootstrap_form_for(task, url: update_status_path, local: true)
+                                                        do |f| %>
+                                                        <%= f.hidden_field :id, value: task.id %>
+                                                            <%= f.hidden_field :trainee_id, value: task.trainee_id %>
+                                                                <%= f.submit "סגירת משימה" ,
+                                                                    class: "btn btn-primary btn-sm" %>
+                                                                    <% end %>
+                                    </li>
+                                    <% end %>
+                                        <% end %>
+                        </ul>
+                    </div>
+                    <% end %>
+                        <% end %>
 
-<% activities.each do |activity| %>
+                            <% activities.each do |activity| %>
 
 
-<%= render 'layouts/activity_card', activity: activity, enrolled_color: "white" %>
+                                <%= render 'layouts/activity_card' , activity: activity, enrolled_color: "white" %>
 
 
-<% end %>
-<% end %>
+                                    <% end %>
+                                        <% end %>

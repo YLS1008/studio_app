@@ -1,7 +1,7 @@
 <div class="basic-container">
+    <h2><%= title %></h2>
     <div class="col"></div>
     <div class="col-10">
-        <h2>רישום מתאמנ/ת חדש/ה</h2><br>
         <%= bootstrap_form_with(model: trainee, local: true, layout: :horizontal ) do |f| %>
 
             <% if trainee.errors.any? %>

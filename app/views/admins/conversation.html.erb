@@ -2,20 +2,24 @@
     <div class="row">
         <aside class="col-md-3">
             <section>
-                <%= image_tag 'default_profile.jpg',
-                     loading: "lazy", alt: @trainee.first, class: "rounded-full" %>
+                <%= image_tag 'default_profile.jpg' , loading: "lazy" , alt: @trainee.first, class: "rounded-full" %>
             </section>
             <section class="name">
-                <%= @trainee.first.capitalize %> <%= @trainee.last.capitalize %>
+                <%= @trainee.first.capitalize %>
+                    <%= @trainee.last.capitalize %>
             </section>
         </aside>
 
         <div class="col-md-8">
             <div class="profile-stats">
                 <ul class="no-bullets">
-                    <li class="menu-item">דואר אלקטרוני | <%= @trainee.email %></li>
-                    <li class="menu-item">מספר טלפון | <%= @trainee.phone %></li>
-                    <li class="menu-item"><%= link_to "חזרה לפרופיל", trainee_path(@trainee), class: "btn btn-main" %></li>
+                    <li class="menu-item">דואר אלקטרוני | <%= @trainee.email %>
+                    </li>
+                    <li class="menu-item">מספר טלפון | <%= @trainee.phone %>
+                    </li>
+                    <li class="menu-item">
+                        <%= link_to "חזרה לפרופיל" , trainee_path(@trainee), class: "btn btn-primary" %>
+                    </li>
 
                 </ul>
             </div>
@@ -26,54 +30,60 @@
         <div class="profile-stats">
             <h3 style=" margin-top: 5px;">
                 משימות פתוחות
-                <%= link_to "משימות סגורות", closed_tasks_path(id: @trainee.id), class: "btn btn-main" %>
+                <%= link_to "משימות סגורות" , closed_tasks_path(id: @trainee.id), class: "btn btn-primary" %>
             </h3>
             <div class="basic-container">
 
                 <%= bootstrap_form_for(@task, url: add_task_path, local: true) do |f| %>
-                <%= f.date_field :due_date, label: "תאריך סיום" %>
-                <%= f.text_area :content, label: "משימה" %>
-                <%= f.hidden_field :trainee_id, value: @trainee.id %>
-                <%= f.submit "צור משימה", class: "btn btn-primary" %>
-                <% end %>
+                    <%= f.date_field :due_date, label: "תאריך סיום" %>
+                        <%= f.text_area :content, label: "משימה" %>
+                            <%= f.hidden_field :trainee_id, value: @trainee.id %>
+                                <%= f.submit "צור משימה" , class: "btn btn-primary" %>
+                                    <% end %>
             </div>
             <% if @task_logs.empty? %>
-            <h3>
-                אין משימות פתוחות
-            </h3>
-            <% else %>
-            <div class="table-responsive" style="direction: rtl;">
-                <table class="table table-hover table-bordered" style="background-color: white;">
-                    <thead class="thead-dark" style="color: black; ">
-                        <tr>
-                            <th class="text-center"> משימה </th>
-                            <th class="text-center">תאריך פתיחה </th>
-                            <th class="text-center">דדליין </th>
-                            <th colspan="1"></th>
-                        </tr>
-                    </thead>
+                <h3>
+                    אין משימות פתוחות
+                </h3>
+                <% else %>
+                    <div class="table-responsive" style="direction: rtl;">
+                        <table class="table table-hover table-bordered" style="background-color: white;">
+                            <thead class="thead-dark" style="color: black; ">
+                                <tr>
+                                    <th class="text-center"> משימה </th>
+                                    <th class="text-center">תאריך פתיחה </th>
+                                    <th class="text-center">דדליין </th>
+                                    <th colspan="1"></th>
+                                </tr>
+                            </thead>
 
-                    <tbody style="color: black;">
-                        <% @task_logs.each do |log| %>
-                        <tr>
-                            <td><%= simple_format(log.content) %></td>
-                            <td><%= log.created_at.strftime("%d.%m.%y") %></td>
-                            <td><%= log.due_date.strftime("%d.%m.%y") %></td>
-                            <td>
-                                <%= bootstrap_form_for(log, url: update_status_path, local: true) do |f| %>
-                                <%= f.hidden_field :id, value: log.id %>
-                                <%= f.hidden_field :trainee_id, value: @trainee.id %>
-                                <%= f.submit "סגירת משימה", class: "btn btn-main" %>
-                            </td>
+                            <tbody style="color: black;">
+                                <% @task_logs.each do |log| %>
+                                    <tr>
+                                        <td>
+                                            <%= simple_format(log.content) %>
+                                        </td>
+                                        <td>
+                                            <%= log.created_at.strftime("%d.%m.%y") %>
+                                        </td>
+                                        <td>
+                                            <%= log.due_date.strftime("%d.%m.%y") %>
+                                        </td>
+                                        <td>
+                                            <%= bootstrap_form_for(log, url: update_status_path, local: true) do |f| %>
+                                                <%= f.hidden_field :id, value: log.id %>
+                                                    <%= f.hidden_field :trainee_id, value: @trainee.id %>
+                                                        <%= f.submit "סגירת משימה" , class: "btn btn-primary" %>
+                                        </td>
 
-                            <% end %>
+                                        <% end %>
 
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-            <% end %>
+                                    </tr>
+                                    <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% end %>
         </div>
     </div>
 
@@ -87,36 +97,40 @@
 
                 <%= bootstrap_form_for(@log, url: log_conversation_path, local: true) do |f| %>
 
-                <%= f.text_area :content, label: "תוכן השיחה" %>
-                <%= f.hidden_field :trainee_id, value: @trainee.id %>
-                <%= f.submit "הזן שיחה", class: "btn btn-primary" %>
-                <% end %>
+                    <%= f.text_area :content, label: "תוכן השיחה" %>
+                        <%= f.hidden_field :trainee_id, value: @trainee.id %>
+                            <%= f.submit "הזן שיחה" , class: "btn btn-primary" %>
+                                <% end %>
             </div>
             <% if @conversation_logs.nil? %>
-            <h3>
-                לא קיימות רשומות של שיחות עבור לקוח זה
-            </h3>
-            <% else %>
-            <div class="table-responsive" style="direction: rtl;">
-                <table class="table table-hover table-bordered" style="background-color: white;">
-                    <thead class="thead-dark" style="color: black;">
-                        <tr>
-                            <th class="text-center">תאריך השיחה </th>
-                            <th class="text-center">תוכן השיחה </th>
-                        </tr>
-                    </thead>
+                <h3>
+                    לא קיימות רשומות של שיחות עבור לקוח זה
+                </h3>
+                <% else %>
+                    <div class="table-responsive" style="direction: rtl;">
+                        <table class="table table-hover table-bordered" style="background-color: white;">
+                            <thead class="thead-dark" style="color: black;">
+                                <tr>
+                                    <th class="text-center">תאריך השיחה </th>
+                                    <th class="text-center">תוכן השיחה </th>
+                                </tr>
+                            </thead>
 
-                    <tbody style="color: black;">
-                        <% @conversation_logs.each do |log| %>
-                        <tr>
-                            <td><%= log.created_at.strftime("%d.%m.%y") %></td>
-                            <td><%= simple_format(log.content) %></td>
-                        </tr>
-                        <% end %>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
+                            <tbody style="color: black;">
+                                <% @conversation_logs.each do |log| %>
+                                    <tr>
+                                        <td>
+                                            <%= log.created_at.strftime("%d.%m.%y") %>
+                                        </td>
+                                        <td>
+                                            <%= simple_format(log.content) %>
+                                        </td>
+                                    </tr>
+                                    <% end %>
+                                        <% end %>
+                            </tbody>
+                        </table>
+                    </div>
         </div>
     </div>
 
