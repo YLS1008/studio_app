@@ -1,0 +1,7 @@
+<div style="text-align:center; margin-bottom:15px;">
+  <% relevant_months(activities).each do |month, month_num| %>
+    <% if current_admin then path = all_salaries_path(view_month: month_num)
+       elsif current_instructor then path = salary_path(view_month: month_num) end %>
+    <%= link_to month, path, class: "btn btn-primary btn-m sqs-block-button-element" %>
+  <% end %>
+</div>

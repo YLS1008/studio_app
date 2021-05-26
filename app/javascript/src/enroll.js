@@ -9,5 +9,9 @@ $(document).on("turbolinks:before-cache", function () {
   
   // initialize select2 on turbolinks:load
   $(document).on("turbolinks:load", function () {
-    $('#select-trainees').select2();
+    $('#select-trainees').select2({
+        multiple: true
+    });
   });
+
+

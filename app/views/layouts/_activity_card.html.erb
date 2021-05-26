@@ -20,56 +20,62 @@
                             <div class="lock-circle">
                                 <i class="fas fa-lock"></i>
                             </div>
-                            <% end %>
-                                <div class="btn-group">
-                                    <button type="button"
-                                        class="btn btn-calendar btn-m sqs-block-button-element dropdown-toggle"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        מתאמנים - <%= activity.trainees.count %>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <% activity.trainees.each do |trainee| %>
-                                            <li>
-                                                <%= link_to trainee.full_name, trainee, class: "btn btn-calendar btn-sm"
-                                                    %>
-                                            </li>
-                                            <% end %>
-                                </div>
-                                <br>
-                                <% if current_page_helper?({'admins'=> ['dashboard', 'calendar'] }) %>
-                                    <div class="btn-group">
-                                        <button type="button"
-                                            class="btn btn-calendar btn-sm sqs-block-button-element dropdown-toggle"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            פעולות
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <%= link_to "שינוי שעת שיעור" , change_slot_time_path(id: activity.id),
-                                                    class: "btn btn-calendar btn-sm" %>
-                                            </li>
-                                            <li>
-                                                <%= link_to "מחיקת שיעור ספציפי" , activity,
-                                                    class: "btn btn-calendar btn-sm" , method: :delete, data: {
-                                                    confirm: 'האם למחוק את השיבוץ לשיעור?' } %>
-                                            </li>
-                                            <li>
-                                                <%= link_to "מחיקת כל השיבוצים" , destroy_slots_path(activity),
-                                                    class: "btn btn-calendar btn-sm" , method: :delete, data: {
-                                                    confirm: 'זהירות! אישור הפעולה ימחק את כל שיבוצי השיעור מהלו"ז.' }
-                                                    %>
-                                            </li>
+                        <% else %>
+                              <% if current_page_helper?({'enrollments'=> ['enroll'] }) %>
+                                <%= form.button 'רשום מתאמנים', value: activity.id, name: 'slot',
+                                                class: 'btn btn-calendar btn-m sqs-block-button-element', type: 'submit' %>
+                              <% end %>
+                        <% end %>
+                                        <div class="btn-group">
+                                            <button type="button"
+                                                class="btn btn-calendar btn-m sqs-block-button-element dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                מתאמנים - <%= activity.trainees.count %>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <% activity.trainees.each do |trainee| %>
+                                                    <li>
+                                                        <%= link_to trainee.full_name, trainee,
+                                                            class: "btn btn-calendar btn-sm" %>
+                                                    </li>
+                                                    <% end %>
+                                            </ul>
+                                        </div>
+                                        <br>
+                                        <% if current_page_helper?({'admins'=> ['dashboard', 'calendar'] }) %>
+                                            <div class="btn-group">
+                                                <button type="button"
+                                                    class="btn btn-calendar btn-sm sqs-block-button-element dropdown-toggle"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    פעולות
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <%= link_to "שינוי שעת שיעור" , change_slot_time_path(id:
+                                                            activity.id), class: "btn btn-calendar btn-sm" %>
+                                                    </li>
+                                                    <li>
+                                                        <%= link_to "מחיקת שיעור ספציפי" , activity,
+                                                            class: "btn btn-calendar btn-sm" , method: :delete, data: {
+                                                            confirm: 'האם למחוק את השיבוץ לשיעור?' } %>
+                                                    </li>
+                                                    <li>
+                                                        <%= link_to "מחיקת כל השיבוצים" , destroy_slots_path(activity),
+                                                            class: "btn btn-calendar btn-sm" , method: :delete, data: {
+                                                            confirm: 'זהירות! אישור הפעולה ימחק את כל שיבוצי השיעור מהלו"ז.'
+                                                            } %>
+                                                    </li>
 
-                                            <% if activity.locked then lock_link_text="שחרור נעילה" else
-                                                lock_link_text="נעילת שיעור" end %>
-                                                <li>
-                                                    <%= link_to lock_link_text, lock_time_slot_path(id: activity.id),
-                                                        class: "btn btn-calendar btn-sm" %>
-                                                </li>
-                                        </ul>
-                                    </div>
-                                    <% end %>
-                                        <% end %>
+                                                    <% if activity.locked then lock_link_text="שחרור נעילה" else
+                                                        lock_link_text="נעילת שיעור" end %>
+                                                        <li>
+                                                            <%= link_to lock_link_text, lock_time_slot_path(id:
+                                                                activity.id), class: "btn btn-calendar btn-sm" %>
+                                                        </li>
+                                                </ul>
+                                            </div>
+                                            <% end %>
+                                                <% end %>
 
             </div>
 

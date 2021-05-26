@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     scope '/enrollments' do
       get '/enroll', to: 'enrollments#enroll', as: :enroll
       get '/cancel', to: 'enrollments#cancel', as: :cancel_enrollment
-      get '/finalize', to: 'enrollments#finalize', as: :finalize
+      post '/finalize', to: 'enrollments#finalize', as: :finalize
       get '/enroll_child', to: 'enrollments#enroll_child', as: :enroll_child
       get '/enroll_via_slot', to: 'enrollments#enroll_via_slot', as: :enroll_via_slot
       patch '/finalize_for_slot', to: 'enrollments#finalize_for_slot', as: :finalize_for_slot

@@ -8,19 +8,24 @@ class EnrollmentsController < ApplicationController
   end
 
   def finalize
-    @slot = TimeSlot.find(params[:slot_id])
-    if ["per_head", "gradient", "hourly", "undefined"].include? @slot.mother.contract_if_exists.rate_type
-      @enrollment = Enrollment.new(trainee_id: params[:trainee_id], time_slot_id: params[:slot_id])
-      if @enrollment.save
-        redirect_back(fallback_location: enroll_path(id: params[:trainee_id]))
+    @slot = TimeSlot.find(params[:slot])
+    monthly = if @slot.mother.contract_if_exists.rate_type == "monthly" then true else false end
+    names_string = ""
+    params[:trainee_ids].each do |id|
+      next if id == ''
+
+      names_string + ' ,' + Trainee.find(id).full_name
+      if monthly
+        Enrollment.enroll_to_group(@slot.mother.id, id)
       else
-        flash[:alert] = "השיעור ננעל על ידי מנהל, לא ניתן לשנות את הרישום לשיעור."
-        redirect_to calendar_path
+        Enrollment.create!(trainee_id: id, time_slot_id: @slot.id)
       end
-    elsif @slot.mother.contract_if_exists.rate_type == "monthly"
-       Enrollment.enroll_to_group(@slot.mother.id, params[:trainee_id])
-       redirect_back(fallback_location: enroll_path(id: params[:trainee_id]))
+
     end
+    flash[:notice] = 'בוצע רישום של' + names_string + ' לשיעור' +
+        @slot.mother.name + ' בתאריך' + @slot.start_time.strftime("%d / %m / %y")
+    redirect_back(fallback_location: enroll_path)
+
   end
 
   def cancel

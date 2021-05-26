@@ -1,14 +1,11 @@
 <div class="row">
     <div class="basic-container">
-        <div class="enroll-select" style="margin-bottom: 30px;">
-            <label for="select-trainees" >
-                <span style="color: white;">בחר מתאמנים לרישום</span> 
-                <select  multiple="multiple" id="select-trainees" name="trainees[]" style="width: 80%;">
-                    <% @trainees.each do |trainee| %>
-                    <option value="<%= trainee.id %>" ><%= trainee.full_name %></option>
-                    <% end %>
-                </select>
-            </label>
+        <div class="enroll-select" style="margin-bottom: 30px; background-color: black">
+
+              <%= bootstrap_form_tag(url: finalize_path, local: true) do |f| %>
+            <%= f.collection_select :trainee_ids, @trainees, :id, :full_name, { class: 'select2' },
+                                    label: "בחר מתאמנים לרישום", id: "select-trainees", multiple: true %>
+
         </div>
     </div>
 </div>
@@ -18,6 +15,7 @@
 
     <%= render 'layouts/calendar', activities: @time_slots,
          week_number: 1, show_toggle_button: true,
-          date_begin: Date.today.beginning_of_week, show_date: true %>
+          date_begin: Date.today.beginning_of_week, show_date: true, form: f %>
 </div>
 </div>
+<% end %>

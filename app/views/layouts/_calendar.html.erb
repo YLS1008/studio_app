@@ -9,7 +9,8 @@
 <% activities.each do |activity| %>
 
 
-<%= render 'layouts/activity_card', activity: activity, enrolled_color: "white" %>
+<%= render 'layouts/activity_card', activity: activity, enrolled_color: "white",
+           form: if current_page_helper?({'enrollments'=> ['enroll'] }) then form else nil end %>
 
 
 <% end %>

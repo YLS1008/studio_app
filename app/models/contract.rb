@@ -4,7 +4,6 @@ class Contract < ApplicationRecord
   enum rate_type: [:undefined, :hourly, :per_head, :gradient, :monthly]
 
   def calc_payout(arr)
-    byebug
     payment_hash = {}
     rate = self.rate_type
     case self.rate_type
