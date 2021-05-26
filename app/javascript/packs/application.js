@@ -18,6 +18,7 @@ import "../stylesheets/general"
 import "../stylesheets/toolbar"
 import "../stylesheets/mobile"
 import "../stylesheets/calendar"
+import "../stylesheets/custom_accordion.scss"
 
 
 // Custom and vendor JS files

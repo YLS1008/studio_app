@@ -1,7 +1,9 @@
 class AdminsController < ApplicationController
   def dashboard
     @activities = TimeSlot.all
-    @open_tasks = Task.where(status: "open")
+    @past_unlocked_slots = TimeSlot.where(locked: false,
+                                          start_time: ((Date.today.beginning_of_month - 1.month)..Date.today))
+    @today_slots = TimeSlot.where(start_time: Date.today.beginning_of_day..Date.today.end_of_day)
   end
 
   def all_instructors

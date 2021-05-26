@@ -1,8 +1,105 @@
 <div class="basic-container">
-    TBD - Daily Summary
+    <h2>
+      סגירת שיעורים קודמים
+    </h2>
+    <% if @past_unlocked_slots.empty? %>
+    <h3>
+      הכל מעודכן, כל הכבוד
+    </h3>
+    <% else %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel-body">
+          <table class="table table-hover table-bordered" style="background-color: white; border-collapse: collapse;">
+            <thead class="thead-dark">
+            <tr>
+              <th class="text-center"> שם השיעור </th>
+              <th class="text-center"> תאריך השיעור </th>
+              <th class="text-center"> שם המדריך </th>
+              <th class="text-center"> פעולות </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @past_unlocked_slots.each_with_index do |activity, index1| %>
+              <% target = "extra" + index1.to_s %>
+              <tr style=<%= 'font-weight: bold; color: black; background-color:' + activity.mother.instructor.color + ';' %>>
+              <td><%= activity.mother.name %></td>
+              <td><%= activity.start_time.strftime("%d/%m/%y") %></td>
+              <td><%= activity.mother.instructor.full_name %></td>
+              <td >
+                <span class="btn btn-primary btn-m">
+                  <i class="fas fa-plus" data-bs-toggle="collapse" data-bs-target=<%= "." + target %>> פירוט מתאמנים </i>
+                  </span>
+                |
+                <%= link_to 'נעילת שיעור', lock_time_slot_path(id: activity.id),
+                                                                              class: "btn btn-primary btn-m" %>
+              </td>
+              </tr>
+              <% activity.trainees.each_with_index do |trainee, index2| %>
+                <tr>
+                  <td class="hiddenRow">
+                    <div class="collapse <%= target %>"><%= index2 %></div>
+                  </td>
+                  <td class="hiddenRow">
+                    <div class="collapse <%= target %>"><%= trainee.full_name %></div>
+                  </td>
+                  <td class="hiddenRow">
+                    <div class="collapse <%= target %>">TBD - payment type</div>
+                  </td>
+                  <td class="hiddenRow">
+                    <div class="collapse <%= target %>">
+                      <%= link_to 'בטל רישום', cancel_enrollment_path(trainee_id: trainee.id, slot_id: activity.id),
+                                  class: "btn btn-primary btn-sm" %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+<div class="basic-container">
+  <h2>
+    השיעורים של היום
+  </h2>
+  <div class="accordion" id="accordionExample">
+    <% @today_slots.each_with_index  do |slot, index| %>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id=<%= 'heading' + index.to_s %>>
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target=<%= '#collapse'+index.to_s %> aria-controls=<% '#collapse'+index.to_s %>>
+            <%= slot.mother.name + ' בשעה ' + slot.start_time.strftime("%H:%M") + ' עם ' + slot.mother.instructor.full_name %>
+          </button>
+        </h2>
+      </div>
+      <div class="accordion-collapse collapse" aria-labelledby=<%= 'heading' + index.to_s %> data-bs-parent="#accordionExample" id= <%= 'collapse'+index.to_s %>>
+        <div class="accordion-body">
+            <aside class="col-md-4">
+              <section class="profile-stats">
+                  <ul class="no-bullets">
+                    <% slot.trainees.each do |trainee| %>
+
+                    <li>
+                      <%= link_to trainee.full_name, trainee, class: 'btn btn-primary btn-md' %>
+                    </li>
+
+                    <% end %>
+                  </ul>
+              </section>
+            </aside>
+            <div class="col-md-8">
+
+            </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </div>
-
-
 
 <div class="basic-container">
     <%= render 'layouts/calendar' , activities: @activities, week_number: 1, date_begin: Date.today, show_toggle_button:
