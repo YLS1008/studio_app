@@ -20,10 +20,7 @@
                 <% @need_to_pay.each do |trainee| %>
                     <tr>
                         <td>
-                            <%= link_to trainee.first + ' ' + trainee.last, trainee, class: "btn btn-primary" %>
-                        </td>
-                        <td>
-                            <%= trainee.last %>
+                            <%= link_to trainee.full_name, trainee, class: "btn btn-primary" %>
                         </td>
                         <td>
                             <%= link_to trainee.phone, "https://wa.me/#{trainee.get_international_number}" , target:
@@ -68,7 +65,7 @@
                             <%= payment.trainee.last %>
                         </td>
                         <td>
-                            <%= link_to payment.trainee.first, "https://wa.me/#{payment.trainee.get_international_number}" ,
+                            <%= link_to payment.trainee.phone, "https://wa.me/#{payment.trainee.get_international_number}" ,
                                 target: :_blank %>
                         </td>
                         <td>
