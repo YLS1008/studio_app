@@ -105,6 +105,6 @@
 </div>
 
 <div class="basic-container">
-    <%= render 'layouts/calendar' , activities: @activities, week_number: 1, date_begin: Date.today, show_toggle_button:
+    <%= render 'layouts/calendar' , activities: @activities, week_number: 1, date_begin: @start_date, show_toggle_button:
         true, show_date: true %>
 </div>

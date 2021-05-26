@@ -63,7 +63,7 @@ module ApplicationHelper
         link_to('Dashboard', admin_root_path, class: 'btn btn-primary btn-m sqs-block-button-element'),
         link_to('Analytics', placeholder_path, class: 'btn btn-primary btn-m sqs-block-button-element'),
         link_to('רישום', enroll_path, class: 'btn btn-primary btn-m sqs-block-button-element'),
-        link_to('תשלומי מדריכים', all_salaries_path, class: 'btn btn-primary btn-m sqs-block-button-element'),
+        link_to('תשלומי מדריכים', placeholder_path, class: 'btn btn-primary btn-m sqs-block-button-element'),
         link_to('לוח שנה', calendar_path, class: 'btn btn-primary btn-m sqs-block-button-element'),
         ['רשימות',
          link_to('מתאמנים', trainees_path, class: 'dropdown-item btn btn-primary btn-m sqs-block-button-element'),

@@ -4,6 +4,7 @@ class AdminsController < ApplicationController
     @past_unlocked_slots = TimeSlot.where(locked: false,
                                           start_time: ((Date.today.beginning_of_month - 1.month)..Date.today))
     @today_slots = TimeSlot.where(start_time: Date.today.beginning_of_day..Date.today.end_of_day)
+    if params[:start_date].nil? then @start_date = Date.today.beginning_of_week else @start_date = params[:start_date] end
   end
 
   def all_instructors
