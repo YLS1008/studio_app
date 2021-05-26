@@ -113,7 +113,7 @@
                                             <%= daynum_to_hebrew_day(activity.start_time.wday) %>
                                         </td>
                                         <td>
-                                            <%= activity.get_clean_datetime(:time) %>
+                                            <%= activity.start_time.strftime("%H:%M") %>
                                         </td>
                                         <td>
                                             <%= link_to 'בטל רישום' , cancel_enrollment_path(slot_id: activity.id,

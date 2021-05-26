@@ -1,38 +1,28 @@
-<% provide(:title, "Instructor Profile" ) %>
+<div id='tableA' style="display:none;">
+  <table class="table table-hover table-bordered" id="searchableB"
+         style="background-color: white; direction: rtl;">
+    <thead class="thead-dark">
+    <tr>
+      <th class="text-center">שם השיעור</th>
+      <th class="text-center">יום</th>
+      <th class="text-center">תאריך</th>
+    </tr>
+    </thead>
 
-
-    <div class="basic-container">
-
-        <%= image_tag @activity.displayed_image, loading: "lazy" , alt: @activity.name, class: "img-circle img-fluid" %>
-
-            <div class="profile-stats">
-                <ul class="no-bullets">
-                    <h4>
-                        <li class="menu-item">
-                            <%= @activity.name %>
-                        </li>
-                    </h4>
-                    <h4>
-                        <li class="menu-item">
-                            <%=link_to @activity.instructor.first + ' ' + @activity.instructor.last,
-                                @activity.instructor %>
-                        </li>
-                    </h4>
-                    <h4>
-                        <li class="menu-item">משך השיעור | <%= @activity.duration %> דקות</li>
-                    </h4>
-                    <li class="menu-item">
-                        <%=simple_format(@activity.description) %>
-                    </li>
-
-                </ul>
-                <h4>
-                    השיעורים הקרובים
-                </h4>
-                <div class="table-responsive" style="direction: rtl;">
-                    <%= render 'layouts/calendar' , activities: @time_slots, week_number: 1, date_begin:
-                        Date.today.beginning_of_week, show_toggle_button: false, show_date: true %>
-                        <% if admin_signed_in? %>
-                            <%= link_to "הכנס פעילות ללוח שנה" , new_time_slot_path(id: @activity.id),
-                                class: "btn btn-primary" %>
-                                <% else %>
+    <tbody>
+    <% @past_time_slots.each do |slot| %>
+      <tr>
+        <td>
+          <%= slot.mother.name %>
+        </td>
+        <td>
+          <%= slot.start_time.strftime("%H:%M") %>
+        </td>
+        <td>
+          <%= slot.start_time.strftime("%d / %m / %y") %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
