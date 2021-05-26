@@ -10,6 +10,7 @@ module StudioApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.beginning_of_week = :sunday
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -18,6 +19,5 @@ module StudioApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.beginning_of_week = :sunday
   end
 end
