@@ -1,8 +1,8 @@
 <div class="basic-container">
     <div class="buttons">
-        <%= submit_tag "חשבונות פתוחים" , :type=> 'button', :id => "switchA" %>
-            <%= submit_tag "תשלומי חוגים" , :type=> 'button', :id => "switchC" %>
-                <%= submit_tag "כל התשלומים" , :type=> 'button', :id => "switchB" %>
+        <%= submit_tag "חשבונות פתוחים" , type: 'button', id: "switchA", class: "btn btn-primary btn-lg sqs-block-button-element" %>
+        <%= submit_tag "תשלומי חוגים" , type: 'button', id: "switchC", class: "btn btn-primary btn-lg sqs-block-button-element" %>
+        <%= submit_tag "כל התשלומים" , type: 'button', id: "switchB", class: "btn btn-primary btn-lg sqs-block-button-element" %>
     </div>
     <div id='tableA' style="display:none;">
         <table class="table table-hover table-bordered" id="searchableB"
@@ -68,8 +68,7 @@
                             <%= payment.trainee.last %>
                         </td>
                         <td>
-                            <%= link_to
-                                payment.trainee.first, "https://wa.me/#{payment.trainee.get_international_number}" ,
+                            <%= link_to payment.trainee.first, "https://wa.me/#{payment.trainee.get_international_number}" ,
                                 target: :_blank %>
                         </td>
                         <td>
@@ -93,7 +92,7 @@
             <div class="col-md-12">
                 <div class="panel-body">
                     <table class="table table-hover table-bordered"
-                        style="background-color: white; border-collapseLcollapse;">
+                        style="background-color: white; border-collapse: collapse;">
                         <thead class="thead-dark">
                             <tr>
                                 <th class="text-center"> שם הקבוצה </th>
@@ -106,8 +105,8 @@
                         <tbody>
                             <% @monthly_activities.each_with_index do |activity, index1| %>
                                 <% target="extra" + index1.to_s %>
-                                    <tr data-toggle="collapse" data-target=<%="." + target %> style="font-weight: bold;
-                                        color: black; background-color: <%= activity.instructor.color %>;">
+                                    <tr data-bs-toggle="collapse" data-bs-target=<%="." + target %> style=<%= "font-weight: bold;
+                                        color: black; background-color: " + activity.instructor.color + ';' %>>
                                             <% payment_hash=activity.payment_hash %>
                                                 <td>
                                                     <%= activity.name %>

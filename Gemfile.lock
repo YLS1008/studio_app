@@ -112,6 +112,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (4.0.4)
     childprocess (3.0.0)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
@@ -127,6 +128,8 @@ GEM
       thor (>= 0.14.0, < 2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.2.2)
+      activesupport (>= 5)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -250,9 +253,6 @@ GEM
     sqlite3 (1.4.2)
     thor (1.1.0)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
@@ -290,9 +290,11 @@ DEPENDENCIES
   bootstrap_form
   byebug
   capybara (>= 3.26)
+  chartkick
   devise
   faker!
   figaro
+  groupdate
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
@@ -307,7 +309,6 @@ DEPENDENCIES
   simple_calendar
   spring
   sqlite3 (~> 1.4)
-  turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers

@@ -3,6 +3,15 @@ class TimeSlot < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :trainees, through: :enrollments
 
+  def self.graph_slots(last_slot)
+    prev_sister_slots_ids = []
+    6.times do |n|
+      curr_slot_as_arr = TimeSlot.find_by(activity_id: last_slot.mother.id, start_time: last_slot.start_time - n.week)
+      if curr_slot_as_arr.nil? then next else prev_sister_slots_ids.push(curr_slot_as_arr.id) end
+    end
+    return TimeSlot.find(prev_sister_slots_ids)
+  end
+
   def self.get_sister_slots(id)
     slots_to_return = []
     curr_slot = TimeSlot.find(id)
@@ -21,13 +30,6 @@ class TimeSlot < ApplicationRecord
       slots_to_return.push(next_slot)
     end
   end
-
-
-  def get_clean_datetime(param)
-    self.start_time.to_s(param)
-  end
-
-
 
   def duration
     duration_in_seconds = Activity.find(self.activity_id).duration * 60

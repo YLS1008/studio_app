@@ -79,22 +79,25 @@
       </div>
       <div class="accordion-collapse collapse" aria-labelledby=<%= 'heading' + index.to_s %> data-bs-parent="#accordionExample" id= <%= 'collapse'+index.to_s %>>
         <div class="accordion-body">
-            <aside class="col-md-4">
+          <div class="row">
+            <aside class="col col-md-4">
               <section class="profile-stats">
                   <ul class="no-bullets">
                     <% slot.trainees.each do |trainee| %>
-
                     <li>
                       <%= link_to trainee.full_name, trainee, class: 'btn btn-primary btn-md' %>
                     </li>
-
                     <% end %>
                   </ul>
               </section>
             </aside>
-            <div class="col-md-8">
-
+            <div class="col col-md-8">
+              <div style="background-color: white; margin: 0 auto">
+                <% a = TimeSlot.graph_slots(slot)  %>
+              <%= line_chart TimeSlot.graph_slots(slot).collect{|s| [s[:start_time], s.trainees.count]} %>
+              </div>
             </div>
+          </div>
         </div>
       </div>
       <% end %>
