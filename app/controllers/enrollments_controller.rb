@@ -5,6 +5,7 @@ class EnrollmentsController < ApplicationController
   def enroll
     @trainees = Trainee.where(active: true)
     @time_slots = TimeSlot.all
+    if params[:start_date].nil? then @start_date = Date.today.beginning_of_week else @start_date = params[:start_date] end
   end
 
   def finalize

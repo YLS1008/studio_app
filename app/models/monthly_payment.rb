@@ -14,6 +14,7 @@ class MonthlyPayment < ApplicationRecord
       end
     end
 
+
     return status_hash
   end
 end
