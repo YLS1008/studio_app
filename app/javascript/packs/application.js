@@ -3,11 +3,6 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
-
 // Packages
 import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
@@ -26,14 +21,20 @@ import "../stylesheets/calendar"
 
 
 // Custom and vendor JS files
-require("../src/tableSearch")
-require("../src/enroll")
+import "../src/tableSearch"
+import "../src/enroll"
 
 
 // Static Assets
 require("../images/logo-small")
 require("../images/default_profile")
 
+
+// Rails default imports
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
 
 Rails.start()
 Turbolinks.start()

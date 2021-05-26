@@ -1,9 +1,9 @@
 <div class="row">
     <div class="basic-container">
-        <div class="actions" style="margin-bottom: 30px;">
+        <div class="enroll-select" style="margin-bottom: 30px;">
             <label for="select-trainees" >
                 <span style="color: white;">בחר מתאמנים לרישום</span> 
-                <select class="js-example-basic-multiple" multiple="multiple" id="select-trainees" name="trainees[]">
+                <select  multiple="multiple" id="select-trainees" name="trainees[]" style="width: 80%;">
                     <% @trainees.each do |trainee| %>
                     <option value="<%= trainee.id %>" ><%= trainee.full_name %></option>
                     <% end %>
