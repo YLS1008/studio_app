@@ -1,7 +1,7 @@
 class Contract < ApplicationRecord
   belongs_to :activity
 
-  enum rate_type: [:undefined, :hourly, :per_head, :gradient, :monthly]
+  enum rate_type: [:undefined, :hourly, :per_head, :gradient, :monthly, :personal]
 
   def calc_payout(arr)
     payment_hash = {}

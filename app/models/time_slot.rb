@@ -44,7 +44,7 @@ class TimeSlot < ApplicationRecord
     if q_type == "homepage"
       start_date = Date.today.beginning_of_week
       end_date = start_date + 2.week
-      return TimeSlot.where(start_time: (start_date..end_date)).select {|x| x.mother.contract_if_exists.rate_type != "hourly"}
+      return TimeSlot.where(start_time: (start_date..end_date)).select {|x| x.mother.contract_if_exists.rate_type != "personal"}
     end
   end
 
