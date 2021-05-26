@@ -22,6 +22,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem "rubocop"
 end
 
 group :test do
@@ -45,6 +46,6 @@ gem "bootstrap_form"
 gem "activeresource"
 gem "figaro"
 gem 'faker',   :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-gem "rubocop"
+
 gem 'groupdate'
 gem 'chartkick'
