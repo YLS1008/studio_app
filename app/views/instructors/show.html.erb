@@ -4,7 +4,7 @@
             <aside class="col-md-3">
                 <div style="background-color: transparent; display: block; text-align: center; margin-top: 5px;">
 
-                    <%= image_tag @instructor.displayed_image, loading: "lazy" , alt: @instructor.first,
+                    <%= image_pack_tag @instructor.displayed_image, loading: "lazy" , alt: @instructor.first,
                         class: "rounded-full" , style: "border-radius: 10%" %>
                 </div>
                 <section class="name">
@@ -16,7 +16,7 @@
             <div class="col-md-8">
                 <div class="profile-stats">
                     <% if @instructor.activities.exists? %>
-                        <%= image_tag @instructor.displayed_logo, loading: "lazy" , alt:
+                        <%= image_pack_tag @instructor.displayed_logo, loading: "lazy" , alt:
                             @instructor.activities.first.name, class: "img-circle img-fluid" %>
                             <% end %>
                                 <ul class="no-bullets">

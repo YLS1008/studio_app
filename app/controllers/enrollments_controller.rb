@@ -15,16 +15,14 @@ class EnrollmentsController < ApplicationController
     params[:trainee_ids].each do |id|
       next if id == ''
 
-      names_string + ' ,' + Trainee.find(id).full_name
       if monthly
-        Enrollment.enroll_to_group(@slot.mother.id, id)
+        Enrollment.enroll_to_group(@slot, id)
       else
         Enrollment.create!(trainee_id: id, time_slot_id: @slot.id)
       end
 
     end
-    flash[:notice] = 'בוצע רישום של' + names_string + ' לשיעור' +
-        @slot.mother.name + ' בתאריך' + @slot.start_time.strftime("%d / %m / %y")
+
     redirect_back(fallback_location: enroll_path)
 
   end
@@ -32,7 +30,7 @@ class EnrollmentsController < ApplicationController
   def cancel
     slot = TimeSlot.find(params[:slot_id])
     if slot.mother.contract_if_exists.rate_type == 'monthly'
-      Enrollment.cancel_group_enrollment(trainee_id: @trainee.id, activity_id: slot.mother.id)
+      Enrollment.cancel_group_enrollment(slot.mother.id, @trainee.id)
     else
       enrollment = Enrollment.where(trainee_id: @trainee.id, time_slot_id: slot.id)
       unless enrollment.first.destroy
@@ -60,18 +58,6 @@ class EnrollmentsController < ApplicationController
     @past_time_slots = TimeSlot.find(trainee_enrollments).select {|x| x.start_time.to_date < Date.today}
   end
 
-  def enroll_via_slot
-    @trainees = Trainee.where(active: true)
-    @slot = TimeSlot.find(params[:id])
-  end
-
-  def finalize_for_slot
-    updated_enrollments_ids = params[:time_slot][:trainee_ids].select {|x| !x.empty? }
-    updated_enrollments_ids.each do |x|
-      Enrollment.find_or_create_by(trainee_id: x.to_i, time_slot_id: params[:id] )
-    end
-    redirect_to admin_root_path
-  end
 
 
   private
