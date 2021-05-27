@@ -8,8 +8,7 @@ class Enrollment < ApplicationRecord
 
 
   def self.enroll_to_group(slot, trainee_id)
-    activity = Activity.find(slot.mother)
-    activity.time_slots.each do |s|
+    slot.mother.time_slots.each do |s|
       next if s.locked
 
       Enrollment.create!(trainee_id: trainee_id, time_slot_id: s.id, registration: "monthly")
